@@ -30,7 +30,7 @@ function CompraEggPage() {
   // const [isBusdNotApproved, setBusdApproved] = useState(true);
   const [walletAddress, setWallet] = useState("");
   const [allowance, setAllowance] = useState(0);
-  const [price, setPrice] = useState(1);
+  const [price, setPrice] = useState(100);
   const navigate = useNavigate();
   // we create an initial state for the current eggs available by user
   const [currentMintedNfts, setCurrentMintedNfts] = useState();
