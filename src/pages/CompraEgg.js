@@ -15,330 +15,13 @@ import { toast } from "react-toastify";
 import moment from "moment";
 import "react-toastify/dist/ReactToastify.css";
 import Header from "../components/organisms/marketplace/Header";
+import { mainNetAbiService } from "util/services/mainnet.js";
 
 toast.configure();
 
 const Web3 = require("web3");
 
-const mainnetAbi = [
-  {
-    inputs: [
-      { internalType: "address", name: "_tokenAddress", type: "address" },
-      { internalType: "uint256", name: "_price", type: "uint256" },
-    ],
-    stateMutability: "nonpayable",
-    type: "constructor",
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: true,
-        internalType: "address",
-        name: "owner",
-        type: "address",
-      },
-      {
-        indexed: true,
-        internalType: "address",
-        name: "approved",
-        type: "address",
-      },
-      {
-        indexed: true,
-        internalType: "uint256",
-        name: "tokenId",
-        type: "uint256",
-      },
-    ],
-    name: "Approval",
-    type: "event",
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: true,
-        internalType: "address",
-        name: "owner",
-        type: "address",
-      },
-      {
-        indexed: true,
-        internalType: "address",
-        name: "operator",
-        type: "address",
-      },
-      { indexed: false, internalType: "bool", name: "approved", type: "bool" },
-    ],
-    name: "ApprovalForAll",
-    type: "event",
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: true,
-        internalType: "address",
-        name: "previousOwner",
-        type: "address",
-      },
-      {
-        indexed: true,
-        internalType: "address",
-        name: "newOwner",
-        type: "address",
-      },
-    ],
-    name: "OwnershipTransferred",
-    type: "event",
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: false,
-        internalType: "address",
-        name: "account",
-        type: "address",
-      },
-    ],
-    name: "Paused",
-    type: "event",
-  },
-  {
-    anonymous: false,
-    inputs: [
-      { indexed: true, internalType: "address", name: "from", type: "address" },
-      { indexed: true, internalType: "address", name: "to", type: "address" },
-      {
-        indexed: true,
-        internalType: "uint256",
-        name: "tokenId",
-        type: "uint256",
-      },
-    ],
-    name: "Transfer",
-    type: "event",
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: false,
-        internalType: "address",
-        name: "account",
-        type: "address",
-      },
-    ],
-    name: "Unpaused",
-    type: "event",
-  },
-  {
-    inputs: [
-      { internalType: "address", name: "to", type: "address" },
-      { internalType: "uint256", name: "tokenId", type: "uint256" },
-    ],
-    name: "approve",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [{ internalType: "address", name: "owner", type: "address" }],
-    name: "balanceOf",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [{ internalType: "uint256", name: "tokenId", type: "uint256" }],
-    name: "getApproved",
-    outputs: [{ internalType: "address", name: "", type: "address" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "getCurrentBalance",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "getPrice",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      { internalType: "address", name: "owner", type: "address" },
-      { internalType: "address", name: "operator", type: "address" },
-    ],
-    name: "isApprovedForAll",
-    outputs: [{ internalType: "bool", name: "", type: "bool" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "name",
-    outputs: [{ internalType: "string", name: "", type: "string" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "owner",
-    outputs: [{ internalType: "address", name: "", type: "address" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [{ internalType: "uint256", name: "tokenId", type: "uint256" }],
-    name: "ownerOf",
-    outputs: [{ internalType: "address", name: "", type: "address" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "pause",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "paused",
-    outputs: [{ internalType: "bool", name: "", type: "bool" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "renounceOwnership",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [{ internalType: "uint256", name: "_amount", type: "uint256" }],
-    name: "safeMint",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      { internalType: "address", name: "from", type: "address" },
-      { internalType: "address", name: "to", type: "address" },
-      { internalType: "uint256", name: "tokenId", type: "uint256" },
-    ],
-    name: "safeTransferFrom",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      { internalType: "address", name: "from", type: "address" },
-      { internalType: "address", name: "to", type: "address" },
-      { internalType: "uint256", name: "tokenId", type: "uint256" },
-      { internalType: "bytes", name: "_data", type: "bytes" },
-    ],
-    name: "safeTransferFrom",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      { internalType: "address", name: "operator", type: "address" },
-      { internalType: "bool", name: "approved", type: "bool" },
-    ],
-    name: "setApprovalForAll",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [{ internalType: "uint256", name: "_max", type: "uint256" }],
-    name: "setMaxNFT",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [{ internalType: "uint256", name: "_price", type: "uint256" }],
-    name: "setNFTPrice",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [{ internalType: "bytes4", name: "interfaceId", type: "bytes4" }],
-    name: "supportsInterface",
-    outputs: [{ internalType: "bool", name: "", type: "bool" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "symbol",
-    outputs: [{ internalType: "string", name: "", type: "string" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "tokenId",
-    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [{ internalType: "uint256", name: "tokenId", type: "uint256" }],
-    name: "tokenURI",
-    outputs: [{ internalType: "string", name: "", type: "string" }],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      { internalType: "address", name: "from", type: "address" },
-      { internalType: "address", name: "to", type: "address" },
-      { internalType: "uint256", name: "tokenId", type: "uint256" },
-    ],
-    name: "transferFrom",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [{ internalType: "address", name: "newOwner", type: "address" }],
-    name: "transferOwnership",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "unpause",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "withdraw",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-];
+const mainnetAbi = mainNetAbiService;
 
 function CompraEggPage() {
   const [loading, setLoading] = useState(false);
@@ -347,21 +30,21 @@ function CompraEggPage() {
   // const [isBusdNotApproved, setBusdApproved] = useState(true);
   const [walletAddress, setWallet] = useState("");
   const [allowance, setAllowance] = useState(0);
-  const [price, setPrice] = useState(100);
+  const [price, setPrice] = useState(1);
   const navigate = useNavigate();
   // we create an initial state for the current eggs available by user
   const [currentMintedNfts, setCurrentMintedNfts] = useState();
   const [wholeMintedNfts, setWholeMintedNfts] = useState(0);
   const [nftImgPath, setNftImgPath] = useState();
   const eggPrice = 100 * Number(price);
-  const isBusdNotApproved = Number(allowance) < Number(price) * 10e17;
+  const isBusdNotApproved = Number(allowance) < Number(price) * 1000e17;
   // const isBusdNotApproved = true;
   // we inform the user about mm status on model info
   const [MMStatusInfo, setMMStatusInfo] = useState("Esperando a Metamask");
 
   // contract address
   // const mainnetContract = "0x4f54DBCF6852cc5386f72210B3587B1975637386";
-  const mainnetContract = "0x2c59a530b0f253b4e436dea8c6d127465f5c0a55";
+  const mainnetContract = "0x7d80E1A99f0cab1fB1A0f2790F42e5b59A3F020f";
 
   const account1 = walletAddress;
   let tokenId;
@@ -503,7 +186,7 @@ function CompraEggPage() {
       to: mainnetContract,
       from: account1,
       data: mainnetContractInterface.methods
-        .safeMint(web3.utils.toHex(price * 10e17))
+        .safeMint(web3.utils.toHex(price * 1000e17))
         .encodeABI(),
     };
     setMMStatusInfo("Esperando a Metamask");
@@ -636,7 +319,7 @@ function CompraEggPage() {
         // alert('Minted Count');
         return;
       }
-      if (Number(allowance) > Number(price) * 10e17) {
+      if (Number(allowance) > Number(price) * 1000e17) {
         toast.warn("Error en la compra. Insuficiente credito", {
           position: "top-right",
           autoClose: 1000,
@@ -691,7 +374,7 @@ function CompraEggPage() {
           .balanceOf(account1)
           .call();
 
-        if (Number(busdBalance) < price * 10e17) {
+        if (Number(busdBalance) < price * 1000e17) {
           setModalOpen(false);
           setLoading(false);
           return toast.warn(
@@ -711,10 +394,10 @@ function CompraEggPage() {
           .allowance(account1, mainnetContract)
           .call();
 
-        if (Number(allowance) < price * 10e17) {
+        if (Number(allowance) < price * 1000e17) {
           setLoading("true");
           transactionParameters.data = await BUSDContract.methods
-            .approve(mainnetContract, web3.utils.toHex(Number(price) * 10e17))
+            .approve(mainnetContract, web3.utils.toHex(5000e17))
             .encodeABI();
           const txHash = await window.ethereum
             .request({
@@ -729,7 +412,7 @@ function CompraEggPage() {
             const allowance = await BUSDContract.methods
               .allowance(account1, mainnetContract)
               .call();
-            if (Number(allowance) >= price * 10e17) {
+            if (Number(allowance) >= price * 1000e17) {
               setAllowance(Number(allowance));
               toast.success(
                 "Aprobacion realizada con exito. Ya puede comprar nfts",
@@ -1004,7 +687,7 @@ function CompraEggPage() {
                 >
                   <div>
                     <strong>ATENCION:</strong> el 27 de Febrero será la apertura
-                    de todos los huevos para que puedas descubrir tu rareza!
+                    de todos los huevos para que puedas descubrir su rareza!
                   </div>
                 </div>
               </div>
