@@ -347,7 +347,7 @@ function CompraEggPage() {
   // const [isBusdNotApproved, setBusdApproved] = useState(true);
   const [walletAddress, setWallet] = useState("");
   const [allowance, setAllowance] = useState(0);
-  const [price, setPrice] = useState(1);
+  const [price, setPrice] = useState(100);
   const navigate = useNavigate();
   // we create an initial state for the current eggs available by user
   const [currentMintedNfts, setCurrentMintedNfts] = useState();
@@ -391,11 +391,11 @@ function CompraEggPage() {
 
   useEffect(() => {
     (async () => {
-      const rpcURL = "https://data-seed-prebsc-1-s1.binance.org:8545";
+      const rpcURL = "https://bsc-dataseed.binance.org/";
       const web3 = new Web3(rpcURL);
       if (account1 && web3.eth.Contract) {
         const BUSDContractAddress =
-          "0xeD24FC36d5Ee211Ea25A80239Fb8C4Cfd80f12Ee";
+          "0xe9e7cea3dedca5984780bafc599bd69add087d56";
         const BUSDABI = BusdAbiService;
 
         const BUSDContract = await new web3.eth.Contract(
@@ -446,7 +446,7 @@ function CompraEggPage() {
   }
 
   function calculateMintedEggs() {
-    const rpcURL = "https://data-seed-prebsc-1-s1.binance.org:8545";
+    const rpcURL = "https://bsc-dataseed.binance.org/";
     const web3 = new Web3(rpcURL);
     window.contract = new web3.eth.Contract(mainnetAbi, mainnetContract);
     window.contract.methods.tokenId().call((err, result) => {
@@ -459,7 +459,7 @@ function CompraEggPage() {
   }
 
   function getCountOfNFTs() {
-    const rpcURL = "https://data-seed-prebsc-1-s1.binance.org:8545";
+    const rpcURL = "https://bsc-dataseed.binance.org/";
     const web3 = new Web3(rpcURL);
     window.contract = new web3.eth.Contract(mainnetAbi, mainnetContract);
     window.contract.methods.tokenId().call((err, result) => {
@@ -472,10 +472,13 @@ function CompraEggPage() {
 
   //mintNFT
   const mint_NFT = async (values) => {
-    const rpcURL = "https://data-seed-prebsc-1-s1.binance.org:8545";
+    const rpcURL = "https://bsc-dataseed.binance.org/";
     const web3 = new Web3(rpcURL);
 
-    const BUSDContractAddress = "0xeD24FC36d5Ee211Ea25A80239Fb8C4Cfd80f12Ee";
+    const BUSDContractAddress = "0xe9e7cea3dedca5984780bafc599bd69add087d56";
+    // testnet
+    // const BUSDContractAddress = "0xeD24FC36d5Ee211Ea25A80239Fb8C4Cfd80f12Ee";
+
     const BUSDABI = BusdAbiService;
 
     const BUSDContract = await new web3.eth.Contract(
@@ -666,11 +669,11 @@ function CompraEggPage() {
       try {
         setModalOpen(true);
         setCurrentModal("loading-screen");
-        const rpcURL = "https://data-seed-prebsc-1-s1.binance.org:8545";
+        const rpcURL = "https://bsc-dataseed.binance.org/";
         const web3 = new Web3(rpcURL);
         // important, this busd address is probably wrong
         const BUSDContractAddress =
-          "0xeD24FC36d5Ee211Ea25A80239Fb8C4Cfd80f12Ee";
+          "0xe9e7cea3dedca5984780bafc599bd69add087d56";
         const BUSDABI = BusdAbiService;
 
         const BUSDContract = await new web3.eth.Contract(
@@ -916,11 +919,10 @@ function CompraEggPage() {
       <main className="market">
         <div className="hero" style={{ paddingBottom: "0" }}>
           <Header />
-          <div
-            className="game-wrapper grid place-center"
-            style={{ maxWidth: "100%" }}
-          >
-            <h1 style={{ fontSize: "clamp(1.8rem, 2rem, 4rem)" }}>Egg Worms</h1>
+          <div className="game-wrapper grid" style={{ maxWidth: "100%" }}>
+            <h1 style={{ fontSize: "clamp(1.8rem, 2rem, 4rem)" }}>
+              Compra Egg
+            </h1>
             <div className="mt-4">
               <div className="NFT-status-container">
                 <div className="NFT-status-box">
@@ -930,7 +932,7 @@ function CompraEggPage() {
                 <div className="NFT-status-box">
                   <div>Tiempo disponible</div>
                   <div>
-                    <ReactMomentCountDown
+                    {/* <ReactMomentCountDown
                       toDate={dateInFuture}
                       targetFormatMask={`DD`}
                     />
@@ -949,7 +951,8 @@ function CompraEggPage() {
                       toDate={dateInFuture}
                       targetFormatMask={`s`}
                     />
-                    s&nbsp;
+                    s&nbsp; */}
+                    Indefinido
                   </div>
                 </div>
                 <div className="NFT-status-box">
@@ -965,31 +968,44 @@ function CompraEggPage() {
               </div>
               <div className="NFT-view-container">
                 <div className="image-container">
-                  {currentMintedNfts > 0 ? (
-                    <img src={huevoIMG} alt="" className="huevo-img" />
-                  ) : (
-                    ""
-                  )}
+                  <img src={huevoIMG} alt="" className="huevo-img" />
+
                   <div className="NFT-view-info-stats">
-                    <div className="NFT-rare">Raro 5%</div>
-                    <div className="NFT-common">Común 12%</div>
-                    <div className="NFT-legendary">Legendario 8%</div>
-                    <div className="NFT-uncommon">Poco común 3%</div>
+                    <div className="NFT-common">Común 50%</div>
+                    <div className="NFT-uncommon">Poco común 35%</div>
+                    <div className="NFT-rare">Raro 12%</div>
+                    <div className="NFT-legendary">Legendario 3%</div>
                   </div>
                 </div>
                 <div className="NFT-view-info-price">
                   <div className="NFT-view-info-name">Minteo NFT</div>
                   <div>100 BUSD</div>
                 </div>
-
                 <div className="mt-1 text-center">
                   {currentMintedNfts >= 2 ? (
                     " "
                   ) : (
-                    <button onClick={handleBuyEgg} className="button">
+                    <button
+                      onClick={handleBuyEgg}
+                      className="button"
+                      style={{ marginTop: "10px" }}
+                    >
                       Comprar
                     </button>
                   )}
+                </div>
+                <div
+                  className="NFT-status-box"
+                  style={{
+                    marginTop: "15px",
+                    maxWidth: "715px",
+                    background: "#00000064",
+                  }}
+                >
+                  <div>
+                    <strong>ATENCION:</strong> el 27 de Febrero será la apertura
+                    de todos los huevos para que puedas descubrir tu rareza!
+                  </div>
                 </div>
               </div>
             </div>
@@ -999,7 +1015,6 @@ function CompraEggPage() {
               </div>
             </div>
           </div>
-          <div id="metamask-logo" className="d-none"></div>
         </div>
       </main>
     </>

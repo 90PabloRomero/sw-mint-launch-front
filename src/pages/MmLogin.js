@@ -9,10 +9,8 @@ import "assets/css/templates/components/modal.scss";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
-import axios from "axios";
 import MmHeader from "components/organisms/login/MmHeader";
 import { toast } from "react-toastify";
-import "../components/atoms/metamasklogo.js";
 
 import "react-toastify/dist/ReactToastify.css";
 
@@ -144,9 +142,9 @@ const MmLoginPage = () => {
               {/* form starts */}
               {currentModal === "almost-there" ? (
                 <>
-                  <h1>Ya Casi has llegado</h1>
+                  <h1>Ya casi has llegado</h1>
                   <p className="my-1">
-                    Conecta tu cuenta de juego para continuar en el mercado test
+                    Conecta tu cuenta de juego para continuar
                   </p>
                   <div>
                     <button
@@ -160,9 +158,7 @@ const MmLoginPage = () => {
               ) : currentModal === "show-create-acc-form" ? (
                 <>
                   <h1>Crear Cuenta</h1>
-                  <p className="my-1">
-                    Conecta tu cuenta de juego para continuar en el mercado
-                  </p>
+                  <p className="my-1">Añade un perfil para el juego</p>
                   <CreateAccountForm
                     address={walletAddress}
                     buttonname={buttonname}
@@ -204,7 +200,7 @@ const MmLoginPage = () => {
               Conéctese con su billetera disponible o cree una nueva billetera
               para unirse a nuestro mercado
             </p>
-            <div className="mr-auto">
+            <div className="mr-auto" style={{ margin: "1rem 0" }}>
               <Button
                 className="flex-wrapper mm-button"
                 onClick={() => {
@@ -216,14 +212,16 @@ const MmLoginPage = () => {
                   }
                 }}
               >
-                <div id="metamask-logo"></div>
-                {/* <img
-                src={metaLogo}
-                alt="Ingresar con MetaMask"
-                className="metamask-logo"
-                width={60}
-              /> */}
-                <span>Iniciar Sesión con Meta Mask</span>
+                {/* <div id="metamask-logo"></div> */}
+                <img
+                  src={metaLogo}
+                  alt="Ingresar con MetaMask"
+                  className="metamask-logo"
+                  width={60}
+                />
+                <span style={{ marginLeft: "15px", fontSize: "20px" }}>
+                  Iniciar Sesión con MetaMask
+                </span>
               </Button>
             </div>
 

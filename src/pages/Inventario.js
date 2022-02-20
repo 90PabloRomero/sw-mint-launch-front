@@ -174,7 +174,7 @@ export default function InventarioPage() {
                   {" "}
                   <img src={userAvatar} alt="" />
                 </div>
-                <div>JhonWick</div>
+                <div>Usuario</div>
                 <div className="walletAddress">{walletAddress}</div>
               </div>
               <div className="wallet-user-info-menu">

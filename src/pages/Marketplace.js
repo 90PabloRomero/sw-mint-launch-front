@@ -686,7 +686,6 @@ function MarketplacePage() {
               </div>
             </div>
           </div>
-          <div id="metamask-logo" className="d-none"></div>
         </div>
       </main>
     </>
