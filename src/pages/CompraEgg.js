@@ -171,7 +171,7 @@ function CompraEggPage() {
 
     // const myContract = await new web3.eth.Contract(mainnetAbi, mainnetContract);
 
-    const busdBalance = await BUSDContract.methods.balanceOf(account1).call();
+    // const busdBalance = await BUSDContract.methods.balanceOf(account1).call();
 
     // set loading modal while order process is on
     setCurrentModal("loading-screen");
@@ -186,7 +186,7 @@ function CompraEggPage() {
       to: mainnetContract,
       from: account1,
       data: mainnetContractInterface.methods
-        .mint(web3.utils.toHex(price * 1000e17))
+        .safeMint(web3.utils.toHex(price * 1000e17))
         .encodeABI(),
     };
     setMMStatusInfo("Esperando a Metamask");
@@ -319,7 +319,7 @@ function CompraEggPage() {
         // alert('Minted Count');
         return;
       }
-      if (Number(allowance) > Number(price) * 1000e17) {
+      if (Number(allowance) < Number(price) * 1000e17) {
         toast.warn("Error en la compra. Insuficiente credito", {
           position: "top-right",
           autoClose: 1000,
