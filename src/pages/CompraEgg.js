@@ -186,7 +186,7 @@ function CompraEggPage() {
       to: mainnetContract,
       from: account1,
       data: mainnetContractInterface.methods
-        .safeMint(web3.utils.toHex(price * 1000e17))
+        .mint(web3.utils.toHex(price * 1000e17))
         .encodeABI(),
     };
     setMMStatusInfo("Esperando a Metamask");
