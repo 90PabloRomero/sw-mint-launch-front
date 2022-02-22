@@ -595,7 +595,7 @@ function CompraEggPage() {
       </>
     );
   };
-  const dateInFuture = moment("2022-2-25");
+  const dateInFuture = moment("2022-2-28");
   return (
     <>
       {modalOpen ? <ShowBuyEgg /> : ""}
@@ -610,12 +610,14 @@ function CompraEggPage() {
               <div className="NFT-status-container">
                 <div className="NFT-status-box">
                   <div>Beneficios Preventa</div>
-                  <div>50% + Usos NFT</div>
+                  <div>
+                    <div>50% + Usos NFT</div> Whitelist Token
+                  </div>
                 </div>
                 <div className="NFT-status-box">
                   <div>Tiempo disponible</div>
                   <div>
-                    {/* <ReactMomentCountDown
+                    <ReactMomentCountDown
                       toDate={dateInFuture}
                       targetFormatMask={`DD`}
                     />
@@ -634,8 +636,9 @@ function CompraEggPage() {
                       toDate={dateInFuture}
                       targetFormatMask={`s`}
                     />
-                    s&nbsp; */}
-                    Indefinido
+                    <div style={{ fontSize: "10px" }}>
+                      (o hasta agotar stock. Aplican T&C)
+                    </div>
                   </div>
                 </div>
                 <div className="NFT-status-box">
