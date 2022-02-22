@@ -171,7 +171,7 @@ function CompraEggPage() {
 
     // const myContract = await new web3.eth.Contract(mainnetAbi, mainnetContract);
 
-    // const busdBalance = await BUSDContract.methods.balanceOf(account1).call();
+    const busdBalance = await BUSDContract.methods.balanceOf(account1).call();
 
     // set loading modal while order process is on
     setCurrentModal("loading-screen");
@@ -186,7 +186,7 @@ function CompraEggPage() {
       to: mainnetContract,
       from: account1,
       data: mainnetContractInterface.methods
-        .safeMint(web3.utils.toHex(price * 1000e17))
+        .mint(web3.utils.toHex(price * 1000e17))
         .encodeABI(),
     };
     setMMStatusInfo("Esperando a Metamask");
@@ -319,7 +319,7 @@ function CompraEggPage() {
         // alert('Minted Count');
         return;
       }
-      if (Number(allowance) < Number(price) * 1000e17) {
+      if (Number(allowance) > Number(price) * 1000e17) {
         toast.warn("Error en la compra. Insuficiente credito", {
           position: "top-right",
           autoClose: 1000,
@@ -609,8 +609,8 @@ function CompraEggPage() {
             <div className="mt-4">
               <div className="NFT-status-container">
                 <div className="NFT-status-box">
-                  <div>Cantidad Disponible</div>
-                  <div>{1000 - wholeMintedNfts} / 1000</div>
+                  <div>Beneficios Preventa</div>
+                  <div>50% + Usos NFT</div>
                 </div>
                 <div className="NFT-status-box">
                   <div>Tiempo disponible</div>
