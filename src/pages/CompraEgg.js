@@ -35,7 +35,7 @@ function CompraEggPage() {
   // we create an initial state for the current eggs available by user
   const [currentMintedNfts, setCurrentMintedNfts] = useState();
   const [wholeMintedNfts, setWholeMintedNfts] = useState(0);
-  const [nftImgPath, setNftImgPath] = useState();
+  // const [nftImgPath, setNftImgPath] = useState();
   const eggPrice = 100 * Number(price);
   const isBusdNotApproved = Number(allowance) < Number(price) * 1000e17;
   // const isBusdNotApproved = true;
@@ -186,7 +186,7 @@ function CompraEggPage() {
       to: mainnetContract,
       from: account1,
       data: mainnetContractInterface.methods
-        .mint(web3.utils.toHex(price * 1000e17))
+        .safeMint(web3.utils.toHex(price * 1000e17))
         .encodeABI(),
     };
     setMMStatusInfo("Esperando a Metamask");
@@ -319,7 +319,7 @@ function CompraEggPage() {
         // alert('Minted Count');
         return;
       }
-      if (Number(allowance) > Number(price) * 1000e17) {
+      if (Number(allowance) < Number(price) * 1000e17) {
         toast.warn("Error en la compra. Insuficiente credito", {
           position: "top-right",
           autoClose: 1000,
