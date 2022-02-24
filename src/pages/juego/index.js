@@ -115,17 +115,28 @@ export const GameHomePage = () => {
             </div>
           </div>
           {/*  */}
-          <div className="grid" style={{ paddingTop: "100px" }}>
+          <div
+            className="grid"
+            style={{ placeContent: "center", height: "100vh" }}
+          >
             <div className="game-logo">
               <div className="spinning-aura"></div>
-              <Logo style={{ zIndex: "1", position: "relative" }} />
+              <Logo
+                style={{
+                  zIndex: "1",
+                  position: "relative",
+                  width: "65%",
+                  maxWidth: "350px",
+                  minWidth: "130px",
+                }}
+              />
             </div>
             <div
               style={{
                 zIndex: "1",
                 position: "relative",
                 fontSize: "16px",
-                marginBottom: "1rem",
+                marginBottom: "3%",
               }}
             >
               ELIGE BOOSTER:
@@ -171,7 +182,7 @@ export const GameHomePage = () => {
             </div>
           </div>
           {/*  */}
-          <div className="absolute-bottom p-1">
+          <div className="absolute-fixed-bottom p-1">
             <div
               className="flex-wrapper"
               style={{ justifyContent: "space-between" }}
@@ -204,7 +215,6 @@ export const GameHomePage = () => {
               </div>
             </div>
           </div>
-          <div id="metamask-logo" className="d-none"></div>
         </div>
       )}
     </>
