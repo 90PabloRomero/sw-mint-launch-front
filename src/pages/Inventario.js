@@ -230,6 +230,12 @@ export default function InventarioPage() {
             >
               Inventario
             </div>
+            <div className="sort-area">
+              <select name="sort-content-inventory" id="sort-content-inventory">
+                <option value="-">Todos</option>
+                <option value="-">ordenar</option>
+              </select>
+            </div>
             <div style={{ fontSize: "13px", textAlign: "start" }}>
               {walletAddress}
             </div>
@@ -255,19 +261,11 @@ export default function InventarioPage() {
                       <div style={{ fontWeight: "800", fontSize: "20px" }}>
                         {gusanos.name}
                       </div>
-                      <buttton className="button">Vender</buttton>
+                      <div>{gusanos.tokenvalue} WBNB</div>
+                      <div>{gusanos.value} USD</div>
                     </div>
                   </button>
                 ))}
-              </div>
-              <div className="">
-                <select
-                  name="sort-content-inventory"
-                  id="sort-content-inventory"
-                >
-                  <option value="-">Todos</option>
-                  <option value="-">ordenar</option>
-                </select>
               </div>
             </div>
           </div>
