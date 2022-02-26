@@ -158,6 +158,8 @@ export default function InventarioPage() {
     );
   };
 
+  const [sortedBy, setSortedBy] = useState("all");
+
   // the Modal
   const ShowInventario = () => {
     return (
@@ -175,7 +177,11 @@ export default function InventarioPage() {
                   <img src={userAvatar} alt="" />
                 </div>
                 <div>Usuario</div>
-                <div className="walletAddress">{walletAddress}</div>
+                <div className="walletAddress" style={{ marginBottom: "10px" }}>
+                  {String(walletAddress).substring(0, 6) +
+                    "..." +
+                    String(walletAddress).substring(38)}
+                </div>
               </div>
               <div className="wallet-user-info-menu">
                 <nav>
@@ -230,17 +236,25 @@ export default function InventarioPage() {
             >
               Inventario
             </div>
-            <div className="sort-area">
-              <select name="sort-content-inventory" id="sort-content-inventory">
-                <option value="-">Todos</option>
-                <option value="-">ordenar</option>
-              </select>
-            </div>
-            <div style={{ fontSize: "13px", textAlign: "start" }}>
-              {walletAddress}
+            <div style={{ display: "flex", justifyContent: "space-between" }}>
+              <div style={{ fontSize: "13px", textAlign: "start" }}></div>
+              <div className="sort-area">
+                <select
+                  name="sort-content-inventory"
+                  id="sort-content-inventory"
+                  style={{ minWidth: "175px" }}
+                  onChange={(e) => setSortedBy(e.target.value)}
+                >
+                  <option value="all">Ver todos</option>
+                  <option value="common">Común</option>
+                  <option value="uncommon">No Común</option>
+                  <option value="rare">Raro</option>
+                  <option value="legendary">Legendario</option>
+                </select>
+              </div>
             </div>
             <div className="flex-wrapper">
-              <div style={{ width: "85%" }} className="gusanos-list">
+              <div style={{ width: "100%" }} className="gusanos-list">
                 {listadatagusanos.map((gusanos) => (
                   <button
                     onClick={() => {
@@ -259,10 +273,10 @@ export default function InventarioPage() {
                     </div>
                     <div className="NFT-view-info-price">
                       <div style={{ fontWeight: "800", fontSize: "20px" }}>
-                        {gusanos.name}
+                        {gusanos.rarity}
                       </div>
-                      <div>{gusanos.tokenvalue} WBNB</div>
-                      <div>{gusanos.value} USD</div>
+                      {/* <div>{gusanos.tokenvalue} WBNB</div> */}
+                      <div>Usos {gusanos.uses}/150</div>
                     </div>
                   </button>
                 ))}
@@ -286,30 +300,26 @@ export default function InventarioPage() {
 const listadatagusanos = [
   {
     id: 1,
-    name: "GusaMax",
-    tokenvalue: "1.6",
-    value: "845.00",
-    tokenimg: gusaMax,
+    rarity: "Común",
+    uses: "150",
+    tokenimg: "https://spaceworms.app/nftimages/1.png",
   },
   {
     id: 2,
-    name: "GusaMax",
-    tokenvalue: "1.6",
-    value: "845.00",
-    tokenimg: gusaMax,
+    rarity: "No Común",
+    uses: "150",
+    tokenimg: "https://spaceworms.app/nftimages/2.png",
   },
   {
     id: 3,
-    name: "GusaMax",
-    tokenvalue: "1.6",
-    value: "845.00",
-    tokenimg: gusaMax,
+    rarity: "Raro",
+    uses: "150",
+    tokenimg: "https://spaceworms.app/nftimages/3.png",
   },
   {
     id: 4,
-    name: "GusaMax",
-    tokenvalue: "1.6",
-    value: "845.00",
-    tokenimg: gusaMax,
+    rarity: "Legendario",
+    uses: "150",
+    tokenimg: "https://spaceworms.app/nftimages/4.png",
   },
 ];

@@ -74,24 +74,25 @@ export default function WalletPage() {
                     <img src={userAvatar} alt="" />
                   </div>
                   <div>Usuario</div>
-                  <div className="walletAddress">{walletAddress}</div>
+                  <div
+                    className="walletAddress"
+                    style={{ marginBottom: "10px" }}
+                  >
+                    {String(walletAddress).substring(0, 6) +
+                      "..." +
+                      String(walletAddress).substring(38)}
+                  </div>
                 </div>
                 <div className="wallet-user-info-menu">
                   <nav>
                     <ul>
                       <li>
-                        <Tooltip
-                          placement="left"
-                          trigger={["click"]}
-                          overlay={<span>Inventario Próximamente!</span>}
-                        >
-                          <Link to="/inventario">
-                            <span>
-                              <img src={inventoryIcon} alt="" />
-                            </span>
-                            Inventario
-                          </Link>
-                        </Tooltip>
+                        <Link to="/inventario">
+                          <span>
+                            <img src={inventoryIcon} alt="" />
+                          </span>
+                          Inventario
+                        </Link>
                       </li>
                       <li>
                         <Link to="/wallet" className="active">
@@ -126,7 +127,11 @@ export default function WalletPage() {
             </div>
             <div>
               <div className="h1">Wallet</div>
-              <div className="div">{walletAddress}</div>
+              <div className="div">
+                {String(walletAddress).substring(0, 6) +
+                  "..." +
+                  String(walletAddress).substring(38)}
+              </div>
               <div className="flex-wrapper">
                 <div className="wallet-blue-box">
                   <h7>Coin</h7>
@@ -146,7 +151,9 @@ export default function WalletPage() {
                     <legend>0 USD</legend>
                   </div>
                   <div className="grid mt-2">
-                    <button className="button">Depositar</button>
+                    <button className="button" disabled={true}>
+                      Depositar
+                    </button>
                   </div>
                 </div>
               </div>
@@ -160,20 +167,13 @@ export default function WalletPage() {
                   0<legend>0 USD</legend>
                 </div>
                 <div className="grid mt-2">
-                  <button className="button">Retirar</button>
+                  <button className="button" disabled={true}>
+                    Retirar
+                  </button>
                 </div>
               </div>
             </div>
-
-            {/* <div className="create-account-modal">
-                <h1>Compra</h1>
-                <p className="my-1">
-                  Estas a punto de comprar un huevo en Space Worms
-                </p>
-              </div> */}
-            {/*  */}
           </div>
-          <div id="metamask-logo" className="d-none"></div>
         </div>
       </>
     );

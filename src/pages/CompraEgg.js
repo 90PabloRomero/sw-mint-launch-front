@@ -274,17 +274,6 @@ function CompraEggPage() {
     }
   };
 
-  async function registerNFT(address, id) {
-    await api
-      .post("/registerNFT", { params: { address: address, id: id } })
-      .then(function (response) {
-        return response.data.Success;
-      })
-      .catch(function (error) {
-        console.log("stories error response :: ", error);
-      });
-  }
-
   // handler to open ShowBuyEgg
   const handleBuyEgg = () => {
     console.log("set buy egg");

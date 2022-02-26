@@ -278,6 +278,11 @@ div.mm-wallet {
     }
   }
 }
+@media (max-width: 863px) {
+  .wallet-layout {
+    grid-template-columns: 1fr;
+  }
+}
 .wallet-blue-box {
   background: #081e43;
   width: clamp(260px, 20vw, 70rem);

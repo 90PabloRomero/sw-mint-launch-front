@@ -68,11 +68,7 @@ function Header() {
             <div className="user-area">
               <Link to="/wallet">
                 <button>
-                  <img
-                    src={userAvatar}
-                    alt=""
-                    style={{ width: "30%", minWidth: "40px" }}
-                  />
+                  <img src={userAvatar} alt="" style={{ minWidth: "40px" }} />
                 </button>
               </Link>
             </div>
