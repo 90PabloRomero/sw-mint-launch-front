@@ -27,7 +27,6 @@ function CompraEggPage() {
   const [loading, setLoading] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [currentModal, setCurrentModal] = useState("init");
-  // const [isBusdNotApproved, setBusdApproved] = useState(true);
   const [walletAddress, setWallet] = useState("");
   const [allowance, setAllowance] = useState(0);
   const [price, setPrice] = useState(1);
@@ -35,19 +34,15 @@ function CompraEggPage() {
   // we create an initial state for the current eggs available by user
   const [currentMintedNfts, setCurrentMintedNfts] = useState();
   const [wholeMintedNfts, setWholeMintedNfts] = useState(0);
-  // const [nftImgPath, setNftImgPath] = useState();
   const eggPrice = 100 * Number(price);
   const isBusdNotApproved = Number(allowance) < Number(price) * 1000e17;
-  // const isBusdNotApproved = true;
   // we inform the user about mm status on model info
   const [MMStatusInfo, setMMStatusInfo] = useState("Esperando a Metamask");
-
   // contract address
-  // const mainnetContract = "0x4f54DBCF6852cc5386f72210B3587B1975637386";
-  const mainnetContract = "0x7d80E1A99f0cab1fB1A0f2790F42e5b59A3F020f";
+  const mainnetContract = "0x78867bbeef44f2326bf8ddd1941a4439382ef2a7";
+  // const mainnetContract = "0x7d80E1A99f0cab1fB1A0f2790F42e5b59A3F020f";
 
   const account1 = walletAddress;
-  let tokenId;
 
   useEffect(async () => {
     const { address, status } = await getCurrentWalletConnected();
@@ -61,16 +56,6 @@ function CompraEggPage() {
       calculateMintedEggs();
     }
   }, [walletAddress]);
-
-  // useEffect(() => {
-  //   imgURI(wholeMintedNfts + 1);
-  // }, [wholeMintedNfts]);
-
-  // useEffect(() => {
-  //   const timeout = setTimeout(() => {
-  //     setModalOpen(false);
-  //   }, 3000);
-  // }, []);
 
   useEffect(() => {
     (async () => {
@@ -140,38 +125,37 @@ function CompraEggPage() {
       setCurrentMintedNfts(parseInt(result));
     });
   }
-
-  function getCountOfNFTs() {
-    const rpcURL = "https://bsc-dataseed.binance.org/";
-    const web3 = new Web3(rpcURL);
-    window.contract = new web3.eth.Contract(mainnetAbi, mainnetContract);
-    window.contract.methods.tokenId().call((err, result) => {
-      setWholeMintedNfts(parseInt(result));
-    });
-    window.contract.methods.balanceOf(walletAddress).call((err, result) => {
-      console.log(parseInt(result));
-    });
-  }
+  // redundante, borrar pronto si todo funciona ok
+  // function getCountOfNFTs() {
+  //   const rpcURL = "https://bsc-dataseed.binance.org/";
+  //   const web3 = new Web3(rpcURL);
+  //   window.contract = new web3.eth.Contract(mainnetAbi, mainnetContract);
+  //   window.contract.methods.tokenId().call((err, result) => {
+  //     setWholeMintedNfts(parseInt(result));
+  //   });
+  //   window.contract.methods.balanceOf(walletAddress).call((err, result) => {
+  //     console.log(parseInt(result));
+  //   });
+  // }
 
   //mintNFT
   const mint_NFT = async (values) => {
     const rpcURL = "https://bsc-dataseed.binance.org/";
     const web3 = new Web3(rpcURL);
-
-    const BUSDContractAddress = "0xe9e7cea3dedca5984780bafc599bd69add087d56";
+    // 160 a 173 son redundantes
+    // const BUSDContractAddress = "0xe9e7cea3dedca5984780bafc599bd69add087d56";
     // testnet
     // const BUSDContractAddress = "0xeD24FC36d5Ee211Ea25A80239Fb8C4Cfd80f12Ee";
 
-    const BUSDABI = BusdAbiService;
+    // const BUSDABI = BusdAbiService;
+    // const BUSDContract = await new web3.eth.Contract(
+    //   BUSDABI,
+    //   BUSDContractAddress
+    // );
 
-    const BUSDContract = await new web3.eth.Contract(
-      BUSDABI,
-      BUSDContractAddress
-    );
+    // // const myContract = await new web3.eth.Contract(mainnetAbi, mainnetContract);
 
-    // const myContract = await new web3.eth.Contract(mainnetAbi, mainnetContract);
-
-    const busdBalance = await BUSDContract.methods.balanceOf(account1).call();
+    // const busdBalance = await BUSDContract.methods.balanceOf(account1).call();
 
     // set loading modal while order process is on
     setCurrentModal("loading-screen");
@@ -388,15 +372,15 @@ function CompraEggPage() {
           transactionParameters.data = await BUSDContract.methods
             .approve(mainnetContract, web3.utils.toHex(5000e17))
             .encodeABI();
-          const txHash = await window.ethereum
-            .request({
-              method: "eth_sendTransaction",
-              params: [transactionParameters],
-            })
-            .catch(() => {
-              setLoading(false);
-              setModalOpen(false);
-            });
+          // const txHash = await window.ethereum
+          //   .request({
+          //     method: "eth_sendTransaction",
+          //     params: [transactionParameters],
+          //   })
+          //   .catch(() => {
+          //     setLoading(false);
+          //     setModalOpen(false);
+          //   });
           const intervalHandler = setInterval(async () => {
             const allowance = await BUSDContract.methods
               .allowance(account1, mainnetContract)
@@ -480,6 +464,7 @@ function CompraEggPage() {
             >
               {loading ? (
                 <img
+                  alt="espere..."
                   src="/ZZ5H.gif"
                   style={{ width: "20px", display: loading ? "" : "none" }}
                 />
@@ -632,12 +617,6 @@ function CompraEggPage() {
                 </div>
                 <div className="NFT-status-box">
                   <div>Eggs minted</div>
-                  {/* {
-                  / on the first boolean, first string should display the current number of eggs bought, it will always be > 0 so... yeah. setting on first string a number just for visualizing the useState. /
-                }
-                {
-                  / two booleans inserted probably first one wouldn't be needed once backend and MM actually works here /
-                } */}
                   <div>{currentMintedNfts} </div>
                 </div>
               </div>
