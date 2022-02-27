@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import cryptoCoinLogo from "assets/img/gusano.png";
 import userAvatar from "assets/img/avatar_2.png";
 import inventoryIcon from "assets/img/icono_inventario.png";
 import walletIcon from "assets/img/icono_wallet.png";
 import { connectWallet, getCurrentWalletConnected } from "../util/interact.js";
 import "../assets/css/templates/wallet.scss";
-import gusaMax from "./../assets/img/gusano1.png";
 import gusanoRojo from "./../assets/img/gusamax.png";
+import api from "../util/api.js";
 
 export default function InventarioPage() {
   const [currentModal, setCurrentModal] = useState("init");
@@ -26,8 +25,8 @@ export default function InventarioPage() {
 
     setWallet(address);
     setStatus(status);
-
     addWalletListener();
+    checkMintedNfts();
   }, []);
 
   function addWalletListener() {
@@ -35,9 +34,19 @@ export default function InventarioPage() {
       window.ethereum.on("accountsChanged", (accounts) => {
         if (accounts.length > 0) {
           setWallet(accounts[0]);
-
-          // once connected, open modal with create account form
-          setModalOpen(true);
+          // once connected,check existing wallet in db and open modal with create account form
+          api
+            .post("/checkifwalletexist", {
+              params: { walletaddress: accounts[0] },
+            })
+            .then(function (res) {
+              if (res.data.success === "existed") {
+                localStorage.setItem("uuid", res.data.uuid);
+                localStorage.setItem("token", res.data.token);
+              } else if (res.data.success === "unexisted") {
+                setModalOpen(true); // modified by tuktuk
+              }
+            });
         } else {
           setWallet("");
           setModalOpen(false);
@@ -61,6 +70,17 @@ export default function InventarioPage() {
     }
   }
 
+  const checkMintedNfts = async () => {
+    await api
+      .post("/getNFTTokens", { params: { walletaddress: walletAddress } })
+      .then(function (res) {
+        if (res.data.success === "existed") {
+          localStorage.setItem("token", res.data.token);
+        } else if (res.data.success === "No NFT Tokens") {
+          console.log("no tiene nfts");
+        }
+      });
+  };
   const ShowBuyEgg = () => {
     return (
       <>

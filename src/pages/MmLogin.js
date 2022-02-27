@@ -84,11 +84,11 @@ const MmLoginPage = () => {
     setStatus(walletResponse.status);
     setWallet(walletResponse.address);
   };
-  const vincularExist = () => {
-    setCurrentModal("show-connect-with-existing-form");
-    setButtonName("conectar");
-    setFlag(0);
-  };
+  // const vincularExist = () => {
+  //   setCurrentModal("show-connect-with-existing-form");
+  //   setButtonName("conectar");
+  //   setFlag(0);
+  // };
   const crearCuenta = () => {
     setCurrentModal("show-create-acc-form");
     setButtonName("Crear Cuenta");
@@ -110,19 +110,17 @@ const MmLoginPage = () => {
   };
   // the Modal
   const ShowCreateAccountModal = () => {
-    // the ip getter note this needs some cors header sent from backend
-    const getData = async () => {
-      // const res = await axios.get("https://geolocation-db.com/json/");
-      // console.log(res.data);
-      // setIP(res.data.IPv4);
-      // setIP("fake.ip.address.development");
-    };
+    // // the ip getter note this needs some cors header sent from backend
+    // const getData = async () => {
+    //   // const res = await axios.get("https://geolocation-db.com/json/");
+    //   // console.log(res.data);
+    //   // setIP(res.data.IPv4);
+    //   // setIP("fake.ip.address.development");
+    // };
 
-    useEffect(() => {
-      getData();
-    }, []);
-
-    const navigate = useNavigate();
+    // useEffect(() => {
+    //   getData();
+    // }, []);
 
     return (
       <>
@@ -219,8 +217,17 @@ const MmLoginPage = () => {
                   className="metamask-logo"
                   width={60}
                 />
-                <span style={{ marginLeft: "15px", fontSize: "20px" }}>
-                  Iniciar Sesión con MetaMask
+                <span
+                  style={{
+                    marginLeft: "15px",
+                    fontSize: "20px",
+                    minWidth: "230px",
+                    display: "inline",
+                  }}
+                >
+                  {walletAddress === ""
+                    ? "Iniciar Sesión con MetaMask"
+                    : "Continuar"}
                 </span>
               </Button>
             </div>
@@ -275,7 +282,7 @@ const CreateAccountForm = (props) => {
 
           if (response.data.Success === "unverified") {
             toast.warn(
-              "Verifique su buzón, si no hay correo electrónico, verifique su verificación de correo electrónico",
+              "Inserte el codigo que se envio a su buzón. Si no ve nuestro correo electrónico, verifique la sección SPAM",
               {
                 position: "top-right",
                 autoClose: 5000,

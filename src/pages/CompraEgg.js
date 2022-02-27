@@ -15,14 +15,23 @@ import { toast } from "react-toastify";
 import moment from "moment";
 import "react-toastify/dist/ReactToastify.css";
 import Header from "../components/organisms/marketplace/Header";
+import { mainNetAbiService } from "util/services/mainnet.js";
 // import { mainNetAbiService } from "util/services/mainnet.js";
-import { testNetAbiService } from "util/services/testnet.js";
 
 toast.configure();
 
 const Web3 = require("web3");
 
-const mainnetAbi = testNetAbiService;
+// new: abi now works from outside, also rpcURL(network) is managed from outside functions too...
+// TODO all this should be moved into enviroment rules for better reusability of code
+// abi
+const mainnetAbi = mainNetAbiService;
+const BUSDABI = BusdAbiService;
+// network
+const rpcURL = "https://bsc-dataseed.binance.org";
+// contracts
+const mainnetContract = "0x7d80E1A99f0cab1fB1A0f2790F42e5b59A3F020f";
+const BUSDContractAddress = "0xe9e7cea3dedca5984780bafc599bd69add087d56";
 
 function CompraEggPage() {
   const [loading, setLoading] = useState(false);
@@ -34,13 +43,11 @@ function CompraEggPage() {
   const navigate = useNavigate();
   // we create an initial state for the current eggs available by user
   const [currentMintedNfts, setCurrentMintedNfts] = useState();
-  const [wholeMintedNfts, setWholeMintedNfts] = useState(0);
   const eggPrice = 100 * Number(price);
   const isBusdNotApproved = Number(allowance) < Number(price) * 1000e17;
   // we inform the user about mm status on model info
   const [MMStatusInfo, setMMStatusInfo] = useState("Esperando a Metamask");
   // contract address
-  const mainnetContract = "0x78867bbeef44f2326bf8ddd1941a4439382ef2a7";
   // const mainnetContract = "0x7d80E1A99f0cab1fB1A0f2790F42e5b59A3F020f";
 
   const account1 = walletAddress;
@@ -60,18 +67,12 @@ function CompraEggPage() {
 
   useEffect(() => {
     (async () => {
-      const rpcURL = "https://data-seed-prebsc-1-s1.binance.org:8545/";
       const web3 = new Web3(rpcURL);
       if (account1 && web3.eth.Contract) {
-        const BUSDContractAddress =
-          "0xe9e7cea3dedca5984780bafc599bd69add087d56";
-        const BUSDABI = BusdAbiService;
-
         const BUSDContract = await new web3.eth.Contract(
           BUSDABI,
           BUSDContractAddress
         );
-
         // const myContract = await new web3.eth.Contract(mainnetAbi, mainnetContract);
         const allowance = await BUSDContract.methods
           .allowance(account1, mainnetContract)
@@ -101,12 +102,7 @@ function CompraEggPage() {
     if (window.ethereum) {
       window.ethereum.on("accountsChanged", (accounts) => {
         if (accounts.length > 0) {
-          // setWallet(accounts[0]);
-          // setStatus("👆🏽 Write a message in the text-field above.");
         } else {
-          // setWallet("");
-          // setStatus("🦊 Connect to Metamask using the top right button.");
-
           localStorage.removeItem("uuid");
           navigate("/login");
         }
@@ -115,14 +111,12 @@ function CompraEggPage() {
   }
 
   function calculateMintedEggs() {
-    const rpcURL = "https://data-seed-prebsc-1-s1.binance.org:8545/";
     const web3 = new Web3(rpcURL);
     window.contract = new web3.eth.Contract(mainnetAbi, mainnetContract);
-    window.contract.methods.tokenId().call((err, result) => {
-      setWholeMintedNfts(parseInt(result));
-    });
+    // window.contract.methods.tokenId().call((err, result) => {
+    //   setWholeMintedNfts(parseInt(result));
+    // });
     window.contract.methods.balanceOf(walletAddress).call((err, result) => {
-      console.log(parseInt(result));
       setCurrentMintedNfts(parseInt(result));
     });
   }
@@ -141,8 +135,6 @@ function CompraEggPage() {
 
   //mintNFT
   const mint_NFT = async (values) => {
-    const rpcURL = "https://data-seed-prebsc-1-s1.binance.org:8545";
-
     // const rpcURL = "https://bsc-dataseed.binance.org/";
     const web3 = new Web3(rpcURL);
     // 160 a 173 son redundantes
@@ -263,7 +255,6 @@ function CompraEggPage() {
 
   // handler to open ShowBuyEgg
   const handleBuyEgg = () => {
-    console.log("set buy egg");
     setCurrentModal("buy-egg");
     setModalOpen(true);
   };
@@ -307,8 +298,6 @@ function CompraEggPage() {
         });
         return;
       }
-
-      console.log(values.nftquantity);
       // console.log(formState);
       onMintNFT(values.nftquantity);
     };
@@ -328,12 +317,7 @@ function CompraEggPage() {
       try {
         setModalOpen(true);
         setCurrentModal("loading-screen");
-        const rpcURL = "https://data-seed-prebsc-1-s1.binance.org:8545";
         const web3 = new Web3(rpcURL);
-        // important, this busd address is probably wrong
-        const BUSDContractAddress =
-          "0xe9e7cea3dedca5984780bafc599bd69add087d56";
-        const BUSDABI = BusdAbiService;
 
         const BUSDContract = await new web3.eth.Contract(
           BUSDABI,
