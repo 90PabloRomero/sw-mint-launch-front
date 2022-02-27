@@ -10,7 +10,7 @@ import api from "../util/api.js";
 
 export default function InventarioPage() {
   const [currentModal, setCurrentModal] = useState("init");
-
+  const [listadatagusanos, setListadatagusanos] = useState([]);
   const history = useNavigate();
 
   const goBack = () => {
@@ -22,17 +22,23 @@ export default function InventarioPage() {
 
   useEffect(async () => {
     const { address, status } = await getCurrentWalletConnected();
-
     setWallet(address);
     setStatus(status);
     addWalletListener();
-    checkMintedNfts();
   }, []);
 
+  useEffect(() => {
+    if (walletAddress !== "") {
+      checkMintedNfts();
+    }
+  }, [walletAddress])
+
   function addWalletListener() {
+    
     if (window.ethereum) {
       window.ethereum.on("accountsChanged", (accounts) => {
         if (accounts.length > 0) {
+          
           setWallet(accounts[0]);
           // once connected,check existing wallet in db and open modal with create account form
           api
@@ -75,6 +81,7 @@ export default function InventarioPage() {
       .post("/getNFTTokens", { params: { walletaddress: walletAddress } })
       .then(function (res) {
         if (res.data.success === "existed") {
+          setListadatagusanos(res.data.data);
           localStorage.setItem("token", res.data.token);
         } else if (res.data.success === "No NFT Tokens") {
           console.log("no tiene nfts");
@@ -286,7 +293,7 @@ export default function InventarioPage() {
                   >
                     <div className="image-container">
                       <img
-                        src={gusanos.tokenimg}
+                        src={`http://spaceworms.app/nftimages/${gusanos.tokenId}.png`}
                         alt=""
                         className="huevo-img"
                       />
@@ -317,29 +324,3 @@ export default function InventarioPage() {
     </>
   );
 }
-const listadatagusanos = [
-  {
-    id: 1,
-    rarity: "Común",
-    uses: "150",
-    tokenimg: "https://spaceworms.app/nftimages/1.png",
-  },
-  {
-    id: 2,
-    rarity: "No Común",
-    uses: "150",
-    tokenimg: "https://spaceworms.app/nftimages/2.png",
-  },
-  {
-    id: 3,
-    rarity: "Raro",
-    uses: "150",
-    tokenimg: "https://spaceworms.app/nftimages/3.png",
-  },
-  {
-    id: 4,
-    rarity: "Legendario",
-    uses: "150",
-    tokenimg: "https://spaceworms.app/nftimages/4.png",
-  },
-];
