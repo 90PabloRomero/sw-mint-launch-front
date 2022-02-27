@@ -15,13 +15,14 @@ import { toast } from "react-toastify";
 import moment from "moment";
 import "react-toastify/dist/ReactToastify.css";
 import Header from "../components/organisms/marketplace/Header";
-import { mainNetAbiService } from "util/services/mainnet.js";
+// import { mainNetAbiService } from "util/services/mainnet.js";
+import { testNetAbiService } from "util/services/testnet.js";
 
 toast.configure();
 
 const Web3 = require("web3");
 
-const mainnetAbi = mainNetAbiService;
+const mainnetAbi = testNetAbiService;
 
 function CompraEggPage() {
   const [loading, setLoading] = useState(false);
