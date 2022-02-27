@@ -59,7 +59,7 @@ function CompraEggPage() {
 
   useEffect(() => {
     (async () => {
-      const rpcURL = "https://bsc-dataseed.binance.org/";
+      const rpcURL = "https://data-seed-prebsc-1-s1.binance.org:8545/";
       const web3 = new Web3(rpcURL);
       if (account1 && web3.eth.Contract) {
         const BUSDContractAddress =
@@ -114,7 +114,7 @@ function CompraEggPage() {
   }
 
   function calculateMintedEggs() {
-    const rpcURL = "https://bsc-dataseed.binance.org/";
+    const rpcURL = "https://data-seed-prebsc-1-s1.binance.org:8545/";
     const web3 = new Web3(rpcURL);
     window.contract = new web3.eth.Contract(mainnetAbi, mainnetContract);
     window.contract.methods.tokenId().call((err, result) => {
@@ -140,7 +140,9 @@ function CompraEggPage() {
 
   //mintNFT
   const mint_NFT = async (values) => {
-    const rpcURL = "https://bsc-dataseed.binance.org/";
+    const rpcURL = "https://data-seed-prebsc-1-s1.binance.org:8545";
+
+    // const rpcURL = "https://bsc-dataseed.binance.org/";
     const web3 = new Web3(rpcURL);
     // 160 a 173 son redundantes
     // const BUSDContractAddress = "0xe9e7cea3dedca5984780bafc599bd69add087d56";
@@ -325,7 +327,7 @@ function CompraEggPage() {
       try {
         setModalOpen(true);
         setCurrentModal("loading-screen");
-        const rpcURL = "https://bsc-dataseed.binance.org/";
+        const rpcURL = "https://data-seed-prebsc-1-s1.binance.org:8545";
         const web3 = new Web3(rpcURL);
         // important, this busd address is probably wrong
         const BUSDContractAddress =
