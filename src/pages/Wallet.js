@@ -134,7 +134,7 @@ export default function WalletPage() {
               </div>
               <div className="flex-wrapper">
                 <div className="wallet-blue-box">
-                  <h7>Coin</h7>
+                  <h6 style={{fontSize: '40px'}}>Coin</h6>
                   <div className="value">
                     0 BNB
                     <legend>0 USD</legend>
@@ -145,7 +145,7 @@ export default function WalletPage() {
                   </div>
                 </div>
                 <div className="wallet-blue-box">
-                  <h7>WormsCoin</h7>
+                  <h6 style={{fontSize: '40px'}}>WormsCoin</h6>
                   <div className="value">
                     0 WC
                     <legend>0 USD</legend>

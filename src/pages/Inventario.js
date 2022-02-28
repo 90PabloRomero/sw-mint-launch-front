@@ -6,7 +6,8 @@ import walletIcon from "assets/img/icono_wallet.png";
 import { connectWallet, getCurrentWalletConnected } from "../util/interact.js";
 import "../assets/css/templates/wallet.scss";
 import gusanoRojo from "./../assets/img/gusamax.png";
-import api from "../util/api.js";
+import api from "../util/api.js";      
+import axios from 'axios';     
 
 export default function InventarioPage() {
   const [currentModal, setCurrentModal] = useState("init");
@@ -16,6 +17,7 @@ export default function InventarioPage() {
   const goBack = () => {
     history(-1);
   };
+  
   const [modalOpen, setModalOpen] = useState(true);
   const [walletAddress, setWallet] = useState("");
   const [status, setStatus] = useState("");
@@ -81,7 +83,9 @@ export default function InventarioPage() {
       .post("/getNFTTokens", { params: { walletaddress: walletAddress } })
       .then(function (res) {
         if (res.data.success === "existed") {
-          setListadatagusanos(res.data.data);
+          var nftorigin = res.data.data;
+          asyncForLoop(nftorigin);
+
           localStorage.setItem("token", res.data.token);
         } else if (res.data.success === "No NFT Tokens") {
           console.log("no tiene nfts");
@@ -183,6 +187,29 @@ export default function InventarioPage() {
         </div>
       </>
     );
+  };
+  const asyncForLoop = async (nftorigin) => {
+    var nftdatas = new Array();
+    for (const nfto of nftorigin) {
+      var data = await getNFTData(nfto);
+      if (data.rarity === 1) {
+        data.rarity = "comun";
+      } else if (data.rarity === 2) {
+        data.rarity = "no comun";
+      } else if (data.rarity === 3) {
+        data.rarity = "raro";
+      } else if (data.rarity === 4) {
+        data.rarity = "legendario";
+      }
+      nftdatas.push(data);
+    }
+    setListadatagusanos(nftdatas);
+   }
+  const getNFTData = async (nfto) => {
+    const res = await axios.get(
+      "https://spaceworms.app/nftdata/" + nfto.tokenId
+    );
+    return res.data;
   };
 
   const [sortedBy, setSortedBy] = useState("all");
@@ -293,7 +320,7 @@ export default function InventarioPage() {
                   >
                     <div className="image-container">
                       <img
-                        src={`http://spaceworms.app/nftimages/${gusanos.tokenId}.png`}
+                        src={gusanos.Image}
                         alt=""
                         className="huevo-img"
                       />
