@@ -239,6 +239,15 @@ const MmLoginPage = () => {
             <div className="mediadiv">
               <SocialMedia />
             </div>
+            <p style={{ textAlign: "center", marginTop: "1rem" }}>
+              Problemas, dudas, consultas?{" "}
+              <a
+                href="mailto:contacto@spaceworms.app"
+                style={{ fontSize: "22px", fontWeight: "900" }}
+              >
+                contacto@spaceworms.app
+              </a>
+            </p>
           </div>
         </div>
       </main>

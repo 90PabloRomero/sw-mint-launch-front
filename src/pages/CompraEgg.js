@@ -440,7 +440,7 @@ function CompraEggPage() {
           </div>
           <div className="buy-egg-form-actions flex-wrapper mt-1">
             <button
-              className="button create-acc-button"
+              className="button create-acc-button mint-button"
               disabled={isBusdNotApproved || loading}
               onClick={() => {
                 // console.log(currentMintedNfts);
@@ -635,7 +635,7 @@ function CompraEggPage() {
                     </button>
                   )}
                 </div>
-                <div
+                {/* <div
                   className="NFT-status-box"
                   style={{
                     marginTop: "15px",
@@ -647,7 +647,7 @@ function CompraEggPage() {
                     <strong>ATENCION:</strong> el 27 de Febrero será la apertura
                     de todos los huevos para que puedas descubrir su rareza!
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
             <div className="flex-wrapper mt-3">

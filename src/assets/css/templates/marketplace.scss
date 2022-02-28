@@ -601,3 +601,18 @@ a.active {
   padding: 10px 30px 10px 0;
   border-radius: 8px;
 }
+
+@media (max-width: 548px) {
+  .wallet-bb-flex {
+    flex-direction: column;
+  }
+  .wallet-rs {
+    margin: 1rem;
+  }
+}
+
+@media (max-width: 498px) {
+  .mint-button {
+    margin-top: 90px !important;
+  }
+}

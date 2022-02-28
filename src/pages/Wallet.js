@@ -62,7 +62,7 @@ export default function WalletPage() {
   const ShowWallet = () => {
     return (
       <>
-        <div className="modal-wrapper">
+        <div className="modal-wrapper" style={{ overflowY: "scroll" }}>
           <div className="grid wallet-layout">
             {/*  */}
             {/* wallet starts */}
@@ -125,16 +125,16 @@ export default function WalletPage() {
                 </div>
               </div>
             </div>
-            <div>
+            <div className="wallet-rs">
               <div className="h1">Wallet</div>
               <div className="div">
                 {String(walletAddress).substring(0, 6) +
                   "..." +
                   String(walletAddress).substring(38)}
               </div>
-              <div className="flex-wrapper">
+              <div className="flex-wrapper wallet-bb-flex">
                 <div className="wallet-blue-box">
-                  <h6 style={{fontSize: '40px'}}>Coin</h6>
+                  <div style={{ fontSize: "30px" }}>Coin</div>
                   <div className="value">
                     0 BNB
                     <legend>0 USD</legend>
@@ -145,7 +145,7 @@ export default function WalletPage() {
                   </div>
                 </div>
                 <div className="wallet-blue-box">
-                  <h6 style={{fontSize: '40px'}}>WormsCoin</h6>
+                  <div style={{ fontSize: "30px" }}>WormsCoin</div>
                   <div className="value">
                     0 WC
                     <legend>0 USD</legend>
