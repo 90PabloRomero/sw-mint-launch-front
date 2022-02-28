@@ -49,7 +49,7 @@ function CompraEggPage() {
   const [MMStatusInfo, setMMStatusInfo] = useState("Esperando a Metamask");
   // contract address
   // const mainnetContract = "0x7d80E1A99f0cab1fB1A0f2790F42e5b59A3F020f";
-
+  const [promotionEnd, setPromotionEnd] = useState(false);
   const account1 = walletAddress;
 
   useEffect(async () => {
@@ -359,15 +359,6 @@ function CompraEggPage() {
           transactionParameters.data = await BUSDContract.methods
             .approve(mainnetContract, web3.utils.toHex(5000e17))
             .encodeABI();
-          // const txHash = await window.ethereum
-          //   .request({
-          //     method: "eth_sendTransaction",
-          //     params: [transactionParameters],
-          //   })
-          //   .catch(() => {
-          //     setLoading(false);
-          //     setModalOpen(false);
-          //   });
           const intervalHandler = setInterval(async () => {
             const allowance = await BUSDContract.methods
               .allowance(account1, mainnetContract)
@@ -556,7 +547,7 @@ function CompraEggPage() {
       </>
     );
   };
-  const dateInFuture = moment("2022-2-28");
+  const dateInFuture = moment("2022-3-01");
   return (
     <>
       {modalOpen ? <ShowBuyEgg /> : ""}
@@ -578,28 +569,35 @@ function CompraEggPage() {
                 <div className="NFT-status-box">
                   <div>Tiempo disponible</div>
                   <div>
-                    <ReactMomentCountDown
-                      toDate={dateInFuture}
-                      targetFormatMask={`DD`}
-                    />
-                    d&nbsp;
-                    <ReactMomentCountDown
-                      toDate={dateInFuture}
-                      targetFormatMask={`HH`}
-                    />
-                    h&nbsp;
-                    <ReactMomentCountDown
-                      toDate={dateInFuture}
-                      targetFormatMask={`mm`}
-                    />
-                    m&nbsp;
-                    <ReactMomentCountDown
-                      toDate={dateInFuture}
-                      targetFormatMask={`s`}
-                    />
-                    <div style={{ fontSize: "10px" }}>
-                      (o hasta agotar stock. Aplican T&C)
-                    </div>
+                    {promotionEnd ? (
+                      "¡Tiempo Concluído!"
+                    ) : (
+                      <>
+                        <ReactMomentCountDown
+                          toDate={dateInFuture}
+                          targetFormatMask={`DD`}
+                          onCountdownEnd={() => setPromotionEnd(true)}
+                        />
+                        d&nbsp;
+                        <ReactMomentCountDown
+                          toDate={dateInFuture}
+                          targetFormatMask={`HH`}
+                        />
+                        h&nbsp;
+                        <ReactMomentCountDown
+                          toDate={dateInFuture}
+                          targetFormatMask={`mm`}
+                        />
+                        m&nbsp;
+                        <ReactMomentCountDown
+                          toDate={dateInFuture}
+                          targetFormatMask={`s`}
+                        />
+                        <div style={{ fontSize: "10px" }}>
+                          (o hasta agotar stock. Aplican T&C)
+                        </div>
+                      </>
+                    )}
                   </div>
                 </div>
                 <div className="NFT-status-box">
@@ -622,32 +620,25 @@ function CompraEggPage() {
                   <div className="NFT-view-info-name">Minteo NFT</div>
                   <div>100 BUSD</div>
                 </div>
-                <div className="mt-1 text-center">
-                  {currentMintedNfts >= 2 ? (
-                    " "
-                  ) : (
-                    <button
-                      onClick={handleBuyEgg}
-                      className="button"
-                      style={{ marginTop: "10px" }}
-                    >
-                      Comprar
-                    </button>
-                  )}
-                </div>
-                {/* <div
-                  className="NFT-status-box"
-                  style={{
-                    marginTop: "15px",
-                    maxWidth: "715px",
-                    background: "#00000064",
-                  }}
-                >
-                  <div>
-                    <strong>ATENCION:</strong> el 27 de Febrero será la apertura
-                    de todos los huevos para que puedas descubrir su rareza!
-                  </div>
-                </div> */}
+                {promotionEnd ? (
+                  ""
+                ) : (
+                  <>
+                    <div className="mt-1 text-center">
+                      {currentMintedNfts >= 2 ? (
+                        " "
+                      ) : (
+                        <button
+                          onClick={handleBuyEgg}
+                          className="button"
+                          style={{ marginTop: "10px" }}
+                        >
+                          Comprar
+                        </button>
+                      )}
+                    </div>
+                  </>
+                )}
               </div>
             </div>
             <div className="flex-wrapper mt-3">
