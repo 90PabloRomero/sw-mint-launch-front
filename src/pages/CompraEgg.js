@@ -547,7 +547,7 @@ function CompraEggPage() {
       </>
     );
   };
-  const dateInFuture = moment("2022-3-01");
+  const dateInFuture = moment("2022-3-01 23:59:59");
   return (
     <>
       {modalOpen ? <ShowBuyEgg /> : ""}
