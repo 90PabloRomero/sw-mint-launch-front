@@ -183,22 +183,28 @@ export const GameHomePage = () => {
           </div>
           {/*  */}
           <div className="absolute-fixed-bottom p-1">
+
             <div
               className="flex-wrapper"
               style={{ justifyContent: "space-between" }}
             >
-              <div className="flex-column">
-                <div>
-                  <button className="red-btn my-1">
+
+              <div className="mt-auto flex-column">
+                <Link to="/">
+                  <div>
+
+                  <button className="red-btn ">
                     <img src={shareIcon} alt="" />
                   </button>
-                </div>
-                <div>
+                  </div>
+                </Link>
+                <Link to="/">
                   <button className="red-btn my-1">
                     <img src={cogIcon} alt="" />
                   </button>
-                </div>
+                </Link>
               </div>
+
               <div className="mt-auto flex-column">
                 <Link to="/">
                   <div>
@@ -207,11 +213,11 @@ export const GameHomePage = () => {
                     </button>
                   </div>
                 </Link>
-                <div>
+                <Link to ="/">
                   <button className="red-btn my-1">
                     <img src={cogIcon} alt="" />
                   </button>
-                </div>
+                </Link>
               </div>
             </div>
           </div>

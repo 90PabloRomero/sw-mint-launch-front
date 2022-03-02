@@ -51,6 +51,7 @@ function CompraEggPage() {
   // const mainnetContract = "0x7d80E1A99f0cab1fB1A0f2790F42e5b59A3F020f";
   const [promotionEnd, setPromotionEnd] = useState(false);
   const account1 = walletAddress;
+  const [wholeMintedNfts, setWholeMintedNfts] = useState(0);
 
   useEffect(async () => {
     const { address, status } = await getCurrentWalletConnected();
@@ -69,6 +70,10 @@ function CompraEggPage() {
     (async () => {
       const web3 = new Web3(rpcURL);
       if (account1 && web3.eth.Contract) {
+        const BUSDContractAddress =
+          "0xe9e7cea3dedca5984780bafc599bd69add087d56";
+        const BUSDABI = BusdAbiService;
+
         const BUSDContract = await new web3.eth.Contract(
           BUSDABI,
           BUSDContractAddress
@@ -113,9 +118,9 @@ function CompraEggPage() {
   function calculateMintedEggs() {
     const web3 = new Web3(rpcURL);
     window.contract = new web3.eth.Contract(mainnetAbi, mainnetContract);
-    // window.contract.methods.tokenId().call((err, result) => {
-    //   setWholeMintedNfts(parseInt(result));
-    // });
+    window.contract.methods.tokenId().call((err, result) => {
+      setWholeMintedNfts(parseInt(result));
+    });
     window.contract.methods.balanceOf(walletAddress).call((err, result) => {
       setCurrentMintedNfts(parseInt(result));
     });
@@ -317,7 +322,12 @@ function CompraEggPage() {
       try {
         setModalOpen(true);
         setCurrentModal("loading-screen");
+        const rpcURL = "https://bsc-dataseed.binance.org/";
         const web3 = new Web3(rpcURL);
+        // important, this busd address is probably wrong
+        const BUSDContractAddress =
+          "0xe9e7cea3dedca5984780bafc599bd69add087d56";
+        const BUSDABI = BusdAbiService;
 
         const BUSDContract = await new web3.eth.Contract(
           BUSDABI,
@@ -359,6 +369,15 @@ function CompraEggPage() {
           transactionParameters.data = await BUSDContract.methods
             .approve(mainnetContract, web3.utils.toHex(5000e17))
             .encodeABI();
+          const txHash = await window.ethereum
+            .request({
+              method: "eth_sendTransaction",
+              params: [transactionParameters],
+            })
+            .catch(() => {
+              setLoading(false);
+              setModalOpen(false);
+            });
           const intervalHandler = setInterval(async () => {
             const allowance = await BUSDContract.methods
               .allowance(account1, mainnetContract)
@@ -547,7 +566,7 @@ function CompraEggPage() {
       </>
     );
   };
-  const dateInFuture = moment("2022-3-01 23:59:59");
+  const dateInFuture = moment("2022-4-01 1:59:59");
   return (
     <>
       {modalOpen ? <ShowBuyEgg /> : ""}
@@ -573,12 +592,7 @@ function CompraEggPage() {
                       "¡Tiempo Concluído!"
                     ) : (
                       <>
-                        <ReactMomentCountDown
-                          toDate={dateInFuture}
-                          targetFormatMask={`DD`}
-                          onCountdownEnd={() => setPromotionEnd(true)}
-                        />
-                        d&nbsp;
+
                         <ReactMomentCountDown
                           toDate={dateInFuture}
                           targetFormatMask={`HH`}
@@ -592,7 +606,7 @@ function CompraEggPage() {
                         <ReactMomentCountDown
                           toDate={dateInFuture}
                           targetFormatMask={`s`}
-                        />
+                        />s
                         <div style={{ fontSize: "10px" }}>
                           (o hasta agotar stock. Aplican T&C)
                         </div>

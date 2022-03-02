@@ -16,6 +16,11 @@ import { WaitingRoomPage } from "pages/juego/WaitingRoom";
 import { GameLayout } from "layouts/GameLayout";
 import CompraEggPage from "pages/CompraEgg";
 import InventarioPage from "pages/Inventario";
+import {TerminosYCondicionesPage} from "./pages/juego/TerminosYCondiciones";
+import {ProfilePage} from "./pages/juego/Profile";
+import {OptionsPage} from "./pages/juego/Options";
+import {GlobalRankingPage} from "./pages/juego/GlobalRanking";
+import {BonificacionesDeArenaPage} from "./pages/juego/BonificacionesDeArena";
 
 export default function App() {
   const [walletAddress, setWallet] = useState("");
@@ -137,12 +142,34 @@ export default function App() {
               </WalletLayout>
             }
           />
-
+          {/*terminos de servicio*/}
+          <Route path={"/terminos"} element={<Layout>
+            <TerminosYCondicionesPage/>
+          </Layout>} />
+          {/*profile*/}
+          <Route path={"/perfil"} element={<Layout>
+            <ProfilePage/>
+          </Layout>} />
+          {/**/}
+          {/*options*/}
+          <Route path={"/opciones"} element={<Layout>
+            <OptionsPage/>
+          </Layout>} />
+          {/**/}
+          {/*Global Ranking*/}
+          <Route path={"/global-ranking"} element={<Layout>
+            <GlobalRankingPage/>
+          </Layout>} />
+          {/*Bonificaciones de arena*/}
+          <Route path={"/bonificaciones-arena"} element={<Layout>
+            <BonificacionesDeArenaPage/>
+          </Layout>} />
+          {/**/}
           {/* game homepage */}
           <Route path="/jugar" element={<GameHomePage />} />
           {/* game waiting room */}
           <Route
-            path="/juego/sala"
+            path="/jugar/sala"
             element={
               <GameLayout>
                 <WaitingRoomPage />

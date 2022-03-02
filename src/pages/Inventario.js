@@ -193,13 +193,21 @@ export default function InventarioPage() {
     for (const nfto of nftorigin) {
       var data = await getNFTData(nfto);
       if (data.rarity === 1) {
-        data.rarity = "comun";
+        data.rarity = "Común (P)";
       } else if (data.rarity === 2) {
-        data.rarity = "no comun";
+        data.rarity = "Poco Común (P)";
       } else if (data.rarity === 3) {
-        data.rarity = "raro";
+        data.rarity = "Raro (P)";
       } else if (data.rarity === 4) {
-        data.rarity = "legendario";
+        data.rarity = "Legendario (P)";
+      } else if (data.rarity === 5) {
+        data.rarity = "Común";
+      } else if (data.rarity === 6) {
+        data.rarity = "Poco Común";
+      } else if (data.rarity === 7) {
+        data.rarity = "Raro";
+      } else if (data.rarity === 8) {
+        data.rarity = "Legendario"
       }
       nftdatas.push(data);
     }
@@ -330,7 +338,7 @@ export default function InventarioPage() {
                         {gusanos.rarity}
                       </div>
                       {/* <div>{gusanos.tokenvalue} WBNB</div> */}
-                      <div>Usos {gusanos.uses}/150</div>
+                      <div>Usos {gusanos.Usos}</div>
                     </div>
                   </button>
                 ))}
@@ -338,7 +346,6 @@ export default function InventarioPage() {
             </div>
           </div>
         </div>
-        <div id="metamask-logo" className="d-none"></div>
       </div>
     );
   };

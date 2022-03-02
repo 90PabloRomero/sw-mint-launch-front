@@ -40,7 +40,6 @@ const AdvertenciaPage = () => {
             </a>
           </div>
         </div>
-        <div id="metamask-logo" className="d-none"></div>
       </main>
     </>
   );
