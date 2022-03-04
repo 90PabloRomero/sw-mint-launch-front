@@ -10,6 +10,7 @@ import swCoin from "../../assets/img/icons/coin.png";
 import cogIcon from "../../assets/img/icons/cog.png";
 import checklistIcon from "../../assets/img/icons/checklist.png";
 import bagIcon from "../../assets/img/icons/bag.png";
+import chartIcon from "../../assets/img/icons/chart.png";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import AdvertenciaPage from "./Advertencia";
@@ -183,24 +184,21 @@ export const GameHomePage = () => {
           </div>
           {/*  */}
           <div className="absolute-fixed-bottom p-1">
-
             <div
               className="flex-wrapper"
               style={{ justifyContent: "space-between" }}
             >
-
               <div className="mt-auto flex-column">
                 <Link to="/">
                   <div>
-
-                  <button className="red-btn ">
-                    <img src={shareIcon} alt="" />
-                  </button>
+                    <button className="red-btn ">
+                      <img src={shareIcon} alt="" />
+                    </button>
                   </div>
                 </Link>
                 <Link to="/">
                   <button className="red-btn my-1">
-                    <img src={cogIcon} alt="" />
+                    <img src={chartIcon} alt="" />
                   </button>
                 </Link>
               </div>
@@ -213,7 +211,7 @@ export const GameHomePage = () => {
                     </button>
                   </div>
                 </Link>
-                <Link to ="/">
+                <Link to="/">
                   <button className="red-btn my-1">
                     <img src={cogIcon} alt="" />
                   </button>

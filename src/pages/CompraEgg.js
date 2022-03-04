@@ -139,437 +139,436 @@ function CompraEggPage() {
   // }
 
   //mintNFT
-  const mint_NFT = async (values) => {
-    // const rpcURL = "https://bsc-dataseed.binance.org/";
-    const web3 = new Web3(rpcURL);
-    // 160 a 173 son redundantes
-    // const BUSDContractAddress = "0xe9e7cea3dedca5984780bafc599bd69add087d56";
-    // testnet
-    // const BUSDContractAddress = "0xeD24FC36d5Ee211Ea25A80239Fb8C4Cfd80f12Ee";
+  // const mint_NFT = async (values) => {
+  //   // const rpcURL = "https://bsc-dataseed.binance.org/";
+  //   const web3 = new Web3(rpcURL);
+  //   // 160 a 173 son redundantes
+  //   // const BUSDContractAddress = "0xe9e7cea3dedca5984780bafc599bd69add087d56";
+  //   // testnet
+  //   // const BUSDContractAddress = "0xeD24FC36d5Ee211Ea25A80239Fb8C4Cfd80f12Ee";
 
-    // const BUSDABI = BusdAbiService;
-    // const BUSDContract = await new web3.eth.Contract(
-    //   BUSDABI,
-    //   BUSDContractAddress
-    // );
+  //   // const BUSDABI = BusdAbiService;
+  //   // const BUSDContract = await new web3.eth.Contract(
+  //   //   BUSDABI,
+  //   //   BUSDContractAddress
+  //   // );
 
-    // // const myContract = await new web3.eth.Contract(mainnetAbi, mainnetContract);
+  //   // // const myContract = await new web3.eth.Contract(mainnetAbi, mainnetContract);
 
-    // const busdBalance = await BUSDContract.methods.balanceOf(account1).call();
+  //   // const busdBalance = await BUSDContract.methods.balanceOf(account1).call();
 
-    // set loading modal while order process is on
-    setCurrentModal("loading-screen");
-    setModalOpen(true);
-    setLoading(true);
-    const mainnetContractInterface = await new web3.eth.Contract(
-      mainnetAbi,
-      mainnetContract
-    );
+  //   // set loading modal while order process is on
+  //   setCurrentModal("loading-screen");
+  //   setModalOpen(true);
+  //   setLoading(true);
+  //   const mainnetContractInterface = await new web3.eth.Contract(
+  //     mainnetAbi,
+  //     mainnetContract
+  //   );
 
-    const transactionParameters = {
-      to: mainnetContract,
-      from: account1,
-      data: mainnetContractInterface.methods
-        .safeMint(web3.utils.toHex(price * 1000e17))
-        .encodeABI(),
-    };
-    setMMStatusInfo("Esperando a Metamask");
+  //   const transactionParameters = {
+  //     to: mainnetContract,
+  //     from: account1,
+  //     data: mainnetContractInterface.methods
+  //       .safeMint(web3.utils.toHex(price * 1000e17))
+  //       .encodeABI(),
+  //   };
+  //   setMMStatusInfo("Esperando a Metamask");
 
-    if (values.length > 0) {
-      try {
-        for (var i = 1; i <= values; i++) {
-          // const txHash = await window.ethereum.request({
-          //   method: "eth_sendTransaction",
-          //   params: [transactionParameters],
-          // });
-          const transfer = () => {
-            return window.ethereum.request({
-              method: "eth_sendTransaction",
-              params: [transactionParameters],
-            });
-          };
-          transfer()
-            .then((tx) => {
-              setLoading(true);
-              console.log("transaction done, ", tx);
-              const intervalHandler = setInterval(async () => {
-                const nftBalance = await mainnetContractInterface.methods
-                  .balanceOf(account1)
-                  .call();
-                if (nftBalance > currentMintedNfts) {
-                  calculateMintedEggs();
-                  api
-                    .post("/registerNFT", {
-                      params: { address: account1, id: currentMintedNfts + 1 },
-                    })
-                    .then(function (response) {})
-                    .catch(function (error) {
-                      console.log("stories error response :: ", error);
-                    });
-                  toast.success(
-                    `Ha comprado con exito ${
-                      currentMintedNfts + 1
-                    } NFTs. Bienvenido a la aventura`,
-                    {
-                      position: "top-right",
-                      autoClose: 5000,
-                      hideProgressBar: false,
-                      closeOnClick: true,
-                      pauseOnHover: true,
-                      draggable: true,
-                      progress: undefined,
-                    }
-                  );
-                  setCurrentModal("buy-egg");
-                  setModalOpen(false);
-                  setLoading(false);
-                  clearInterval(intervalHandler);
-                }
-              }, 2000);
-            })
-            .catch(() => {
-              setLoading(false);
-              setModalOpen(false);
-              toast.warn("Error en la compra. Error en la red", {
-                position: "top-right",
-                autoClose: 1000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-              });
-            });
-        }
-      } catch (error) {
-        alert("here");
-        setModalOpen(false);
-        setLoading(false);
-        toast.warn("Error en la compra. Error en la red", {
-          position: "top-right",
-          autoClose: 1000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-      }
-    }
-  };
+  //   if (values.length > 0) {
+  //     try {
+  //       for (var i = 1; i <= values; i++) {
+  //         // const txHash = await window.ethereum.request({
+  //         //   method: "eth_sendTransaction",
+  //         //   params: [transactionParameters],
+  //         // });
+  //         const transfer = () => {
+  //           return window.ethereum.request({
+  //             method: "eth_sendTransaction",
+  //             params: [transactionParameters],
+  //           });
+  //         };
+  //         transfer()
+  //           .then((tx) => {
+  //             setLoading(true);
+  //             console.log("transaction done, ", tx);
+  //             const intervalHandler = setInterval(async () => {
+  //               const nftBalance = await mainnetContractInterface.methods
+  //                 .balanceOf(account1)
+  //                 .call();
+  //               if (nftBalance > currentMintedNfts) {
+  //                 calculateMintedEggs();
+  //                 api
+  //                   .post("/registerNFT", {
+  //                     params: { address: account1, id: currentMintedNfts + 1 },
+  //                   })
+  //                   .then(function (response) {})
+  //                   .catch(function (error) {
+  //                     console.log("stories error response :: ", error);
+  //                   });
+  //                 toast.success(
+  //                   `Ha comprado con exito ${
+  //                     currentMintedNfts + 1
+  //                   } NFTs. Bienvenido a la aventura`,
+  //                   {
+  //                     position: "top-right",
+  //                     autoClose: 5000,
+  //                     hideProgressBar: false,
+  //                     closeOnClick: true,
+  //                     pauseOnHover: true,
+  //                     draggable: true,
+  //                     progress: undefined,
+  //                   }
+  //                 );
+  //                 setCurrentModal("buy-egg");
+  //                 setModalOpen(false);
+  //                 setLoading(false);
+  //                 clearInterval(intervalHandler);
+  //               }
+  //             }, 2000);
+  //           })
+  //           .catch(() => {
+  //             setLoading(false);
+  //             setModalOpen(false);
+  //             toast.warn("Error en la compra. Error en la red", {
+  //               position: "top-right",
+  //               autoClose: 1000,
+  //               hideProgressBar: false,
+  //               closeOnClick: true,
+  //               pauseOnHover: true,
+  //               draggable: true,
+  //               progress: undefined,
+  //             });
+  //           });
+  //       }
+  //     } catch (error) {
+  //       alert("here");
+  //       setModalOpen(false);
+  //       setLoading(false);
+  //       toast.warn("Error en la compra. Error en la red", {
+  //         position: "top-right",
+  //         autoClose: 1000,
+  //         hideProgressBar: false,
+  //         closeOnClick: true,
+  //         pauseOnHover: true,
+  //         draggable: true,
+  //         progress: undefined,
+  //       });
+  //     }
+  //   }
+  // };
 
   // handler to open ShowBuyEgg
-  const handleBuyEgg = () => {
-    setCurrentModal("buy-egg");
-    setModalOpen(true);
-  };
+  // const handleBuyEgg = () => {
+  //   setCurrentModal("buy-egg");
+  //   setModalOpen(true);
+  // };
 
   // form component
-  const BuyEggForm = ({ onMintNFT }) => {
-    const [proStatus, setProStatus] = useState(0);
-    const {
-      handleSubmit,
-      register,
-      watch,
-      formState: { errors },
-    } = useForm({
-      defaultValues: {
-        nftquantity: "1",
-      },
-    });
-    const onSubmit = (values) => {
-      if (currentMintedNfts >= 10) {
-        toast.warn("mint count error", {
-          position: "top-right",
-          autoClose: 1000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-        // alert('Minted Count');
-        return;
-      }
-      if (Number(allowance) < Number(price) * 1000e17) {
-        toast.warn("Error en la compra. Insuficiente credito", {
-          position: "top-right",
-          autoClose: 1000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-        return;
-      }
-      // console.log(formState);
-      onMintNFT(values.nftquantity);
-    };
-    // const onInputChange = (event) => {
-    //   console.log(event.target.value);
-    //   setInputValue(event.target.value);
-    // };
-    // const inputValue = watch(["nftquantity", "number"]);
-    const handleChange = (event) => {
-      // document.getElementById("totalPrice").innerHTML =
-      //   eggPrice * event.target.value + " BUSD";
-      if (Number(event.target.value) < 1) setPrice(Number(event.target.value));
-    };
+  // const BuyEggForm = ({ onMintNFT }) => {
+  //   const [proStatus, setProStatus] = useState(0);
+  //   const {
+  //     handleSubmit,
+  //     register,
+  //     watch,
+  //     formState: { errors },
+  //   } = useForm({
+  //     defaultValues: {
+  //       nftquantity: "1",
+  //     },
+  //   });
+  //   const onSubmit = (values) => {
+  //     if (currentMintedNfts >= 10) {
+  //       toast.warn("mint count error", {
+  //         position: "top-right",
+  //         autoClose: 1000,
+  //         hideProgressBar: false,
+  //         closeOnClick: true,
+  //         pauseOnHover: true,
+  //         draggable: true,
+  //         progress: undefined,
+  //       });
+  //       // alert('Minted Count');
+  //       return;
+  //     }
+  //     if (Number(allowance) < Number(price) * 1000e17) {
+  //       toast.warn("Error en la compra. Insuficiente credito", {
+  //         position: "top-right",
+  //         autoClose: 1000,
+  //         hideProgressBar: false,
+  //         closeOnClick: true,
+  //         pauseOnHover: true,
+  //         draggable: true,
+  //         progress: undefined,
+  //       });
+  //       return;
+  //     }
+  //     // console.log(formState);
+  //     onMintNFT(values.nftquantity);
+  //   };
+  //   // const onInputChange = (event) => {
+  //   //   console.log(event.target.value);
+  //   //   setInputValue(event.target.value);
+  //   // };
+  //   // const inputValue = watch(["nftquantity", "number"]);
+  //   const handleChange = (event) => {
+  //     // document.getElementById("totalPrice").innerHTML =
+  //     //   eggPrice * event.target.value + " BUSD";
+  //     if (Number(event.target.value) < 1) setPrice(Number(event.target.value));
+  //   };
 
-    // handler when click Approve
-    const approveBUSDHandler = async () => {
-      try {
-        setModalOpen(true);
-        setCurrentModal("loading-screen");
-        const rpcURL = "https://bsc-dataseed.binance.org/";
-        const web3 = new Web3(rpcURL);
-        // important, this busd address is probably wrong
-        const BUSDContractAddress =
-          "0xe9e7cea3dedca5984780bafc599bd69add087d56";
-        const BUSDABI = BusdAbiService;
+  //   // handler when click Approve
+  //   const approveBUSDHandler = async () => {
+  //     try {
+  //       setModalOpen(true);
+  //       setCurrentModal("loading-screen");
+  //       const rpcURL = "https://bsc-dataseed.binance.org/";
+  //       const web3 = new Web3(rpcURL);
+  //       // important, this busd address is probably wrong
+  //       const BUSDContractAddress =
+  //         "0xe9e7cea3dedca5984780bafc599bd69add087d56";
+  //       const BUSDABI = BusdAbiService;
 
-        const BUSDContract = await new web3.eth.Contract(
-          BUSDABI,
-          BUSDContractAddress
-        );
+  //       const BUSDContract = await new web3.eth.Contract(
+  //         BUSDABI,
+  //         BUSDContractAddress
+  //       );
 
-        // const myContract = await new web3.eth.Contract(mainnetAbi, mainnetContract);
+  //       // const myContract = await new web3.eth.Contract(mainnetAbi, mainnetContract);
 
-        const transactionParameters = {
-          to: BUSDContractAddress,
-          from: account1,
-        };
-        const busdBalance = await BUSDContract.methods
-          .balanceOf(account1)
-          .call();
+  //       const transactionParameters = {
+  //         to: BUSDContractAddress,
+  //         from: account1,
+  //       };
+  //       const busdBalance = await BUSDContract.methods
+  //         .balanceOf(account1)
+  //         .call();
 
-        if (Number(busdBalance) < price * 1000e17) {
-          setModalOpen(false);
-          setLoading(false);
-          return toast.warn(
-            "La aprobacion no se pudo realizar. Insuficiente credito",
-            {
-              position: "top-right",
-              autoClose: 1000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-            }
-          );
-        }
-        const allowance = await BUSDContract.methods
-          .allowance(account1, mainnetContract)
-          .call();
+  //       if (Number(busdBalance) < price * 1000e17) {
+  //         setModalOpen(false);
+  //         setLoading(false);
+  //         return toast.warn(
+  //           "La aprobacion no se pudo realizar. Insuficiente credito",
+  //           {
+  //             position: "top-right",
+  //             autoClose: 1000,
+  //             hideProgressBar: false,
+  //             closeOnClick: true,
+  //             pauseOnHover: true,
+  //             draggable: true,
+  //             progress: undefined,
+  //           }
+  //         );
+  //       }
+  //       const allowance = await BUSDContract.methods
+  //         .allowance(account1, mainnetContract)
+  //         .call();
 
-        if (Number(allowance) < price * 1000e17) {
-          setLoading("true");
-          transactionParameters.data = await BUSDContract.methods
-            .approve(mainnetContract, web3.utils.toHex(5000e17))
-            .encodeABI();
-          const txHash = await window.ethereum
-            .request({
-              method: "eth_sendTransaction",
-              params: [transactionParameters],
-            })
-            .catch(() => {
-              setLoading(false);
-              setModalOpen(false);
-            });
-          const intervalHandler = setInterval(async () => {
-            const allowance = await BUSDContract.methods
-              .allowance(account1, mainnetContract)
-              .call();
-            if (Number(allowance) >= price * 1000e17) {
-              setAllowance(Number(allowance));
-              toast.success(
-                "Aprobacion realizada con exito. Ya puede comprar nfts",
-                {
-                  position: "top-right",
-                  autoClose: 1000,
-                  hideProgressBar: false,
-                  closeOnClick: true,
-                  pauseOnHover: true,
-                  draggable: true,
-                  progress: undefined,
-                }
-              );
-              setModalOpen(false);
-              setLoading(false);
-              clearInterval(intervalHandler);
-            }
-          }, 2000);
-          console.log("end");
-        } else {
-          console.log("here");
-        }
-      } catch (err) {
-        setModalOpen(false);
-        setLoading(false);
-        toast.warn("La aprobracion no se pudo realizar. Error en la red", {
-          position: "top-right",
-          autoClose: 1000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-      }
-    };
-    return (
-      <>
-        <form className="buy-egg-form mt-1" onSubmit={handleSubmit(onSubmit)}>
-          <div className="buy-egg-form-label flex-wrapper">
-            <div>Costo de huevo</div>
-            <div>{eggPrice} BUSD</div>
-          </div>
-          <div className="buy-egg-form-quantity flex-wrapper">
-            <div>Cantidad</div>
-            <div>
-              <input
-                type="text"
-                className="number-input "
-                min="1"
-                max="1"
-                disabled={true}
-                value={price}
-                {...register("nftquantity")}
-                onChange={handleChange}
-              />
-            </div>
-          </div>
-          <div className="buy-egg-form-label flex-wrapper">
-            <div>Precio total</div>
-            <div id="totalPrice">100 BUSD</div>
-          </div>
-          <div className="buy-egg-form-terms">
-            * máximo de compra por wallet (2)
-          </div>
-          <div className="buy-egg-form-actions flex-wrapper mt-1">
-            <button
-              className="button create-acc-button mint-button"
-              disabled={isBusdNotApproved || loading}
-              onClick={() => {
-                // console.log(currentMintedNfts);
-                if (currentMintedNfts >= 2) {
-                  setProStatus(1);
-                }
-              }}
-            >
-              {loading ? (
-                <img
-                  alt="espere..."
-                  src="/ZZ5H.gif"
-                  style={{ width: "20px", display: loading ? "" : "none" }}
-                />
-              ) : (
-                "Comprar"
-              )}
-            </button>
-          </div>
-        </form>
+  //       if (Number(allowance) < price * 1000e17) {
+  //         setLoading("true");
+  //         transactionParameters.data = await BUSDContract.methods
+  //           .approve(mainnetContract, web3.utils.toHex(5000e17))
+  //           .encodeABI();
+  //         const txHash = await window.ethereum
+  //           .request({
+  //             method: "eth_sendTransaction",
+  //             params: [transactionParameters],
+  //           })
+  //           .catch(() => {
+  //             setLoading(false);
+  //             setModalOpen(false);
+  //           });
+  //         const intervalHandler = setInterval(async () => {
+  //           const allowance = await BUSDContract.methods
+  //             .allowance(account1, mainnetContract)
+  //             .call();
+  //           if (Number(allowance) >= price * 1000e17) {
+  //             setAllowance(Number(allowance));
+  //             toast.success(
+  //               "Aprobacion realizada con exito. Ya puede comprar nfts",
+  //               {
+  //                 position: "top-right",
+  //                 autoClose: 1000,
+  //                 hideProgressBar: false,
+  //                 closeOnClick: true,
+  //                 pauseOnHover: true,
+  //                 draggable: true,
+  //                 progress: undefined,
+  //               }
+  //             );
+  //             setModalOpen(false);
+  //             setLoading(false);
+  //             clearInterval(intervalHandler);
+  //           }
+  //         }, 2000);
+  //         console.log("end");
+  //       } else {
+  //         console.log("here");
+  //       }
+  //     } catch (err) {
+  //       setModalOpen(false);
+  //       setLoading(false);
+  //       toast.warn("La aprobracion no se pudo realizar. Error en la red", {
+  //         position: "top-right",
+  //         autoClose: 1000,
+  //         hideProgressBar: false,
+  //         closeOnClick: true,
+  //         pauseOnHover: true,
+  //         draggable: true,
+  //         progress: undefined,
+  //       });
+  //     }
+  //   };
+  //   return (
+  //     <>
+  //       <form className="buy-egg-form mt-1" onSubmit={handleSubmit(onSubmit)}>
+  //         <div className="buy-egg-form-label flex-wrapper">
+  //           <div>Costo de huevo</div>
+  //           <div>{eggPrice} BUSD</div>
+  //         </div>
+  //         <div className="buy-egg-form-quantity flex-wrapper">
+  //           <div>Cantidad</div>
+  //           <div>
+  //             <input
+  //               type="text"
+  //               className="number-input "
+  //               min="1"
+  //               max="1"
+  //               disabled={true}
+  //               value={price}
+  //               {...register("nftquantity")}
+  //               onChange={handleChange}
+  //             />
+  //           </div>
+  //         </div>
+  //         <div className="buy-egg-form-label flex-wrapper">
+  //           <div>Precio total</div>
+  //           <div id="totalPrice">100 BUSD</div>
+  //         </div>
+  //         <div className="buy-egg-form-terms">
+  //           * máximo de compra por wallet (2)
+  //         </div>
+  //         <div className="buy-egg-form-actions flex-wrapper mt-1">
+  //           <button
+  //             className="button create-acc-button mint-button"
+  //             disabled={isBusdNotApproved || loading}
+  //             onClick={() => {
+  //               // console.log(currentMintedNfts);
+  //               if (currentMintedNfts >= 2) {
+  //                 setProStatus(1);
+  //               }
+  //             }}
+  //           >
+  //             {loading ? (
+  //               <img
+  //                 alt="espere..."
+  //                 src="/ZZ5H.gif"
+  //                 style={{ width: "20px", display: loading ? "" : "none" }}
+  //               />
+  //             ) : (
+  //               "Comprar"
+  //             )}
+  //           </button>
+  //         </div>
+  //       </form>
 
-        <div className="absolute mintegg-cancel-button">
-          <button
-            className="button cancel create-acc-button"
-            onClick={() => setModalOpen(false)}
-          >
-            cancelar
-          </button>
-          <button
-            className="button create-acc-button create-acc-button d-flex"
-            onClick={approveBUSDHandler}
-            disabled={!isBusdNotApproved || loading}
-          >
-            {loading ? (
-              <img
-                src="/ZZ5H.gif"
-                style={{ width: "17px", display: loading ? "" : "none" }}
-                alt=" "
-              />
-            ) : (
-              "aprobar busd"
-            )}
-          </button>
-        </div>
-      </>
-    );
-  };
+  //       <div className="absolute mintegg-cancel-button">
+  //         <button
+  //           className="button cancel create-acc-button"
+  //           onClick={() => setModalOpen(false)}
+  //         >
+  //           cancelar
+  //         </button>
+  //         <button
+  //           className="button create-acc-button create-acc-button d-flex"
+  //           onClick={approveBUSDHandler}
+  //           disabled={!isBusdNotApproved || loading}
+  //         >
+  //           {loading ? (
+  //             <img
+  //               src="/ZZ5H.gif"
+  //               style={{ width: "17px", display: loading ? "" : "none" }}
+  //               alt=" "
+  //             />
+  //           ) : (
+  //             "aprobar busd"
+  //           )}
+  //         </button>
+  //       </div>
+  //     </>
+  //   );
+  // };
 
   // the Modal
-  const ShowBuyEgg = () => {
-    return (
-      <>
-        <div className="modal-wrapper">
-          <div className="grid place-center">
-            {/* {/ {2}/}
-            {/ form starts /} */}
-            {currentModal === "buy-egg" ? (
-              <>
-                <div className="create-account-modal">
-                  <h1>Compra</h1>
-                  <p className="my-1">
-                    Estas a punto de comprar un huevo en Space Worms
-                  </p>
-                  <BuyEggForm
-                    onCancel={() => {
-                      setModalOpen(false);
-                    }}
-                    onMintNFT={(values) => {
-                      mint_NFT(values);
-                    }}
-                    currentMintedNfts={currentMintedNfts}
-                  />
-                </div>
-              </>
-            ) : currentModal === "loading-screen" ? (
-              <>
-                <div className="loading-screen-container">
-                  <h1>{MMStatusInfo}</h1>
-                  <div>
-                    <LoadingWorm className="absolute" />
-                  </div>
-                </div>
-              </>
-            ) : currentModal === "init" ? (
-              <>
-                {() => {
-                  setModalOpen(false);
-                }}
-                <div className="flex-wrapper">
-                  <div>
-                    <LoadingWorm className="absolute" />
-                  </div>
-                  <h1>Cargando...</h1>
-                </div>
-              </>
-            ) : (
-              <>
-                {() => {
-                  setModalOpen(false);
-                }}
-                <div className="absolute img-loading">
-                  <img src={soldierWorm} alt="" />
-                </div>
-                <div className="flex-wrapper">
-                  <img src={alien} alt="" />
-                  <h1>Bienvenido a la aventura</h1>
-                </div>
-              </>
-            )}
-            {/* {/ {2}/} */}
-          </div>
-        </div>
-      </>
-    );
-  };
-  const dateInFuture = moment("2022-4-01 1:59:59");
+  // const ShowBuyEgg = () => {
+  //   return (
+  //     <>
+  //       <div className="modal-wrapper">
+  //         <div className="grid place-center">
+  //           {/* {/ {2}/}
+  //           {/ form starts /} */}
+  //           {currentModal === "buy-egg" ? (
+  //             <>
+  //               <div className="create-account-modal">
+  //                 <h1>Compra</h1>
+  //                 <p className="my-1">
+  //                   Estas a punto de comprar un huevo en Space Worms
+  //                 </p>
+  //                 <BuyEggForm
+  //                   onCancel={() => {
+  //                     setModalOpen(false);
+  //                   }}
+  //                   onMintNFT={(values) => {
+  //                     mint_NFT(values);
+  //                   }}
+  //                   currentMintedNfts={currentMintedNfts}
+  //                 />
+  //               </div>
+  //             </>
+  //           ) : currentModal === "loading-screen" ? (
+  //             <>
+  //               <div className="loading-screen-container">
+  //                 <h1>{MMStatusInfo}</h1>
+  //                 <div>
+  //                   <LoadingWorm className="absolute" />
+  //                 </div>
+  //               </div>
+  //             </>
+  //           ) : currentModal === "init" ? (
+  //             <>
+  //               {() => {
+  //                 setModalOpen(false);
+  //               }}
+  //               <div className="flex-wrapper">
+  //                 <div>
+  //                   <LoadingWorm className="absolute" />
+  //                 </div>
+  //                 <h1>Cargando...</h1>
+  //               </div>
+  //             </>
+  //           ) : (
+  //             <>
+  //               {() => {
+  //                 setModalOpen(false);
+  //               }}
+  //               <div className="absolute img-loading">
+  //                 <img src={soldierWorm} alt="" />
+  //               </div>
+  //               <div className="flex-wrapper">
+  //                 <img src={alien} alt="" />
+  //                 <h1>Bienvenido a la aventura</h1>
+  //               </div>
+  //             </>
+  //           )}
+  //           {/* {/ {2}/} */}
+  //         </div>
+  //       </div>
+  //     </>
+  //   );
+  // };
   return (
     <>
-      {modalOpen ? <ShowBuyEgg /> : ""}
+      {/* {modalOpen ? <ShowBuyEgg /> : ""} */}
       <main className="market">
         <div className="hero" style={{ paddingBottom: "0" }}>
           <Header />
@@ -587,32 +586,7 @@ function CompraEggPage() {
                 </div>
                 <div className="NFT-status-box">
                   <div>Tiempo disponible</div>
-                  <div>
-                    {promotionEnd ? (
-                      "¡Tiempo Concluído!"
-                    ) : (
-                      <>
-
-                        <ReactMomentCountDown
-                          toDate={dateInFuture}
-                          targetFormatMask={`HH`}
-                        />
-                        h&nbsp;
-                        <ReactMomentCountDown
-                          toDate={dateInFuture}
-                          targetFormatMask={`mm`}
-                        />
-                        m&nbsp;
-                        <ReactMomentCountDown
-                          toDate={dateInFuture}
-                          targetFormatMask={`s`}
-                        />s
-                        <div style={{ fontSize: "10px" }}>
-                          (o hasta agotar stock. Aplican T&C)
-                        </div>
-                      </>
-                    )}
-                  </div>
+                  <div>¡Tiempo Concluído!</div>
                 </div>
                 <div className="NFT-status-box">
                   <div>Eggs minted</div>
@@ -634,25 +608,6 @@ function CompraEggPage() {
                   <div className="NFT-view-info-name">Minteo NFT</div>
                   <div>100 BUSD</div>
                 </div>
-                {promotionEnd ? (
-                  ""
-                ) : (
-                  <>
-                    <div className="mt-1 text-center">
-                      {currentMintedNfts >= 2 ? (
-                        " "
-                      ) : (
-                        <button
-                          onClick={handleBuyEgg}
-                          className="button"
-                          style={{ marginTop: "10px" }}
-                        >
-                          Comprar
-                        </button>
-                      )}
-                    </div>
-                  </>
-                )}
               </div>
             </div>
             <div className="flex-wrapper mt-3">

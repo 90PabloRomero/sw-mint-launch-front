@@ -624,6 +624,11 @@ a.active {
   justify-content: space-between;
 }
 
+@media (max-width: 890px) {
+  .ranking-wrapper {
+    transform: scale(0.7);
+  }
+}
 .ranking-column {
   display: grid;
   grid-template-columns: 75px 1fr 1fr 200px 150px;
@@ -642,4 +647,25 @@ a.active {
   & :hover {
     filter: contrast(135%);
   }
+}
+.felicidades-screen-wrapper {
+  margin-top: 43%;
+}
+
+.felicidades-screen {
+  min-width: "180px";
+  padding: "10px 5px";
+  border-radius: "8px";
+  display: "flex";
+  flex-direction: "column";
+  justify-content: "space-between";
+  position: "relative";
+}
+
+.ranking-column img {
+  max-height: 40px;
+  margin-right: 10px;
+}
+.ranking-column div {
+  padding-top: 5px;
 }

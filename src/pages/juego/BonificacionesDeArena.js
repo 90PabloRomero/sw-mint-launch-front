@@ -8,6 +8,8 @@ import movilidadIcon from "./../../assets/img/movilidadIcon.png";
 import visibilidadIcon from "./../../assets/img/visibilidadIcon.png";
 
 import { Link } from "react-router-dom";
+import oroCoin from "./../../assets/img/oro.png";
+
 import { useState } from "react";
 export const BonificacionesDeArenaPage = () => {
   const history = useNavigate();
@@ -94,7 +96,14 @@ export const BonificacionesDeArenaPage = () => {
                       style={{ fontSize: "20px" }}
                       className={"flex-wrapper justify-between"}
                     >
-                      <div>O 1,500</div>
+                      <div>
+                        <img
+                          src={oroCoin}
+                          alt=""
+                          style={{ maxWidth: "18px", maxHeight: "15px" }}
+                        />{" "}
+                        1,500
+                      </div>
                       <div
                         style={{
                           background: "#ffed00",
@@ -132,7 +141,14 @@ export const BonificacionesDeArenaPage = () => {
                       style={{ fontSize: "20px" }}
                       className={"flex-wrapper justify-between"}
                     >
-                      <div>O 1,500</div>
+                      <div>
+                        <img
+                          src={oroCoin}
+                          alt=""
+                          style={{ maxWidth: "18px", maxHeight: "15px" }}
+                        />{" "}
+                        1,500
+                      </div>
                       <div
                         style={{
                           background: "#ffed00",
@@ -170,7 +186,14 @@ export const BonificacionesDeArenaPage = () => {
                       style={{ fontSize: "20px" }}
                       className={"flex-wrapper justify-between"}
                     >
-                      <div>O 1,500</div>
+                      <div>
+                        <img
+                          src={oroCoin}
+                          alt=""
+                          style={{ maxWidth: "18px", maxHeight: "15px" }}
+                        />{" "}
+                        1,500
+                      </div>
                       <div
                         style={{
                           background: "#ffed00",
@@ -208,7 +231,14 @@ export const BonificacionesDeArenaPage = () => {
                       style={{ fontSize: "20px" }}
                       className={"flex-wrapper justify-between"}
                     >
-                      <div>O 1,500</div>
+                      <div>
+                        <img
+                          src={oroCoin}
+                          alt=""
+                          style={{ maxWidth: "18px", maxHeight: "15px" }}
+                        />{" "}
+                        1,500
+                      </div>
                       <div
                         style={{
                           background: "#ffed00",
@@ -355,18 +385,18 @@ export const BonificacionesDeArenaPage = () => {
               style={{ justifyContent: "center", gap: "2rem" }}
             >
               <div>
-                <Link to="juego/inventario">INVENTARIO</Link>
+                <Link to="../jugar/inventario">INVENTARIO</Link>
               </div>
               <div>
-                <Link to="juego/mejoras">MEJORAS</Link>
+                <Link to="../jugar/mejoras">MEJORAS</Link>
               </div>
               <div>
-                <Link to="juego/bonos-arena" className="active">
+                <Link to="../jugar/bonos-arena" className="active">
                   BONOS DE ARENA
                 </Link>
               </div>
               <div>
-                <Link to="juego/skins">SKINS</Link>
+                <Link to="../jugar/skins">SKINS</Link>
               </div>
             </div>
           </div>

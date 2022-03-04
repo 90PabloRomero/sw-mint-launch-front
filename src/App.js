@@ -16,11 +16,17 @@ import { WaitingRoomPage } from "pages/juego/WaitingRoom";
 import { GameLayout } from "layouts/GameLayout";
 import CompraEggPage from "pages/CompraEgg";
 import InventarioPage from "pages/Inventario";
-import {TerminosYCondicionesPage} from "./pages/juego/TerminosYCondiciones";
-import {ProfilePage} from "./pages/juego/Profile";
-import {OptionsPage} from "./pages/juego/Options";
-import {GlobalRankingPage} from "./pages/juego/GlobalRanking";
-import {BonificacionesDeArenaPage} from "./pages/juego/BonificacionesDeArena";
+import { TerminosYCondicionesPage } from "./pages/juego/TerminosYCondiciones";
+import { ProfilePage } from "./pages/juego/Profile";
+import { OptionsPage } from "./pages/juego/Options";
+import { GlobalRankingPage } from "./pages/juego/GlobalRanking";
+import { BonificacionesDeArenaPage } from "./pages/juego/BonificacionesDeArena";
+import { MisionesDiariasPage } from "pages/juego/MisionesDiarias";
+import { EndGamePage } from "pages/juego/EndGame";
+import { JuegoTerminadoPage } from "pages/juego/JuegoTerminado";
+import { InventarioGusanosPage } from "pages/juego/InventarioGusanos";
+import { MejorasGusanoPage } from "pages/juego/MejoraDelGusano";
+import { SkinsPage } from "pages/juego/Skins";
 
 export default function App() {
   const [walletAddress, setWallet] = useState("");
@@ -143,27 +149,113 @@ export default function App() {
             }
           />
           {/*terminos de servicio*/}
-          <Route path={"/terminos"} element={<Layout>
-            <TerminosYCondicionesPage/>
-          </Layout>} />
+          <Route
+            path={"/terminos"}
+            element={
+              <Layout>
+                <TerminosYCondicionesPage />
+              </Layout>
+            }
+          />
           {/*profile*/}
-          <Route path={"/perfil"} element={<Layout>
-            <ProfilePage/>
-          </Layout>} />
+          <Route
+            path={"/perfil"}
+            element={
+              <Layout>
+                <ProfilePage />
+              </Layout>
+            }
+          />
           {/**/}
           {/*options*/}
-          <Route path={"/opciones"} element={<Layout>
-            <OptionsPage/>
-          </Layout>} />
+          <Route
+            path={"/opciones"}
+            element={
+              <Layout>
+                <OptionsPage />
+              </Layout>
+            }
+          />
           {/**/}
           {/*Global Ranking*/}
-          <Route path={"/global-ranking"} element={<Layout>
-            <GlobalRankingPage/>
-          </Layout>} />
+          <Route
+            path={"/global-ranking"}
+            element={
+              <Layout>
+                <GlobalRankingPage />
+              </Layout>
+            }
+          />
           {/*Bonificaciones de arena*/}
-          <Route path={"/bonificaciones-arena"} element={<Layout>
-            <BonificacionesDeArenaPage/>
-          </Layout>} />
+          <Route
+            path={"/jugar/bonos-arena"}
+            element={
+              <Layout>
+                <BonificacionesDeArenaPage />
+              </Layout>
+            }
+          />
+          {/**/}
+          {/*Misiones diaras*/}
+          <Route
+            path={"/jugar/misiones-diarias"}
+            element={
+              <Layout>
+                <MisionesDiariasPage />
+              </Layout>
+            }
+          />
+          {/**/}
+          {/**/}
+          {/*Juego Terminado*/}
+          <Route
+            path={"/jugar/juego-terminado"}
+            element={
+              <Layout>
+                <JuegoTerminadoPage />
+              </Layout>
+            }
+          />
+          {/**/}
+          {/*Juego Terminado*/}
+          <Route
+            path={"/jugar/inventario"}
+            element={
+              <Layout>
+                <InventarioGusanosPage />
+              </Layout>
+            }
+          />
+          {/**/}
+          {/*Juego Mejoras*/}
+          <Route
+            path={"/jugar/mejoras"}
+            element={
+              <Layout>
+                <MejorasGusanoPage />
+              </Layout>
+            }
+          />
+          {/**/}
+          {/* resultado */}
+          <Route
+            path={"/jugar/resultado"}
+            element={
+              <Layout>
+                <EndGamePage />
+              </Layout>
+            }
+          />
+          {/**/}
+          {/* resultado */}
+          <Route
+            path={"/jugar/skins"}
+            element={
+              <Layout>
+                <SkinsPage />
+              </Layout>
+            }
+          />
           {/**/}
           {/* game homepage */}
           <Route path="/jugar" element={<GameHomePage />} />
