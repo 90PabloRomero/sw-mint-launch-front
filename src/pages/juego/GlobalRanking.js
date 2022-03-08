@@ -18,14 +18,14 @@ import g6 from "./../../assets/img/gusanos/g6.png";
 
 import { useState } from "react";
 export const GlobalRankingPage = () => {
-  const [isIconCheck, setIconCheck] = useState(false);
+  // const [isIconCheck, setIconCheck] = useState(false);
   const history = useNavigate();
 
-  const [isCheckInterfaz, setCheckInterfaz] = useState(false);
-  const [isCheckVibracion, setCheckVibracion] = useState(false);
-  const [isCheckMusica, setCheckMusica] = useState(false);
-  const [isCheckSFX, setCheckSFX] = useState(false);
-  const [isCheckSonido, setCheckSonido] = useState(false);
+  // const [isCheckInterfaz, setCheckInterfaz] = useState(false);
+  // const [isCheckVibracion, setCheckVibracion] = useState(false);
+  // const [isCheckMusica, setCheckMusica] = useState(false);
+  // const [isCheckSFX, setCheckSFX] = useState(false);
+  // const [isCheckSonido, setCheckSonido] = useState(false);
 
   const goBack = () => {
     history(-1);

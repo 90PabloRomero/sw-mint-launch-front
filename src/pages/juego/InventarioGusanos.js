@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import leftArrow from "./../../assets/img/leftarrow.png";
-import imanIcon from "./../../assets/img/imanIcon.png";
-import multiIcon from "./../../assets/img/multiIcon.png";
-import radarIcon from "./../../assets/img/radarIcon.png";
-import velocidadIcon from "./../../assets/img/velocidadIcon.png";
-import movilidadIcon from "./../../assets/img/movilidadIcon.png";
-import visibilidadIcon from "./../../assets/img/visibilidadIcon.png";
+// import imanIcon from "./../../assets/img/imanIcon.png";
+// import multiIcon from "./../../assets/img/multiIcon.png";
+// import radarIcon from "./../../assets/img/radarIcon.png";
+// import velocidadIcon from "./../../assets/img/velocidadIcon.png";
+// import movilidadIcon from "./../../assets/img/movilidadIcon.png";
+// import visibilidadIcon from "./../../assets/img/visibilidadIcon.png";
 
 import { Link } from "react-router-dom";
 import { useState } from "react";

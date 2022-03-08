@@ -194,7 +194,7 @@ export const JuegoTerminadoPage = () => {
             className={"absolute-bottom"}
             style={{ bottom: "30px", textAlign: "end", right: "30px" }}
           >
-            <img src={calavera} />
+            <img src={calavera} alt="..." />
           </div>
         </div>
       </main>

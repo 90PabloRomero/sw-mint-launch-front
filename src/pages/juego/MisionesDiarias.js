@@ -2,8 +2,6 @@ import { useNavigate } from "react-router-dom";
 import leftArrow from "./../../assets/img/leftarrow.png";
 import misionFacil from "./../../assets/img/misionfacil.png";
 import misionLock from "./../../assets/img/misionlock.png";
-import { Link } from "react-router-dom";
-import { useState } from "react";
 export const MisionesDiariasPage = () => {
   const history = useNavigate();
   const goBack = () => {

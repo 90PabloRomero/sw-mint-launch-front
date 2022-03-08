@@ -1,18 +1,11 @@
 import { useEffect, useState } from "react";
 import "assets/css/templates/components/modal.scss";
-import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import SocialMedia from "components/molecules/SocialMedia";
-import LoadingWorm from "components/organisms/LoadingWorm";
-import alien from "assets/img/alien.png";
-import soldierWorm from "assets/img/gusano-guerrero.png";
 import { getCurrentWalletConnected } from "../util/interact.js";
-import api from "../util/api.js";
 import { BusdAbiService } from "util/services/busd.js";
 import huevoIMG from "./../assets/img/huevo-gusano.png";
-import ReactMomentCountDown from "react-moment-countdown";
 import { toast } from "react-toastify";
-import moment from "moment";
 import "react-toastify/dist/ReactToastify.css";
 import Header from "../components/organisms/marketplace/Header";
 import { mainNetAbiService } from "util/services/mainnet.js";
