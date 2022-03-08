@@ -25,6 +25,7 @@ const OptionPill = styled.div`
   font-size: 22px;
 `
 export const OptionsPage = () => {
+  //const [isIconCheck, setIconCheck] = useState(false);
   const history = useNavigate();
 
   const [isCheckInterfaz, setCheckInterfaz] = useState(false);

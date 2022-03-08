@@ -52,20 +52,20 @@ export const InventarioGusanosPage = () => {
           <div className={'flex-wrapper'}>
             <button
               style={{
-                border: 'none',
-                background: '#af2322',
-                color: 'white',
-                minWidth: '148px',
-                borderTop: '3px solid #ffed00',
-                borderBottom: '3px solid #ffed00',
-                borderRight: '3px solid #ffed00',
-                borderTopRightRadius: '8px',
-                borderBottomRightRadius: '8px',
-                cursor: 'pointer'
+                border: "none",
+                background: "#af2322",
+                color: "white",
+                minWidth: "148px",
+                borderTop: "3px solid #ffed00",
+                borderBottom: "3px solid #ffed00",
+                borderRight: "3px solid #ffed00",
+                borderTopRightRadius: "8px",
+                borderBottomRightRadius: "8px",
+                cursor: "pointer",
               }}
               onClick={() => goBack()}
             >
-              <img src={leftArrow} alt={'Regresar'} />
+              <img src={leftArrow} alt={"Regresar"} />
             </button>
           </div>
         </header>

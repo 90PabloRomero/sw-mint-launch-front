@@ -1,3 +1,4 @@
+
 import { useNavigate } from 'react-router-dom';
 import leftArrow from './../../assets/img/leftarrow.png';
 import misionFacil from './../../assets/img/misionfacil.png';
@@ -15,20 +16,20 @@ export const MisionesDiariasPage = () => {
             <title>Misiones Diarias</title>
         </Helmet>
       <main className="market">
-        <header style={{ position: 'absolute', top: '3vh', zIndex: '2' }}>
-          <div className={'flex-wrapper'}>
+        <header style={{ position: "absolute", top: "3vh", zIndex: "2" }}>
+          <div className={"flex-wrapper"}>
             <button
               style={{
-                border: 'none',
-                background: '#af2322',
-                color: 'white',
-                minWidth: '148px',
-                borderTop: '3px solid #ffed00',
-                borderBottom: '3px solid #ffed00',
-                borderRight: '3px solid #ffed00',
-                borderTopRightRadius: '8px',
-                borderBottomRightRadius: '8px',
-                cursor: 'pointer'
+                border: "none",
+                background: "#af2322",
+                color: "white",
+                minWidth: "148px",
+                borderTop: "3px solid #ffed00",
+                borderBottom: "3px solid #ffed00",
+                borderRight: "3px solid #ffed00",
+                borderTopRightRadius: "8px",
+                borderBottomRightRadius: "8px",
+                cursor: "pointer",
               }}
               onClick={() => goBack()}
             >
