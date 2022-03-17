@@ -6,6 +6,7 @@ import oroCoin from './../../assets/img/oro.png';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import {Helmet} from "react-helmet";
+import styled from "styled-components";
 export const SkinsPage = () => {
   const history = useNavigate();
 
@@ -255,7 +256,7 @@ export const SkinsPage = () => {
             </div>
           </div>
           <div className={'absolute-bottom'} style={{ bottom: '30px' }}>
-            <div className={'flex-wrapper'} style={{ justifyContent: 'center', gap: '2rem' }}>
+            <BottomGameNavbar>
               <div>
                 <Link to="../jugar/inventario">INVENTARIO</Link>
               </div>
@@ -270,10 +271,20 @@ export const SkinsPage = () => {
                   SKINS
                 </Link>
               </div>
-            </div>
+            </BottomGameNavbar>
           </div>
         </div>
       </main>
     </>
   );
 };
+const BottomGameNavbar = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  @media (max-width: 800px) {
+    flex-direction: column;
+    text-align: right;
+    margin-right: 15px;
+  }
+`

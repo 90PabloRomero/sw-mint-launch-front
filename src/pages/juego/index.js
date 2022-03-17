@@ -188,7 +188,7 @@ export const GameHomePage = () => {
                     </button>
                   </div>
                 </Link> */}
-                <Link to="/global-ranking">
+                <Link to="/jugar/global-ranking">
                   <button className="red-btn my-1">
                     <img src={chartIcon} alt="" />
                   </button>
@@ -203,7 +203,7 @@ export const GameHomePage = () => {
                     </button>
                   </div>
                 </Link>
-                <Link to="/opciones">
+                <Link to="/jugar/opciones">
                   <button className="red-btn my-1">
                     <img src={cogIcon} alt="" />
                   </button>

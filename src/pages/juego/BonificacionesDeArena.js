@@ -19,6 +19,7 @@ const FlexWrapper = styled.div`
   margin: .5rem 0;
   justify-content: center;
   gap: 20px;
+  
   > div:nth-child(1){
     width: 60%;
     border: 3px solid #ffed00;
@@ -35,8 +36,14 @@ const FlexWrapper = styled.div`
     }
     > div:nth-child(2) {
       
-      max-height: 200px;
+      max-height: 450px;
       
+    }
+    > div:nth-child(2){
+      font-size: 14px !important;
+    }
+    img {
+      max-width: 90px;
     }
     }
 `
