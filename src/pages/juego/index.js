@@ -8,15 +8,52 @@ import plusIcon from "../../assets/img/icons/plus.png";
 import happyFaceIcon from "../../assets/img/icons/happy-face.png";
 import swCoin from "../../assets/img/icons/coin.png";
 import cogIcon from "../../assets/img/icons/cog.png";
+import homeIcon from "../../assets/img/icons/home.png";
 import checklistIcon from "../../assets/img/icons/checklist.png";
 import bagIcon from "../../assets/img/icons/bag.png";
 import chartIcon from "../../assets/img/icons/chart.png";
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { connectWallet, getCurrentWalletConnected } from "../../util/interact.js";
+import { useEffect, useState } from "react";
+import api from "../../util/api.js";
 import AdvertenciaPage from "./Advertencia";
 
 export const GameHomePage = () => {
   const [advertenciaContent, setAdvertenciaContent] = useState(false);
+  const [walletAddress, setWallet] = useState("");
+  const navigate = useNavigate();
+  const [username, setUsername] = useState("Not login yet");
+  var uuid = localStorage.getItem("uuid");
+  useEffect(async () => {
+    setUsername(uuid);
+    const { address, status } = await getCurrentWalletConnected();
+    setWallet(address);
+
+    if (walletAddress !== "") {
+      checkMintedNfts();
+    }
+  }, [walletAddress])
+  const checkMintedNfts = async () => {
+    await api
+      .post("/getNFTTokens", { params: { walletaddress: walletAddress } })
+      .then(function (res) {
+        if (res.data.success === "existed") {
+          var nftorigin = res.data.data;
+          console.log(nftorigin, "#####################");
+        } else if (res.data.success === "No NFT Tokens") {
+          console.log("no tiene nfts");
+        }
+      });
+  };
+  const goToWaitingRoom = () => {
+    navigate("/jugar/sala");
+  }
+  const goToInventario = () => {
+    navigate("/jugar/inventario");
+  }
+  const goToMisionesDiarias = () => {
+    navigate("/jugar/misiones-diarias");
+  }
   return (
     <>
       {advertenciaContent ? (
@@ -29,7 +66,7 @@ export const GameHomePage = () => {
               style={{ justifyContent: "space-between" }}
             >
               <div className="flex-wrapper">
-                <div
+                {/* <div
                   style={{
                     borderRadius: "100%",
                     border: "5px solid #af2322",
@@ -37,23 +74,29 @@ export const GameHomePage = () => {
                   }}
                 >
                   <img src={happyFaceIcon} alt="" style={{ width: "30px" }} />
-                </div>
+                </div> */}
                 <div
                   style={{
-                    border: "5px solid #af2322",
+                    border: "2px solid #af2322",
+                    borderRadius: "5px",
                     background: "black",
-                    height: "25px",
-                    paddingTop: "2px",
+                    height: "30px",
+                    textAlign: "center",
                     marginTop: "8px",
-                    lineHeight: 0.5,
-                    fontSize: "15px",
-                    marginLeft: "-6px",
-                    width: "80px",
+                    fontSize: "18px",
+                    marginLeft: "5px",
+                    width: "100%",
                   }}
                 >
-                  30%
+                  <span style={{
+                    display: "inline-block",
+                    verticalAlign: "middle",
+                    lineHeight: "normal",
+                    marginLeft: "5px",
+                    marginRight: "5px",
+                  }}>{username}</span>
                 </div>
-                <div className="relative" style={{ marginLeft: "-15px" }}>
+                {/* <div className="relative" style={{ marginLeft: "-15px" }}>
                   <img src={starIcon} alt="" style={{ width: "40px" }} />
                   <div
                     className="absolute"
@@ -70,7 +113,7 @@ export const GameHomePage = () => {
                   >
                     2
                   </div>
-                </div>
+                </div> */}
               </div>
               <div className="flex-wrapper relative">
                 <div
@@ -85,6 +128,7 @@ export const GameHomePage = () => {
                 <div
                   style={{
                     border: "5px solid #af2322",
+                    borderRadius: "5px",
                     background: "#af2322",
                     height: "25px",
                     paddingTop: "2px",
@@ -95,9 +139,9 @@ export const GameHomePage = () => {
                     width: "60px",
                   }}
                 >
-                  872
+                  354
                 </div>
-                <div className="relative" style={{ marginLeft: "-15px" }}>
+                {/* <div className="relative" style={{ marginLeft: "-15px" }}>
                   <button
                     className="blue"
                     style={{
@@ -111,7 +155,7 @@ export const GameHomePage = () => {
                   >
                     <img src={plusIcon} alt="" style={{ width: "15px" }} />
                   </button>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
@@ -132,7 +176,7 @@ export const GameHomePage = () => {
                 }}
               />
             </div>
-            <div
+            {/* <div
               style={{
                 zIndex: "1",
                 position: "relative",
@@ -141,8 +185,8 @@ export const GameHomePage = () => {
               }}
             >
               ELIGE BOOSTER:
-            </div>
-            <div
+            </div> */}
+            {/* <div
               className="flex-wrapper justify-center"
               style={{ zIndex: "1", position: "relative" }}
             >
@@ -152,20 +196,22 @@ export const GameHomePage = () => {
               <button className="blue btn-circle ml-2">
                 <img src={wormAladoIcon} alt="" />
               </button>
-            </div>
+            </div> */}
             <div
               className="flex-wrapper justify-center mt-3"
               style={{ zIndex: "1", position: "relative" }}
             >
-              <button className="blue ml-2" style={{ borderRadius: "16px" }}>
+              <button className="blue ml-2" style={{ borderRadius: "16px" }} onClick={() => goToInventario()}>
                 <img src={bagIcon} alt="" />
               </button>
               {/* <a
             href="http://52.15.191.202:4200/wormsgame/advertencia.html"
             className="disable-styles"
           > */}
+
               <button
-                onClick={() => setAdvertenciaContent(true)}
+                // onClick={() => setAdvertenciaContent(true)}
+                onClick={() => goToWaitingRoom()}
                 className="game-btn mx-1"
                 style={{
                   minHeight: "70px",
@@ -177,7 +223,7 @@ export const GameHomePage = () => {
                 JUGAR
               </button>
               {/* </a> */}
-              <button className="blue ml-2" style={{ borderRadius: "16px" }}>
+              <button className="blue ml-2" style={{ borderRadius: "16px" }} onClick={() => goToMisionesDiarias()}>
                 <img src={checklistIcon} alt="" />
               </button>
             </div>
@@ -189,14 +235,14 @@ export const GameHomePage = () => {
               style={{ justifyContent: "space-between" }}
             >
               <div className="mt-auto flex-column">
-                <Link to="/">
+                {/* <Link to="/">
                   <div>
                     <button className="red-btn ">
                       <img src={shareIcon} alt="" />
                     </button>
                   </div>
-                </Link>
-                <Link to="/">
+                </Link> */}
+                <Link to="/global-ranking">
                   <button className="red-btn my-1">
                     <img src={chartIcon} alt="" />
                   </button>
@@ -207,11 +253,11 @@ export const GameHomePage = () => {
                 <Link to="/">
                   <div>
                     <button className="red-btn ">
-                      <GoHome style={{ fontSize: "30px" }} />
+                      <img src={homeIcon} alt="" />
                     </button>
                   </div>
                 </Link>
-                <Link to="/">
+                <Link to="/opciones">
                   <button className="red-btn my-1">
                     <img src={cogIcon} alt="" />
                   </button>

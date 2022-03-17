@@ -30,6 +30,14 @@ export const GlobalRankingPage = () => {
   const goBack = () => {
     history(-1);
   };
+  const showGlobalRanking = () => {
+    document.getElementById("global-ranking").style.display = "";
+    document.getElementById("local-ranking").style.display = "none";
+  }
+  const showLocalRanking = () => {
+    document.getElementById("global-ranking").style.display = "none";
+    document.getElementById("local-ranking").style.display = "";
+  }
   return (
     <>
       <main className="market">
@@ -86,6 +94,7 @@ export const GlobalRankingPage = () => {
               }}
             >
               <div
+                id="global-ranking"
                 className={"flex-wrapper my-1"}
                 style={{ flexDirection: "column", gap: "10px" }}
               >
@@ -191,6 +200,114 @@ export const GlobalRankingPage = () => {
                   </div>
                 </div>
               </div>
+              {/*                             */}
+              <div
+                id="local-ranking"
+                className={"flex-wrapper my-1"}
+                style={{ flexDirection: "column", gap: "10px", display: "none" }}
+              >
+                <div className={"ranking-column"}>
+                  <div>1</div>
+                  <div className={"flex-wrapper"}>
+                    <div>
+                      <img src={arFlag} alt="argentina" />
+                    </div>
+                    <div>Tony Portugal</div>
+                  </div>
+                  <div>
+                    <img src={g1} alt="" />
+                  </div>
+                  <div>15,548,522</div>
+                  <div>
+                    <img src={balanIcon} alt="peso total" />
+                  </div>
+                </div>
+                {/*  */}
+                <div className={"ranking-column"}>
+                  <div>2</div>
+                  <div className={"flex-wrapper"}>
+                    <div>
+                      <img src={arFlag} alt="argentina" />
+                    </div>
+                    <div>Denis Portugal</div>
+                  </div>
+                  <div>
+                    <img src={g1} alt="" />
+                  </div>
+                  <div>15,148,522</div>
+                  <div>
+                    <img src={balanIcon} alt="peso total" />
+                  </div>
+                </div>
+                {/*  */}
+                <div className={"ranking-column"}>
+                  <div>3</div>
+                  <div className={"flex-wrapper"}>
+                    <div>
+                      <img src={arFlag} alt="argentina" />
+                    </div>
+                    <div>Artur Portugal</div>
+                  </div>
+                  <div>
+                    <img src={g1} alt="" />
+                  </div>
+                  <div>15,852,2</div>
+                  <div>
+                    <img src={balanIcon} alt="peso total" />
+                  </div>
+                </div>
+                {/*  */}
+                <div className={"ranking-column"}>
+                  <div>4</div>
+                  <div className={"flex-wrapper"}>
+                    <div>
+                      <img src={arFlag} alt="argentina" />
+                    </div>
+                    <div>Yoris Portugal</div>
+                  </div>
+                  <div>
+                    <img src={g1} alt="" />
+                  </div>
+                  <div>15,152,2</div>
+                  <div>
+                    <img src={balanIcon} alt="peso total" />
+                  </div>
+                </div>
+                {/*  */}
+                <div className={"ranking-column"}>
+                  <div>5</div>
+                  <div className={"flex-wrapper"}>
+                    <div>
+                      <img src={arFlag} alt="argentina" />
+                    </div>
+                    <div>John Portugal</div>
+                  </div>
+                  <div>
+                    <img src={g1} alt="" />
+                  </div>
+                  <div>15,522</div>
+                  <div>
+                    <img src={balanIcon} alt="peso total" />
+                  </div>
+                </div>
+                {/*  */}
+                <div className={"ranking-column"}>
+                  <div>6</div>
+                  <div className={"flex-wrapper"}>
+                    <div>
+                      <img src={arFlag} alt="argentina" />
+                    </div>
+                    <div>Tanya Portugal</div>
+                  </div>
+                  <div>
+                    <img src={g1} alt="" />
+                  </div>
+                  <div>152</div>
+                  <div>
+                    <img src={balanIcon} alt="peso total" />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <div className={"absolute-bottom"} style={{ bottom: "30px" }}>
@@ -198,8 +315,32 @@ export const GlobalRankingPage = () => {
               className={"flex-wrapper"}
               style={{ justifyContent: "center", gap: "2rem" }}
             >
-              <div>Global</div>
-              <div>Local</div>
+              <div>
+                <button className="game-btn mx-1"
+                  onClick={() => showGlobalRanking()}
+                  style={{
+                    minHeight: "70px",
+                    minWidth: "150px",
+                    fontSize: "20px",
+                    fontWeight: "800",
+                  }}
+                >
+                  Global
+                </button>
+              </div>
+              <div>
+                <button className="game-btn mx-1"
+                  onClick={() => showLocalRanking()}
+                  style={{
+                    minHeight: "70px",
+                    minWidth: "150px",
+                    fontSize: "20px",
+                    fontWeight: "800",
+                  }}
+                >
+                  Local
+                </button>
+              </div>
             </div>
           </div>
         </div>
