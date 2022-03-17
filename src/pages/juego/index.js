@@ -1,13 +1,12 @@
 import Logo from 'components/atoms/Logo';
 
-import happyFaceIcon from '../../assets/img/icons/happy-face.png';
 import swCoin from '../../assets/img/icons/coin.png';
 import cogIcon from '../../assets/img/icons/cog.png';
 import homeIcon from "../../assets/img/icons/home.png";
 import checklistIcon from '../../assets/img/icons/checklist.png';
 import bagIcon from '../../assets/img/icons/bag.png';
 import chartIcon from '../../assets/img/icons/chart.png';
-import { Link } from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import { connectWallet, getCurrentWalletConnected } from "../../util/interact.js";
 import { useEffect, useState } from 'react';
 import api from "../../util/api.js";
