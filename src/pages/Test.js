@@ -1,49 +1,49 @@
-import "../assets/css/templates/home.scss";
-import Button from "../components/atoms/Button";
-import { CarouselScreenshotSlider } from "../components/molecules/CarouselSlider";
-import video from "./../assets/img/game-video.mp4";
-import SpaceWormsLogo from "./../assets/img/20.png";
-import homefirstimg5 from "./../assets/img/1.png";
-import homebuttonimg1 from "./../assets/img/b_1.png";
-import homebuttonimg2 from "./../assets/img/b2.png";
-import homebuttonimg3 from "./../assets/img/b3.png";
-import homesecondimg1 from "./../assets/img/5.png";
-import roadmapH from "./../assets/img/ROADMAPHORIZONTAL.png";
-import roadmapV from "./../assets/img/ROADMAPVERTICAL.png";
-import Logo from "components/atoms/Logo";
-import AnchorLink from "react-anchor-link-smooth-scroll";
-import { useEffect, useState } from "react";
-import { connectWallet, getCurrentWalletConnected } from "../util/interact.js";
-import { Link, useNavigate } from "react-router-dom";
-import CrossIcon from "components/atoms/icons/cross";
-import HamburguerIcon from "components/atoms/icons/hamburguer";
-import { BsFillArrowRightCircleFill } from "react-icons/bs";
-import "assets/css/templates/header-home.scss";
-import "assets/css/templates/footer-home.scss";
-import screenshot1 from "assets/img/ss1.png";
-import screenshot2 from "assets/img/ss2.png";
-import screenshot3 from "assets/img/ss3.png";
-import screenshot4 from "assets/img/ss4.png";
-import teamMember1 from "assets/img/t1.png";
-import teamMember2 from "assets/img/t2.png";
-import teamMember3 from "assets/img/t3.png";
-import developersLogo from "assets/img/NT-Logo-med.png";
-import awsLogo from "assets/img/awslogo.png";
-import footerimg7 from "assets/img/12.png";
-import footerimg8 from "assets/img/13.png";
-import footerimg9 from "assets/img/21.png";
-import dcBlack from "assets/img/dc_black.png";
-import tgBlack from "assets/img/telegram_black.png";
-import twBlack from "assets/img/tw_black.png";
-import ytBlack from "assets/img/youtube_black.png";
-import Tooltip from "rc-tooltip";
-import "rc-tooltip/assets/bootstrap_white.css";
-import ReactVisibilitySensor from "react-visibility-sensor";
+import '../assets/css/templates/home.scss';
+import Button from '../components/atoms/Button';
+import { CarouselScreenshotSlider } from '../components/molecules/CarouselSlider';
+import video from './../assets/img/game-video.mp4';
+import SpaceWormsLogo from './../assets/img/20.png';
+import homefirstimg5 from './../assets/img/1.png';
+import homebuttonimg1 from './../assets/img/b_1.png';
+import homebuttonimg2 from './../assets/img/b2.png';
+import homebuttonimg3 from './../assets/img/b3.png';
+import homesecondimg1 from './../assets/img/5.png';
+import roadmapH from './../assets/img/ROADMAPHORIZONTAL.png';
+import roadmapV from './../assets/img/ROADMAPVERTICAL.png';
+import Logo from 'components/atoms/Logo';
+import AnchorLink from 'react-anchor-link-smooth-scroll';
+import { useEffect, useState } from 'react';
+import { connectWallet, getCurrentWalletConnected } from '../util/interact.js';
+import { Link, useNavigate } from 'react-router-dom';
+import CrossIcon from 'components/atoms/icons/cross';
+import HamburguerIcon from 'components/atoms/icons/hamburguer';
+import { BsFillArrowRightCircleFill } from 'react-icons/bs';
+import 'assets/css/templates/header-home.scss';
+import 'assets/css/templates/footer-home.scss';
+import screenshot1 from 'assets/img/ss1.png';
+import screenshot2 from 'assets/img/ss2.png';
+import screenshot3 from 'assets/img/ss3.png';
+import screenshot4 from 'assets/img/ss4.png';
+import teamMember1 from 'assets/img/t1.png';
+import teamMember2 from 'assets/img/t2.png';
+import teamMember3 from 'assets/img/t3.png';
+import developersLogo from 'assets/img/NT-Logo-med.png';
+import awsLogo from 'assets/img/awslogo.png';
+import footerimg7 from 'assets/img/12.png';
+import footerimg8 from 'assets/img/13.png';
+import footerimg9 from 'assets/img/21.png';
+import dcBlack from 'assets/img/dc_black.png';
+import tgBlack from 'assets/img/telegram_black.png';
+import twBlack from 'assets/img/tw_black.png';
+import ytBlack from 'assets/img/youtube_black.png';
+import Tooltip from 'rc-tooltip';
+import 'rc-tooltip/assets/bootstrap_white.css';
+import ReactVisibilitySensor from 'react-visibility-sensor';
 
-import sdLogo from "assets/img/sd.png";
+import sdLogo from 'assets/img/sd.png';
 
-import useWindowDimensions from "./../components/atoms/useWindowsDimensions";
-import YouTube from "react-youtube";
+import useWindowDimensions from './../components/atoms/useWindowsDimensions';
+import YouTube from 'react-youtube';
 
 export const TestPage = () => {
   const { height, width } = useWindowDimensions();
@@ -102,7 +102,7 @@ export const TestPage = () => {
                 </div>
               </>
             ) : (
-              ""
+              ''
             )}
           </div>
         </div>
@@ -116,7 +116,7 @@ export const TestPage = () => {
   }
   return (
     <>
-      {modalOpen ? <ShowSSModal /> : ""}
+      {modalOpen ? <ShowSSModal /> : ''}
 
       <main>
         {/* inicio */}
@@ -131,7 +131,7 @@ export const TestPage = () => {
                   <div className="ml-auto mr-2 topnav-area">
                     <Tooltip
                       placement="bottom"
-                      trigger={["click"]}
+                      trigger={['click']}
                       overlay={<span>Próximamente</span>}
                     >
                       <Link to="/#0" className="topnav-button">
@@ -172,18 +172,14 @@ export const TestPage = () => {
                         </AnchorLink>
                       </li>
                       <li className="desktop-only header-link">
-                        <a
-                          href="https://docs.spaceworms.app/"
-                          rel="author"
-                          target={"blank"}
-                        >
+                        <a href="https://docs.spaceworms.app/" rel="author" target={'blank'}>
                           Whitepaper
                         </a>
                       </li>
                       <li>
                         <Tooltip
                           placement="bottom"
-                          trigger={["click"]}
+                          trigger={['click']}
                           overlay={<span>Juego Próximamente!</span>}
                         >
                           <Button>
@@ -192,10 +188,7 @@ export const TestPage = () => {
                         </Tooltip>
                       </li>
                       <li className="mobile-only">
-                        <Button
-                          onClick={handleToggle}
-                          className="buttonHamburguerStyles"
-                        >
+                        <Button onClick={handleToggle} className="buttonHamburguerStyles">
                           {navbarOpen ? <CrossIcon /> : <HamburguerIcon />}
                         </Button>
                       </li>
@@ -214,15 +207,13 @@ export const TestPage = () => {
                   alt="spaceworms"
                   style={{ width: height - 150 }}
                 />
-                <p className="homeparag1">
-                  Videojuego blockchain inspirado en slither.io
-                </p>
+                <p className="homeparag1">Videojuego blockchain inspirado en slither.io</p>
                 <p>Conviertete en el gusano Nº1 y obten grandes recompensas</p>
                 <div className="homefirstbuttondiv">
                   <div className="mx-auto devices-container">
                     <Tooltip
                       placement="bottom"
-                      trigger={["click"]}
+                      trigger={['click']}
                       overlay={<span>Juego Próximamente!</span>}
                     >
                       <Button className="homefirstbutton1">
@@ -231,7 +222,7 @@ export const TestPage = () => {
                     </Tooltip>
                     <Tooltip
                       placement="bottom"
-                      trigger={["click"]}
+                      trigger={['click']}
                       overlay={<span>Juego Próximamente!</span>}
                     >
                       <Button className="homefirstbutton1">
@@ -240,7 +231,7 @@ export const TestPage = () => {
                     </Tooltip>
                     <Tooltip
                       placement="bottom"
-                      trigger={["click"]}
+                      trigger={['click']}
                       overlay={<span>Juego Próximamente!</span>}
                     >
                       <Button className="homefirstbutton1">
@@ -275,18 +266,16 @@ export const TestPage = () => {
               <div className="right">
                 <h2 className="hidden">Introduccion</h2>
                 <p>
-                  Una peligrosa raza Alienígena amenaza con destruir todo a su
-                  paso para controlar la Fuerza Cósmica y la última esperanza
-                  para enfrentarlos son los Gusanos Espaciales.
+                  Una peligrosa raza Alienígena amenaza con destruir todo a su paso para controlar
+                  la Fuerza Cósmica y la última esperanza para enfrentarlos son los Gusanos
+                  Espaciales.
                 </p>
                 <p className="mt-2">
-                  En Space Worms podrás ser parte de esta Guerra Espacial contra
-                  los Loriks en un videojuego que te brindará horas
-                  interminables de diversión además de generar ingresos
-                  ilimitados. No te pierdas la oportunidad de unirte a esta
-                  lucha para salvar al Universo usando la fuerza del Sol y las
-                  Estrellas, mejorando a tu gusano, resolviendo misiones
-                  diarias, o sencillamente enfréntate a otros.
+                  En Space Worms podrás ser parte de esta Guerra Espacial contra los Loriks en un
+                  videojuego que te brindará horas interminables de diversión además de generar
+                  ingresos ilimitados. No te pierdas la oportunidad de unirte a esta lucha para
+                  salvar al Universo usando la fuerza del Sol y las Estrellas, mejorando a tu
+                  gusano, resolviendo misiones diarias, o sencillamente enfréntate a otros.
                 </p>
               </div>
             </div>
@@ -298,9 +287,7 @@ export const TestPage = () => {
             <div className="left-right-flex small-container-for-mobiles">
               <div className="left">
                 <h2 className="hidden">Trailer</h2>
-                <p className="thirdareatitle">
-                  Salva el universo y obten grandes recompensas
-                </p>
+                <p className="thirdareatitle">Salva el universo y obten grandes recompensas</p>
               </div>
               <div className="right video-right">
                 <Video />
@@ -313,7 +300,7 @@ export const TestPage = () => {
           <div className="container ">
             <div
               className="small-container-for-mobiles"
-              style={{ display: "flex", flexDirection: "column" }}
+              style={{ display: 'flex', flexDirection: 'column' }}
             >
               <h2 className="text-shadow">ROAD MAP</h2>
               <div className="m-auto px-1 roadmap-mobile-flex">
@@ -371,11 +358,7 @@ export const TestPage = () => {
                       </ul>
                     </div>
                   </div>
-                  <img
-                    src={roadmapH}
-                    alt="roadmap"
-                    className=" img-fluid large-devices"
-                  />
+                  <img src={roadmapH} alt="roadmap" className=" img-fluid large-devices" />
                   <img
                     src={roadmapV}
                     alt="roadmap"
@@ -483,7 +466,7 @@ export const TestPage = () => {
           <div className="container">
             <div className="footersecondchilddivs">
               <p>Partners</p>
-              <img src={sdLogo} alt="partner" style={{ marginTop: "-25px" }} />
+              <img src={sdLogo} alt="partner" style={{ marginTop: '-25px' }} />
             </div>
             <div className="footersecondchilddivs">
               <p>Developers</p>
@@ -503,16 +486,16 @@ export const TestPage = () => {
           </div>
           <ReactVisibilitySensor onChange={onChange}>
             <div className="footerthirdimgs2">
-              <a href="https://discord.com/invite/spaceworms" target={"blank"}>
+              <a href="https://discord.com/invite/spaceworms" target={'blank'}>
                 <img src={dcBlack} alt="discord" />
               </a>
-              <a href="https://t.me/spaceworms" target={"blank"}>
+              <a href="https://t.me/spaceworms" target={'blank'}>
                 <img src={tgBlack} alt="telegram" />
               </a>
-              <a href="https://twitter.com/spacewormsnft" target={"blank"}>
+              <a href="https://twitter.com/spacewormsnft" target={'blank'}>
                 <img src={twBlack} alt="twitter" />
               </a>
-              <a href="https://www.youtube.com/c/TioDiamond" target={"blank"}>
+              <a href="https://www.youtube.com/c/TioDiamond" target={'blank'}>
                 <img src={ytBlack} alt="Youtube" />
               </a>
             </div>
@@ -521,8 +504,8 @@ export const TestPage = () => {
         <div className="legal">
           <a href="/condiciones" alt="terms">
             Condiciones de uso
-          </a>{" "}
-          /{" "}
+          </a>{' '}
+          /{' '}
           <a href="/privacidad" alt="terms">
             Política de privacidad
           </a>
@@ -543,7 +526,7 @@ const Video = () => {
           allowFullScreen={true}
           style={{ minHeight: "365px" }}
         ></iframe> */}
-      <YouTube videoId={"Sf8jxnV87kE"} />
+      <YouTube videoId={'Sf8jxnV87kE'} />
     </>
   );
 };

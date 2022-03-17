@@ -1,22 +1,22 @@
-import { useNavigate } from "react-router-dom";
-import leftArrow from "./../../assets/img/leftarrow.png";
-import arFlag from "./../../assets/img/flags/ar.png";
-import chFlag from "./../../assets/img/flags/ch.png";
-import brFlag from "./../../assets/img/flags/br.png";
-import inFlag from "./../../assets/img/flags/in.png";
-import crFlag from "./../../assets/img/flags/cr.png";
-import esFlag from "./../../assets/img/flags/es.png";
+import { useNavigate } from 'react-router-dom';
+import leftArrow from './../../assets/img/leftarrow.png';
+import arFlag from './../../assets/img/flags/ar.png';
+import chFlag from './../../assets/img/flags/ch.png';
+import brFlag from './../../assets/img/flags/br.png';
+import inFlag from './../../assets/img/flags/in.png';
+import crFlag from './../../assets/img/flags/cr.png';
+import esFlag from './../../assets/img/flags/es.png';
 
-import balanIcon from "./../../assets/img/kg.png";
+import balanIcon from './../../assets/img/kg.png';
 
-import g1 from "./../../assets/img/gusanos/g1.png";
-import g2 from "./../../assets/img/gusanos/g2.png";
-import g3 from "./../../assets/img/gusanos/g3.png";
-import g4 from "./../../assets/img/gusanos/g4.png";
-import g5 from "./../../assets/img/gusanos/g5.png";
-import g6 from "./../../assets/img/gusanos/g6.png";
+import g1 from './../../assets/img/gusanos/g1.png';
+import g2 from './../../assets/img/gusanos/g2.png';
+import g3 from './../../assets/img/gusanos/g3.png';
+import g4 from './../../assets/img/gusanos/g4.png';
+import g5 from './../../assets/img/gusanos/g5.png';
+import g6 from './../../assets/img/gusanos/g6.png';
 
-import { useState } from "react";
+import { useState } from 'react';
 export const GlobalRankingPage = () => {
   const [isIconCheck, setIconCheck] = useState(false);
   const history = useNavigate();
@@ -33,65 +33,62 @@ export const GlobalRankingPage = () => {
   return (
     <>
       <main className="market">
-        <header style={{ position: "absolute", top: "3vh", zIndex: "2" }}>
-          <div className={"flex-wrapper"}>
+        <header style={{ position: 'absolute', top: '3vh', zIndex: '2' }}>
+          <div className={'flex-wrapper'}>
             <button
               style={{
-                border: "none",
-                background: "#af2322",
-                color: "white",
-                minWidth: "148px",
-                borderTop: "3px solid #ffed00",
-                borderBottom: "3px solid #ffed00",
-                borderRight: "3px solid #ffed00",
-                borderTopRightRadius: "8px",
-                borderBottomRightRadius: "8px",
-                cursor: "pointer",
+                border: 'none',
+                background: '#af2322',
+                color: 'white',
+                minWidth: '148px',
+                borderTop: '3px solid #ffed00',
+                borderBottom: '3px solid #ffed00',
+                borderRight: '3px solid #ffed00',
+                borderTopRightRadius: '8px',
+                borderBottomRightRadius: '8px',
+                cursor: 'pointer'
               }}
               onClick={() => goBack()}
             >
-              <img src={leftArrow} alt={"Regresar"} />
+              <img src={leftArrow} alt={'Regresar'} />
             </button>
             <div
               style={{
-                marginLeft: "8px",
-                height: "67px",
-                fontSize: "35px",
-                display: "grid",
-                placeContent: "center",
+                marginLeft: '8px',
+                height: '67px',
+                fontSize: '35px',
+                display: 'grid',
+                placeContent: 'center'
               }}
             >
               Global Ranking
             </div>
           </div>
         </header>
-        <div className="hero grid place-center" style={{ paddingBottom: "0" }}>
+        <div className="hero grid place-center" style={{ paddingBottom: '0' }}>
           <div
             style={{
-              background: "#171a1c93",
-              minWidth: "100vw",
-              height: "500px",
-              borderTop: "3px solid #ffed00",
-              borderBottom: "3px solid #ffed00",
+              background: '#171a1c93',
+              minWidth: '100vw',
+              height: '500px',
+              borderTop: '3px solid #ffed00',
+              borderBottom: '3px solid #ffed00'
             }}
           >
             <div
               className=" grid  p-1"
               style={{
-                maxWidth: "950px",
-                textAlign: "center",
-                margin: "auto",
-                fontSize: "25px",
-                marginTop: "2rem",
+                maxWidth: '950px',
+                textAlign: 'center',
+                margin: 'auto',
+                fontSize: '25px',
+                marginTop: '2rem'
               }}
             >
-              <div
-                className={"flex-wrapper my-1"}
-                style={{ flexDirection: "column", gap: "10px" }}
-              >
-                <div className={"ranking-column"}>
+              <div className={'flex-wrapper my-1'} style={{ flexDirection: 'column', gap: '10px' }}>
+                <div className={'ranking-column'}>
                   <div>1</div>
-                  <div className={"flex-wrapper"}>
+                  <div className={'flex-wrapper'}>
                     <div>
                       <img src={arFlag} alt="argentina" />
                     </div>
@@ -106,9 +103,9 @@ export const GlobalRankingPage = () => {
                   </div>
                 </div>
                 {/*  */}
-                <div className={"ranking-column"}>
+                <div className={'ranking-column'}>
                   <div>2</div>
-                  <div className={"flex-wrapper"}>
+                  <div className={'flex-wrapper'}>
                     <div>
                       <img src={chFlag} alt="argentina" />
                     </div>
@@ -123,9 +120,9 @@ export const GlobalRankingPage = () => {
                   </div>
                 </div>
                 {/*  */}
-                <div className={"ranking-column"}>
+                <div className={'ranking-column'}>
                   <div>3</div>
-                  <div className={"flex-wrapper"}>
+                  <div className={'flex-wrapper'}>
                     <div>
                       <img src={brFlag} alt="argentina" />
                     </div>
@@ -140,9 +137,9 @@ export const GlobalRankingPage = () => {
                   </div>
                 </div>
                 {/*  */}
-                <div className={"ranking-column"}>
+                <div className={'ranking-column'}>
                   <div>4</div>
-                  <div className={"flex-wrapper"}>
+                  <div className={'flex-wrapper'}>
                     <div>
                       <img src={inFlag} alt="argentina" />
                     </div>
@@ -157,9 +154,9 @@ export const GlobalRankingPage = () => {
                   </div>
                 </div>
                 {/*  */}
-                <div className={"ranking-column"}>
+                <div className={'ranking-column'}>
                   <div>5</div>
-                  <div className={"flex-wrapper"}>
+                  <div className={'flex-wrapper'}>
                     <div>
                       <img src={crFlag} alt="argentina" />
                     </div>
@@ -174,9 +171,9 @@ export const GlobalRankingPage = () => {
                   </div>
                 </div>
                 {/*  */}
-                <div className={"ranking-column"}>
+                <div className={'ranking-column'}>
                   <div>6</div>
-                  <div className={"flex-wrapper"}>
+                  <div className={'flex-wrapper'}>
                     <div>
                       <img src={esFlag} alt="argentina" />
                     </div>
@@ -193,11 +190,8 @@ export const GlobalRankingPage = () => {
               </div>
             </div>
           </div>
-          <div className={"absolute-bottom"} style={{ bottom: "30px" }}>
-            <div
-              className={"flex-wrapper"}
-              style={{ justifyContent: "center", gap: "2rem" }}
-            >
+          <div className={'absolute-bottom'} style={{ bottom: '30px' }}>
+            <div className={'flex-wrapper'} style={{ justifyContent: 'center', gap: '2rem' }}>
               <div>Global</div>
               <div>Local</div>
             </div>

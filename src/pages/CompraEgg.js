@@ -1,26 +1,26 @@
-import { useEffect, useState } from "react";
-import "assets/css/templates/components/modal.scss";
-import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
-import SocialMedia from "components/molecules/SocialMedia";
-import LoadingWorm from "components/organisms/LoadingWorm";
-import alien from "assets/img/alien.png";
-import soldierWorm from "assets/img/gusano-guerrero.png";
-import { getCurrentWalletConnected } from "../util/interact.js";
-import api from "../util/api.js";
-import { BusdAbiService } from "util/services/busd.js";
-import huevoIMG from "./../assets/img/huevo-gusano.png";
-import ReactMomentCountDown from "react-moment-countdown";
-import { toast } from "react-toastify";
-import moment from "moment";
-import "react-toastify/dist/ReactToastify.css";
-import Header from "../components/organisms/marketplace/Header";
-import { mainNetAbiService } from "util/services/mainnet.js";
+import { useEffect, useState } from 'react';
+import 'assets/css/templates/components/modal.scss';
+import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+import SocialMedia from 'components/molecules/SocialMedia';
+import LoadingWorm from 'components/organisms/LoadingWorm';
+import alien from 'assets/img/alien.png';
+import soldierWorm from 'assets/img/gusano-guerrero.png';
+import { getCurrentWalletConnected } from '../util/interact.js';
+import api from '../util/api.js';
+import { BusdAbiService } from 'util/services/busd.js';
+import huevoIMG from './../assets/img/huevo-gusano.png';
+import ReactMomentCountDown from 'react-moment-countdown';
+import { toast } from 'react-toastify';
+import moment from 'moment';
+import 'react-toastify/dist/ReactToastify.css';
+import Header from '../components/organisms/marketplace/Header';
+import { mainNetAbiService } from 'util/services/mainnet.js';
 // import { mainNetAbiService } from "util/services/mainnet.js";
 
 toast.configure();
 
-const Web3 = require("web3");
+const Web3 = require('web3');
 
 // new: abi now works from outside, also rpcURL(network) is managed from outside functions too...
 // TODO all this should be moved into enviroment rules for better reusability of code
@@ -28,16 +28,16 @@ const Web3 = require("web3");
 const mainnetAbi = mainNetAbiService;
 const BUSDABI = BusdAbiService;
 // network
-const rpcURL = "https://bsc-dataseed.binance.org";
+const rpcURL = 'https://bsc-dataseed.binance.org';
 // contracts
-const mainnetContract = "0x7d80E1A99f0cab1fB1A0f2790F42e5b59A3F020f";
-const BUSDContractAddress = "0xe9e7cea3dedca5984780bafc599bd69add087d56";
+const mainnetContract = '0x7d80E1A99f0cab1fB1A0f2790F42e5b59A3F020f';
+const BUSDContractAddress = '0xe9e7cea3dedca5984780bafc599bd69add087d56';
 
 function CompraEggPage() {
   const [loading, setLoading] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
-  const [currentModal, setCurrentModal] = useState("init");
-  const [walletAddress, setWallet] = useState("");
+  const [currentModal, setCurrentModal] = useState('init');
+  const [walletAddress, setWallet] = useState('');
   const [allowance, setAllowance] = useState(0);
   const [price, setPrice] = useState(1);
   const navigate = useNavigate();
@@ -46,7 +46,7 @@ function CompraEggPage() {
   const eggPrice = 100 * Number(price);
   const isBusdNotApproved = Number(allowance) < Number(price) * 1000e17;
   // we inform the user about mm status on model info
-  const [MMStatusInfo, setMMStatusInfo] = useState("Esperando a Metamask");
+  const [MMStatusInfo, setMMStatusInfo] = useState('Esperando a Metamask');
   // contract address
   // const mainnetContract = "0x7d80E1A99f0cab1fB1A0f2790F42e5b59A3F020f";
   const [promotionEnd, setPromotionEnd] = useState(false);
@@ -70,18 +70,12 @@ function CompraEggPage() {
     (async () => {
       const web3 = new Web3(rpcURL);
       if (account1 && web3.eth.Contract) {
-        const BUSDContractAddress =
-          "0xe9e7cea3dedca5984780bafc599bd69add087d56";
+        const BUSDContractAddress = '0xe9e7cea3dedca5984780bafc599bd69add087d56';
         const BUSDABI = BusdAbiService;
 
-        const BUSDContract = await new web3.eth.Contract(
-          BUSDABI,
-          BUSDContractAddress
-        );
+        const BUSDContract = await new web3.eth.Contract(BUSDABI, BUSDContractAddress);
         // const myContract = await new web3.eth.Contract(mainnetAbi, mainnetContract);
-        const allowance = await BUSDContract.methods
-          .allowance(account1, mainnetContract)
-          .call();
+        const allowance = await BUSDContract.methods.allowance(account1, mainnetContract).call();
         setAllowance(allowance);
       }
     })();
@@ -105,11 +99,11 @@ function CompraEggPage() {
 
   function addWalletListener() {
     if (window.ethereum) {
-      window.ethereum.on("accountsChanged", (accounts) => {
+      window.ethereum.on('accountsChanged', (accounts) => {
         if (accounts.length > 0) {
         } else {
-          localStorage.removeItem("uuid");
-          navigate("/login");
+          localStorage.removeItem('uuid');
+          navigate('/login');
         }
       });
     }
@@ -570,12 +564,10 @@ function CompraEggPage() {
     <>
       {/* {modalOpen ? <ShowBuyEgg /> : ""} */}
       <main className="market">
-        <div className="hero" style={{ paddingBottom: "0" }}>
+        <div className="hero" style={{ paddingBottom: '0' }}>
           <Header />
-          <div className="game-wrapper grid" style={{ maxWidth: "100%" }}>
-            <h1 style={{ fontSize: "clamp(1.8rem, 2rem, 4rem)" }}>
-              Compra Egg
-            </h1>
+          <div className="game-wrapper grid" style={{ maxWidth: '100%' }}>
+            <h1 style={{ fontSize: 'clamp(1.8rem, 2rem, 4rem)' }}>Compra Egg</h1>
             <div className="mt-4">
               <div className="NFT-status-container">
                 <div className="NFT-status-box">

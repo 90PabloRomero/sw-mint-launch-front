@@ -1,4 +1,4 @@
-import "assets/css/templates/components/social-media.scss";
+import 'assets/css/templates/components/social-media.scss';
 function SocialMedia() {
   return (
     <div className="social-media-area">
@@ -13,20 +13,12 @@ function SocialMedia() {
           </a>
         </li>
         <li>
-          <a
-            href="https://twitter.com/spacewormsnft"
-            className="sm-icon twitter"
-            rel="noreferrer"
-          >
+          <a href="https://twitter.com/spacewormsnft" className="sm-icon twitter" rel="noreferrer">
             &nbsp;
           </a>
         </li>
         <li>
-          <a
-            href="https://t.me/spaceworms"
-            className="sm-icon telegram"
-            rel="noreferrer"
-          >
+          <a href="https://t.me/spaceworms" className="sm-icon telegram" rel="noreferrer">
             &nbsp;
           </a>
         </li>

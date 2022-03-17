@@ -1,12 +1,12 @@
-import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import cryptoCoinLogo from "assets/img/gusano.png";
-import userAvatar from "assets/img/avatar_2.png";
-import inventoryIcon from "assets/img/icono_inventario.png";
-import walletIcon from "assets/img/icono_wallet.png";
-import { connectWallet, getCurrentWalletConnected } from "../util/interact.js";
-import "../assets/css/templates/wallet.scss";
-import Tooltip from "rc-tooltip";
+import { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import cryptoCoinLogo from 'assets/img/gusano.png';
+import userAvatar from 'assets/img/avatar_2.png';
+import inventoryIcon from 'assets/img/icono_inventario.png';
+import walletIcon from 'assets/img/icono_wallet.png';
+import { connectWallet, getCurrentWalletConnected } from '../util/interact.js';
+import '../assets/css/templates/wallet.scss';
+import Tooltip from 'rc-tooltip';
 
 export default function WalletPage() {
   const history = useNavigate();
@@ -15,8 +15,8 @@ export default function WalletPage() {
     history(-1);
   };
   const [modalOpen, setModalOpen] = useState(true);
-  const [walletAddress, setWallet] = useState("");
-  const [status, setStatus] = useState("");
+  const [walletAddress, setWallet] = useState('');
+  const [status, setStatus] = useState('');
 
   useEffect(async () => {
     const { address, status } = await getCurrentWalletConnected();
@@ -29,29 +29,24 @@ export default function WalletPage() {
 
   function addWalletListener() {
     if (window.ethereum) {
-      window.ethereum.on("accountsChanged", (accounts) => {
+      window.ethereum.on('accountsChanged', (accounts) => {
         if (accounts.length > 0) {
           setWallet(accounts[0]);
 
           // once connected, open modal with create account form
           setModalOpen(true);
         } else {
-          setWallet("");
+          setWallet('');
           setModalOpen(false);
         }
       });
     } else {
       setStatus(
         <p>
-          {" "}
-          🦊{" "}
-          <a
-            target="_blank"
-            href={`https://metamask.io/download.html`}
-            rel="noreferrer"
-          >
-            You must install Metamask, a virtual Ethereum wallet, in your
-            browser.
+          {' '}
+          🦊{' '}
+          <a target="_blank" href={`https://metamask.io/download.html`} rel="noreferrer">
+            You must install Metamask, a virtual Ethereum wallet, in your browser.
           </a>
         </p>
       );
@@ -62,7 +57,7 @@ export default function WalletPage() {
   const ShowWallet = () => {
     return (
       <>
-        <div className="modal-wrapper" style={{ overflowY: "scroll" }}>
+        <div className="modal-wrapper" style={{ overflowY: 'scroll' }}>
           <div className="grid wallet-layout">
             {/*  */}
             {/* wallet starts */}
@@ -70,16 +65,13 @@ export default function WalletPage() {
               <div className="wallet-blue-box">
                 <div className="wallet-user-info">
                   <div>
-                    {" "}
+                    {' '}
                     <img src={userAvatar} alt="" />
                   </div>
                   <div>Usuario</div>
-                  <div
-                    className="walletAddress"
-                    style={{ marginBottom: "10px" }}
-                  >
+                  <div className="walletAddress" style={{ marginBottom: '10px' }}>
                     {String(walletAddress).substring(0, 6) +
-                      "..." +
+                      '...' +
                       String(walletAddress).substring(38)}
                   </div>
                 </div>
@@ -106,17 +98,17 @@ export default function WalletPage() {
                       <li>
                         <button
                           style={{
-                            background: "none",
-                            border: "0",
-                            color: "white",
-                            fontSize: "20px",
-                            fontWeight: "bold",
-                            padding: "0",
-                            cursor: "pointer",
+                            background: 'none',
+                            border: '0',
+                            color: 'white',
+                            fontSize: '20px',
+                            fontWeight: 'bold',
+                            padding: '0',
+                            cursor: 'pointer'
                           }}
                           onClick={goBack}
                         >
-                          <span style={{ paddingRight: "10px" }}>⤺</span>
+                          <span style={{ paddingRight: '10px' }}>⤺</span>
                           Volver
                         </button>
                       </li>
@@ -129,12 +121,12 @@ export default function WalletPage() {
               <div className="h1">Wallet</div>
               <div className="div">
                 {String(walletAddress).substring(0, 6) +
-                  "..." +
+                  '...' +
                   String(walletAddress).substring(38)}
               </div>
               <div className="flex-wrapper wallet-bb-flex">
                 <div className="wallet-blue-box">
-                  <div style={{ fontSize: "30px" }}>Coin</div>
+                  <div style={{ fontSize: '30px' }}>Coin</div>
                   <div className="value">
                     0 BNB
                     <legend>0 USD</legend>
@@ -145,7 +137,7 @@ export default function WalletPage() {
                   </div>
                 </div>
                 <div className="wallet-blue-box">
-                  <div style={{ fontSize: "30px" }}>WormsCoin</div>
+                  <div style={{ fontSize: '30px' }}>WormsCoin</div>
                   <div className="value">
                     0 WC
                     <legend>0 USD</legend>
@@ -181,7 +173,7 @@ export default function WalletPage() {
 
   return (
     <>
-      {modalOpen ? <ShowWallet /> : ""}
+      {modalOpen ? <ShowWallet /> : ''}
 
       <div className="mm-wallet">
         <div className="">{` `}</div>

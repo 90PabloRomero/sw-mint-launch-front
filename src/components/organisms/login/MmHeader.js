@@ -1,19 +1,16 @@
-import { useEffect, useState } from "react";
-import Logo from "./../../atoms/Logo";
-import Button from "./../../atoms/Button";
-import {
-  connectWallet,
-  getCurrentWalletConnected,
-} from "../../../util/interact.js";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import Logo from './../../atoms/Logo';
+import Button from './../../atoms/Button';
+import { connectWallet, getCurrentWalletConnected } from '../../../util/interact.js';
+import { Link } from 'react-router-dom';
 
 function MmHeader() {
-  const [walletAddress, setWallet] = useState("");
-  const [status, setStatus] = useState("");
+  const [walletAddress, setWallet] = useState('');
+  const [status, setStatus] = useState('');
 
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-  const [url, setURL] = useState("");
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
+  const [url, setURL] = useState('');
 
   useEffect(async () => {
     const { address, status } = await getCurrentWalletConnected();
@@ -26,25 +23,20 @@ function MmHeader() {
 
   function addWalletListener() {
     if (window.ethereum) {
-      window.ethereum.on("accountsChanged", (accounts) => {
+      window.ethereum.on('accountsChanged', (accounts) => {
         if (accounts.length > 0) {
           setWallet(accounts[0]);
         } else {
-          setWallet("");
+          setWallet('');
         }
       });
     } else {
       setStatus(
         <p>
-          {" "}
-          🦊{" "}
-          <a
-            target="_blank"
-            href={`https://metamask.io/download.html`}
-            rel="noreferrer"
-          >
-            You must install Metamask, a virtual Ethereum wallet, in your
-            browser.
+          {' '}
+          🦊{' '}
+          <a target="_blank" href={`https://metamask.io/download.html`} rel="noreferrer">
+            You must install Metamask, a virtual Ethereum wallet, in your browser.
           </a>
         </p>
       );
@@ -66,7 +58,7 @@ function MmHeader() {
               <Logo
                 alt="Space Worms"
                 className="img-logo"
-                style={{ width: "50%", minWidth: "70px" }}
+                style={{ width: '50%', minWidth: '70px' }}
               />
             </Link>
           </div>
@@ -76,9 +68,9 @@ function MmHeader() {
                 <li>
                   <Button className="mm-connect">
                     {walletAddress.length > 0 ? (
-                      "Conectada: " +
+                      'Conectada: ' +
                       String(walletAddress).substring(0, 6) +
-                      "..." +
+                      '...' +
                       String(walletAddress).substring(38)
                     ) : (
                       <span>CONECTAR BILLETERA</span>

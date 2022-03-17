@@ -1,57 +1,86 @@
-import "../assets/css/templates/home.scss";
-import Button from "../components/atoms/Button";
-import { CarouselScreenshotSlider } from "../components/molecules/CarouselSlider";
-import SpaceWormsLogo from "./../assets/img/20.png";
-import homefirstimg5 from "./../assets/img/1.png";
-import homebuttonimg1 from "./../assets/img/b1-logo.png";
-import homebuttonimg2 from "./../assets/img/b2-logo.png";
-import homebuttonimg3 from "./../assets/img/b3-logo.png";
-import homesecondimg1 from "./../assets/img/5.png";
-import roadmapH from "./../assets/img/ROADMAPHORIZONTAL.png";
-import roadmapV from "./../assets/img/ROADMAPVERTICAL.png";
-import Logo from "components/atoms/Logo";
-import AnchorLink from "react-anchor-link-smooth-scroll";
-import { useState } from "react";
+import '../assets/css/templates/home.scss';
+import Button from '../components/atoms/Button';
+import { CarouselScreenshotSlider } from '../components/molecules/CarouselSlider';
+import SpaceWormsLogo from './../assets/img/20.png';
+import homefirstimg5 from './../assets/img/1.png';
+import homebuttonimg1 from './../assets/img/b1-logo.png';
+import homebuttonimg2 from './../assets/img/b2-logo.png';
+import homebuttonimg3 from './../assets/img/b3-logo.png';
+import homesecondimg1 from './../assets/img/5.png';
+import roadmapH from './../assets/img/ROADMAPHORIZONTAL.png';
+import roadmapV from './../assets/img/ROADMAPVERTICAL.png';
+import Logo from 'components/atoms/Logo';
+import AnchorLink from 'react-anchor-link-smooth-scroll';
+import { useState } from 'react';
 
-import { Link, Navigate, useNavigate } from "react-router-dom";
-import CrossIcon from "components/atoms/icons/cross";
-import HamburguerIcon from "components/atoms/icons/hamburguer";
+import { Link, Navigate, useNavigate } from 'react-router-dom';
+import CrossIcon from 'components/atoms/icons/cross';
+import HamburguerIcon from 'components/atoms/icons/hamburguer';
 import {
   BsFacebook,
   BsFillArrowRightCircleFill,
   BsInstagram,
   BsLinkedin,
-  BsTwitter,
-} from "react-icons/bs";
-import "assets/css/templates/header-home.scss";
-import "assets/css/templates/footer-home.scss";
-import screenshot1 from "assets/img/ss1.png";
-import screenshot2 from "assets/img/ss2.png";
-import screenshot3 from "assets/img/ss3.png";
-import screenshot4 from "assets/img/ss4.png";
-import teamMember1 from "assets/img/t1.png";
-import teamMember2 from "assets/img/t2.png";
-import teamMember3 from "assets/img/t3.png";
-import developersLogo from "assets/img/NT-Logo-med.png";
-import awsLogo from "assets/img/awslogo.png";
-import footerimg7 from "assets/img/12.png";
-import footerimg8 from "assets/img/13.png";
-import footerimg9 from "assets/img/21.png";
-import dcBlack from "assets/img/dc_black.png";
-import tgBlack from "assets/img/telegram_black.png";
-import twBlack from "assets/img/tw_black.png";
-import ytBlack from "assets/img/youtube_black.png";
-import Tooltip from "rc-tooltip";
-import "rc-tooltip/assets/bootstrap_white.css";
-import ReactVisibilitySensor from "react-visibility-sensor";
+  BsTwitter
+} from 'react-icons/bs';
+import 'assets/css/templates/header-home.scss';
+import 'assets/css/templates/footer-home.scss';
+import screenshot1 from 'assets/img/ss1.png';
+import screenshot2 from 'assets/img/ss2.png';
+import screenshot3 from 'assets/img/ss3.png';
+import screenshot4 from 'assets/img/ss4.png';
+import teamMember1 from 'assets/img/t1.png';
+import teamMember2 from 'assets/img/t2.png';
+import teamMember3 from 'assets/img/t3.png';
+import developersLogo from 'assets/img/NT-Logo-med.png';
+import awsLogo from 'assets/img/awslogo.png';
+import footerimg7 from 'assets/img/12.png';
+import footerimg8 from 'assets/img/13.png';
+import footerimg9 from 'assets/img/21.png';
+import dcBlack from 'assets/img/dc_black.png';
+import tgBlack from 'assets/img/telegram_black.png';
+import twBlack from 'assets/img/tw_black.png';
+import ytBlack from 'assets/img/youtube_black.png';
+import Tooltip from 'rc-tooltip';
+import 'rc-tooltip/assets/bootstrap_white.css';
+import ReactVisibilitySensor from 'react-visibility-sensor';
 
-import sdLogo from "assets/img/sd.png";
+import sdLogo from 'assets/img/sd.png';
 
-import useWindowDimensions from "./../components/atoms/useWindowsDimensions";
-import YouTube from "react-youtube";
+import useWindowDimensions from './../components/atoms/useWindowsDimensions';
+import YouTube from 'react-youtube';
+import styled from "styled-components";
 
+const NewFeatureElement = styled.button`
+  animation: glow .5s infinite alternate;
+  padding: 0.4rem 0.4rem;
+  background-color: var(--blue);
+  background: var(--linear-gradient-reversed) !important;
+  color: var(--linkblue);
+  border: 3px solid #3d2013;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.75s cubic-bezier(0.075, 0.82, 0.165, 1);
+  font-variant-caps: all-small-caps;
+  &:hover,
+  &:active {
+    background: var(--linear-gradient);
+    filter: brightness(140%);
+    transform: scale(1.05);
+  }
+  @keyframes glow {
+    from {
+      box-shadow: 0 0 1px -1px #eae3b944;
+    }
+    to {
+      box-shadow: 0 0 2px 2px #fff70884;
+    }
+  }
+`
 export const HomePage = () => {
-  const { height, width } = useWindowDimensions();
+  const { height } = useWindowDimensions();
   const [navbarOpen, setNavbarOpen] = useState(false);
   const handleToggle = () => {
     setNavbarOpen(!navbarOpen);
@@ -109,7 +138,7 @@ export const HomePage = () => {
                 </div>
               </>
             ) : (
-              ""
+              ''
             )}
           </div>
         </div>
@@ -123,51 +152,31 @@ export const HomePage = () => {
   }
   return (
     <>
-      {modalOpen ? <ShowSSModal /> : ""}
+      {modalOpen ? <ShowSSModal /> : ''}
       {/* social media */}
       {socialMediaVisible ? (
         <div className={`fix-social fixed-social-media-div desktop-only`}>
-          <a href="https://discord.com/invite/spaceworms" target={"blank"}>
-            <img
-              src={dcBlack}
-              className="homefourthimgs"
-              alt="unete a discord"
-            />
+          <a href="https://discord.com/invite/spaceworms" target={'blank'}>
+            <img src={dcBlack} className="homefourthimgs" alt="unete a discord" />
           </a>
-          <a href="https://t.me/spaceworms" target={"blank"}>
-            <img
-              src={tgBlack}
-              className="homefourthimgs"
-              alt="unete a telegram"
-            />
+          <a href="https://t.me/spaceworms" target={'blank'}>
+            <img src={tgBlack} className="homefourthimgs" alt="unete a telegram" />
           </a>
-          <a href="https://twitter.com/spacewormsnft" target={"blank"}>
-            <img
-              src={twBlack}
-              className="homefourthimgs"
-              alt="unete a twitter"
-            />
+          <a href="https://twitter.com/spacewormsnft" target={'blank'}>
+            <img src={twBlack} className="homefourthimgs" alt="unete a twitter" />
           </a>
-          <a href="https://www.youtube.com/c/TioDiamond" target={"blank"}>
-            <img
-              src={ytBlack}
-              className="homefourthimgs"
-              alt="suscribete a nuestro canal"
-            />
+          <a href="https://www.youtube.com/c/TioDiamond" target={'blank'}>
+            <img src={ytBlack} className="homefourthimgs" alt="suscribete a nuestro canal" />
           </a>
         </div>
       ) : (
-        ""
+        ''
       )}
       <main>
         {/* inicio */}
         <div className="hero">
           <header>
-            <div
-              className={`header-container ${
-                navbarOpen ? "fixed" : "relative"
-              }`}
-            >
+            <div className={`header-container ${navbarOpen ? 'fixed' : 'relative'}`}>
               <div className="header flex-wrapper">
                 <div className="header-left">
                   <Link to="/">
@@ -213,24 +222,17 @@ export const HomePage = () => {
                         </AnchorLink>
                       </li>
                       <li className="desktop-only header-link">
-                        <a
-                          href="https://docs.spaceworms.app/"
-                          rel="author"
-                          target={"blank"}
-                        >
+                        <a href="https://docs.spaceworms.app/" rel="author" target={'blank'}>
                           Whitepaper
                         </a>
                       </li>
                       <li>
-                        <Button onClick={() => navigate("/jugar")}>
+                        <NewFeatureElement onClick={() => navigate('/jugar')}>
                           JUGAR AHORA <BsFillArrowRightCircleFill />
-                        </Button>
+                        </NewFeatureElement>
                       </li>
                       <li className="mobile-only">
-                        <Button
-                          onClick={handleToggle}
-                          className="buttonHamburguerStyles"
-                        >
+                        <Button onClick={handleToggle} className="buttonHamburguerStyles">
                           {navbarOpen ? <CrossIcon /> : <HamburguerIcon />}
                         </Button>
                       </li>
@@ -241,9 +243,7 @@ export const HomePage = () => {
             </div>
             <>
               <div
-                className={`mobile-only overlayDivMenuMobile ${
-                  navbarOpen ? " showOverlay" : ""
-                } `}
+                className={`mobile-only overlayDivMenuMobile ${navbarOpen ? ' showOverlay' : ''} `}
               >
                 <nav>
                   <ul>
@@ -296,40 +296,35 @@ export const HomePage = () => {
                   alt="spaceworms"
                   style={{ width: height - 150 }}
                 />
-                <p className="homeparag1">
-                  Videojuego blockchain inspirado en slither.io
-                </p>
+                <p className="homeparag1">Videojuego blockchain inspirado en slither.io</p>
                 <p>Conviertete en el gusano Nº1 y obten grandes recompensas</p>
                 <div className="homefirstbuttondiv">
                   <div className="mx-auto devices-container">
                     <div className="mx-auto">
                       <Tooltip
                         placement="bottom"
-                        trigger={["click"]}
+                        trigger={['click']}
                         overlay={<span>Juego Próximamente!</span>}
                       >
                         <Button className="homefirstbutton1">
                           <div
                             style={{
-                              display: "flex",
-                              justifyContent: "center",
-                              placeItems: "center",
-                              gap: "1px",
-                              gridTemplateColumns: "1fr 1fr",
-                              fontVariantCaps: "normal",
-                              fontWeight: "700",
+                              display: 'flex',
+                              justifyContent: 'center',
+                              placeItems: 'center',
+                              gap: '1px',
+                              gridTemplateColumns: '1fr 1fr',
+                              fontVariantCaps: 'normal',
+                              fontWeight: '700'
                             }}
                           >
-                            <div style={{ display: "inline-block" }}>
-                              <img
-                                src={homebuttonimg1}
-                                alt="mobile, windows, mac"
-                              />
+                            <div style={{ display: 'inline-block' }}>
+                              <img src={homebuttonimg1} alt="mobile, windows, mac" />
                             </div>
                             <div
                               style={{
-                                display: "inline",
-                                paddingBottom: "4px",
+                                display: 'inline',
+                                paddingBottom: '4px'
                               }}
                             >
                               android
@@ -339,55 +334,49 @@ export const HomePage = () => {
                       </Tooltip>
                       <Tooltip
                         placement="bottom"
-                        trigger={["click"]}
+                        trigger={['click']}
                         overlay={<span>Juego Próximamente!</span>}
                       >
                         <Button className="homefirstbutton1">
                           <div
                             style={{
-                              display: "flex",
-                              justifyContent: "center",
-                              placeItems: "center",
-                              gap: "2px",
-                              gridTemplateColumns: "1fr 1fr",
-                              fontVariantCaps: "normal",
-                              fontWeight: "400",
+                              display: 'flex',
+                              justifyContent: 'center',
+                              placeItems: 'center',
+                              gap: '2px',
+                              gridTemplateColumns: '1fr 1fr',
+                              fontVariantCaps: 'normal',
+                              fontWeight: '400'
                             }}
                           >
-                            <div style={{ display: "inline-block" }}>
-                              <img
-                                src={homebuttonimg2}
-                                alt="mobile, windows, mac"
-                              />
+                            <div style={{ display: 'inline-block' }}>
+                              <img src={homebuttonimg2} alt="mobile, windows, mac" />
                             </div>
-                            <div style={{ display: "inline" }}>iOS</div>
+                            <div style={{ display: 'inline' }}>iOS</div>
                           </div>
                         </Button>
                       </Tooltip>
                       <Tooltip
                         placement="bottom"
-                        trigger={["click"]}
+                        trigger={['click']}
                         overlay={<span>Juego Próximamente!</span>}
                       >
                         <Button className="homefirstbutton1">
                           <div
                             style={{
-                              display: "flex",
-                              justifyContent: "center",
-                              placeItems: "center",
-                              gap: "2px",
-                              gridTemplateColumns: "1fr 1fr",
-                              fontVariantCaps: "normal",
-                              fontWeight: "600",
+                              display: 'flex',
+                              justifyContent: 'center',
+                              placeItems: 'center',
+                              gap: '2px',
+                              gridTemplateColumns: '1fr 1fr',
+                              fontVariantCaps: 'normal',
+                              fontWeight: '600'
                             }}
                           >
-                            <div style={{ display: "inline-block" }}>
-                              <img
-                                src={homebuttonimg3}
-                                alt="mobile, windows, mac"
-                              />
+                            <div style={{ display: 'inline-block' }}>
+                              <img src={homebuttonimg3} alt="mobile, windows, mac" />
                             </div>
-                            <div style={{ display: "inline" }}>PC</div>
+                            <div style={{ display: 'inline' }}>PC</div>
                           </div>
                         </Button>
                       </Tooltip>
@@ -420,18 +409,16 @@ export const HomePage = () => {
               <div className="right">
                 <h2 className="hidden">Introduccion</h2>
                 <p>
-                  Una peligrosa raza Alienígena amenaza con destruir todo a su
-                  paso para controlar la Fuerza Cósmica y la última esperanza
-                  para enfrentarlos son los Gusanos Espaciales.
+                  Una peligrosa raza Alienígena amenaza con destruir todo a su paso para controlar
+                  la Fuerza Cósmica y la última esperanza para enfrentarlos son los Gusanos
+                  Espaciales.
                 </p>
                 <p className="mt-2">
-                  En Space Worms podrás ser parte de esta Guerra Espacial contra
-                  los Loriks en un videojuego que te brindará horas
-                  interminables de diversión además de generar ingresos
-                  ilimitados. No te pierdas la oportunidad de unirte a esta
-                  lucha para salvar al Universo usando la fuerza del Sol y las
-                  Estrellas, mejorando a tu gusano, resolviendo misiones
-                  diarias, o sencillamente enfréntate a otros.
+                  En Space Worms podrás ser parte de esta Guerra Espacial contra los Loriks en un
+                  videojuego que te brindará horas interminables de diversión además de generar
+                  ingresos ilimitados. No te pierdas la oportunidad de unirte a esta lucha para
+                  salvar al Universo usando la fuerza del Sol y las Estrellas, mejorando a tu
+                  gusano, resolviendo misiones diarias, o sencillamente enfréntate a otros.
                 </p>
               </div>
             </div>
@@ -443,9 +430,7 @@ export const HomePage = () => {
             <div className="left-right-flex small-container-for-mobiles">
               <div className="left">
                 <h2 className="hidden">Trailer</h2>
-                <p className="thirdareatitle">
-                  Salva el universo y obten grandes recompensas
-                </p>
+                <p className="thirdareatitle">Salva el universo y obten grandes recompensas</p>
               </div>
               <div className="right video-right">
                 <Video />
@@ -458,7 +443,7 @@ export const HomePage = () => {
           <div className="container ">
             <div
               className="small-container-for-mobiles"
-              style={{ display: "flex", flexDirection: "column" }}
+              style={{ display: 'flex', flexDirection: 'column' }}
             >
               <h2 className="text-shadow">ROAD MAP</h2>
               <div className="m-auto px-1 roadmap-mobile-flex">
@@ -516,11 +501,7 @@ export const HomePage = () => {
                       </ul>
                     </div>
                   </div>
-                  <img
-                    src={roadmapH}
-                    alt="roadmap"
-                    className=" img-fluid large-devices"
-                  />
+                  <img src={roadmapH} alt="roadmap" className=" img-fluid large-devices" />
                   <img
                     src={roadmapV}
                     alt="roadmap"
@@ -611,17 +592,11 @@ export const HomePage = () => {
               <div>Brayan Suniaga</div>
               <div>Inversor - Creador de contenido</div>
               <div>
-                <a
-                  href="https://www.linkedin.com/in/brayan-suniaga"
-                  target={"blank"}
-                >
+                <a href="https://www.linkedin.com/in/brayan-suniaga" target={'blank'}>
                   <BsLinkedin />
                 </a>
 
-                <a
-                  href="https://www.facebook.com/brayansuniaga21/"
-                  target={"blank"}
-                >
+                <a href="https://www.facebook.com/brayansuniaga21/" target={'blank'}>
                   <BsFacebook />
                 </a>
               </div>
@@ -631,14 +606,11 @@ export const HomePage = () => {
               <div>Neydua Sierra</div>
               <div>Emprendedor - Inversor de NFT</div>
               <div>
-                <a
-                  href="https://www.linkedin.com/in/neydua-sierra-72a3b2232"
-                  target={"blank"}
-                >
+                <a href="https://www.linkedin.com/in/neydua-sierra-72a3b2232" target={'blank'}>
                   <BsLinkedin />
                 </a>
 
-                <a href="https://twitter.com/neydua" target={"blank"}>
+                <a href="https://twitter.com/neydua" target={'blank'}>
                   <BsTwitter />
                 </a>
               </div>
@@ -648,16 +620,10 @@ export const HomePage = () => {
               <div>Abrahan Leon</div>
               <div>Empresario - Entusiasta de las Criptomonedas</div>
               <div>
-                <a
-                  href="https://www.linkedin.com/in/abrahansd/"
-                  target={"blank"}
-                >
+                <a href="https://www.linkedin.com/in/abrahansd/" target={'blank'}>
                   <BsLinkedin />
                 </a>
-                <a
-                  href="https://www.linkedin.com/in/brayan-suniaga"
-                  target={"blank"}
-                >
+                <a href="https://www.linkedin.com/in/brayan-suniaga" target={'blank'}>
                   <BsInstagram />
                 </a>
               </div>
@@ -669,7 +635,7 @@ export const HomePage = () => {
           <div className="container">
             <div className="footersecondchilddivs">
               <p>Partners</p>
-              <img src={sdLogo} alt="partner" style={{ marginTop: "-25px" }} />
+              <img src={sdLogo} alt="partner" style={{ marginTop: '-25px' }} />
             </div>
             <div className="footersecondchilddivs">
               <p>Developers</p>
@@ -689,32 +655,16 @@ export const HomePage = () => {
           </div>
           <ReactVisibilitySensor onChange={onChange}>
             <div className="footerthirdimgs2">
-              <a
-                href="https://discord.com/invite/spaceworms"
-                target={"_blank"}
-                rel="noreferrer"
-              >
+              <a href="https://discord.com/invite/spaceworms" target={'_blank'} rel="noreferrer">
                 <img src={dcBlack} alt="discord" />
               </a>
-              <a
-                href="https://t.me/spaceworms"
-                target={"_blank"}
-                rel="noreferrer"
-              >
+              <a href="https://t.me/spaceworms" target={'_blank'} rel="noreferrer">
                 <img src={tgBlack} alt="telegram" />
               </a>
-              <a
-                href="https://twitter.com/spacewormsnft"
-                target={"_blank"}
-                rel="noreferrer"
-              >
+              <a href="https://twitter.com/spacewormsnft" target={'_blank'} rel="noreferrer">
                 <img src={twBlack} alt="twitter" />
               </a>
-              <a
-                href="https://www.youtube.com/c/TioDiamond"
-                target={"_blank"}
-                rel="noreferrer"
-              >
+              <a href="https://www.youtube.com/c/TioDiamond" target={'_blank'} rel="noreferrer">
                 <img src={ytBlack} alt="Youtube" />
               </a>
             </div>
@@ -723,8 +673,8 @@ export const HomePage = () => {
         <div className="legal">
           <a href="/#0" alt="terms">
             Condiciones de uso
-          </a>{" "}
-          /{" "}
+          </a>{' '}
+          /{' '}
           <a href="/#0" alt="terms">
             Política de privacidad
           </a>
@@ -737,7 +687,7 @@ export const HomePage = () => {
 const Video = () => {
   return (
     <>
-      <YouTube videoId={"Sf8jxnV87kE"} modestbranding={true} />
+      <YouTube videoId={'Sf8jxnV87kE'} modestbranding={true} />
     </>
   );
 };

@@ -1,4 +1,4 @@
-import "./../../../assets/css/templates/footer-game.scss";
+import './../../../assets/css/templates/footer-game.scss';
 function GameFooter() {
   return (
     <div className="game-footer flex-wrapper">
