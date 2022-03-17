@@ -8,6 +8,7 @@ import '../assets/css/templates/wallet.scss';
 import gusanoRojo from './../assets/img/gusamax.png';
 import api from '../util/api.js';
 import axios from 'axios';
+import {Helmet} from "react-helmet";
 
 export default function InventarioPage() {
   const [currentModal, setCurrentModal] = useState('init');
@@ -84,85 +85,6 @@ export default function InventarioPage() {
           console.log('no tiene nfts');
         }
       });
-  };
-  const ShowBuyEgg = () => {
-    return (
-      <>
-        <div className="modal-wrapper">
-          <div className="grid place-center">
-            <div className="market-modal">
-              <div className="marketplace-back-action">
-                <button
-                  onClick={() => {
-                    setModalOpen(false);
-                  }}
-                >
-                  Regresar a Marketplace
-                </button>
-              </div>
-              <div className="flex-wrapper">
-                <div style={{ width: '50%' }}>
-                  <img src={gusanoRojo} alt="gusano" className="img-fluid" />
-                  <div
-                    style={{
-                      padding: '5px 15px',
-                      fontSize: '15px',
-                      color: '#e9dc20',
-                      background: '#00000080',
-                      width: 'fit-content',
-                      margin: '0 auto',
-                      borderRadius: '.21rem'
-                    }}
-                  >
-                    37 / 125
-                  </div>
-                </div>
-                <div style={{ width: '50%', textAlign: 'left' }}>
-                  <div style={{ fontSize: '30px' }}>GusaMax</div>
-                  <div style={{ fontSize: '11px', color: '#ccc' }}>Dueño: kahahygytshga</div>
-
-                  <div className="market-modal-stats">
-                    <div className="flex-wrapper" style={{ borderBottom: '1px solid #414a2b' }}>
-                      <div>Visión</div>
-                      <div>2400</div>
-                    </div>
-                    <div className="flex-wrapper" style={{ borderBottom: '1px solid #414a2b' }}>
-                      <div>Agilidad</div>
-                      <div>450</div>
-                    </div>
-                    <div className="flex-wrapper" style={{ borderBottom: '1px solid #414a2b' }}>
-                      <div>Velocidad</div>
-                      <div>1.23</div>
-                    </div>
-                    <div className="flex-wrapper" style={{ borderBottom: '1px solid #414a2b' }}>
-                      <div>Imán</div>
-                      <div>1.35</div>
-                    </div>
-                    <div className="flex-wrapper" style={{ borderBottom: '1px solid #414a2b' }}>
-                      <div>Radar</div>
-                      <div>4.52</div>
-                    </div>
-                    <div className="flex-wrapper">
-                      <div>Multiplicador</div>
-                      <div>6.25</div>
-                    </div>
-                  </div>
-                  <div className="marketplace-modal-values">
-                    <div>0.15 WBNB</div>
-                    <div>75.52 USD</div>
-                  </div>
-                  <div>
-                    <button className="button" style={{ minWidth: '100%' }}>
-                      Comprar ahora
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </>
-    );
   };
   const asyncForLoop = async (nftorigin) => {
     var nftdatas = new Array();
@@ -313,6 +235,9 @@ export default function InventarioPage() {
 
   return (
     <>
+      <Helmet>
+        <title>Inventario</title>
+      </Helmet>
       <div className="mm-wallet">
         <ShowInventario />
       </div>

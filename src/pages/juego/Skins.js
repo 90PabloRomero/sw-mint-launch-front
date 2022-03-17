@@ -5,6 +5,7 @@ import oroCoin from './../../assets/img/oro.png';
 
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import {Helmet} from "react-helmet";
 export const SkinsPage = () => {
   const history = useNavigate();
 
@@ -14,6 +15,9 @@ export const SkinsPage = () => {
   };
   return (
     <>
+        <Helmet>
+            <title>Skins</title>
+        </Helmet>
       <main className="market">
         <header style={{ position: 'absolute', top: '3vh', zIndex: '2' }}>
           <div className={'flex-wrapper'}>

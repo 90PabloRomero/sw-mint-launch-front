@@ -8,14 +8,16 @@ import ground from './../../assets/img/19.png';
 import useWindowDimensions from 'components/atoms/useWindowsDimensions';
 import { Link } from 'react-router-dom';
 import Confetti from 'react-confetti';
+import {Helmet} from "react-helmet";
 export const EndGamePage = () => {
   const history = useNavigate();
-  const goBack = () => {
-    history(-1);
-  };
+
   const { width, height } = useWindowDimensions();
   return (
     <>
+        <Helmet>
+            <title>¡Felicidades!</title>
+        </Helmet>
       <Confetti width={width} height={height} />
       <main className="market" style={{ maxHeight: '100vh', overflow: 'hidden' }}>
         <div

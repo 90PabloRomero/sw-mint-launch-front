@@ -2,10 +2,14 @@ import calavera from './../../assets/img/calavera.png';
 import chartIcon from '../../assets/img/icons/chart.png';
 import weightIcon from '../../assets/img/icons/weighing.png';
 import oroCoin from './../../assets/img/oro.png';
+import {Helmet} from "react-helmet";
 
 export const JuegoTerminadoPage = () => {
   return (
     <>
+        <Helmet>
+            <title>Fin del Juego</title>
+        </Helmet>
       <main className="market">
         <div className="hero grid place-center" style={{ paddingBottom: '0' }}>
           <div style={{ minWidth: '100vw', height: '800px' }}>

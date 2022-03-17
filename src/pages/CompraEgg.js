@@ -16,6 +16,7 @@ import moment from 'moment';
 import 'react-toastify/dist/ReactToastify.css';
 import Header from '../components/organisms/marketplace/Header';
 import { mainNetAbiService } from 'util/services/mainnet.js';
+import {Helmet} from "react-helmet";
 // import { mainNetAbiService } from "util/services/mainnet.js";
 
 toast.configure();
@@ -562,6 +563,9 @@ function CompraEggPage() {
   // };
   return (
     <>
+      <Helmet>
+        <title>Dapp</title>
+      </Helmet>
       {/* {modalOpen ? <ShowBuyEgg /> : ""} */}
       <main className="market">
         <div className="hero" style={{ paddingBottom: '0' }}>

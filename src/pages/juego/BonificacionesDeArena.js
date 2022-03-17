@@ -12,6 +12,7 @@ import oroCoin from './../../assets/img/oro.png';
 
 import { useState } from 'react';
 import styled from "styled-components";
+import {Helmet} from "react-helmet";
 
 const FlexWrapper = styled.div`
   display: flex;
@@ -50,6 +51,9 @@ export const BonificacionesDeArenaPage = () => {
   };
   return (
     <>
+        <Helmet>
+            <title>Bonificaciones de Arena</title>
+        </Helmet>
       <main className="market">
         <header style={{ position: 'absolute', top: '3vh', zIndex: '2' }}>
           <div className={'flex-wrapper'}>

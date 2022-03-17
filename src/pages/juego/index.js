@@ -1,7 +1,5 @@
 import Logo from 'components/atoms/Logo';
-import { GoHome } from 'react-icons/go';
-import starIcon from '../../assets/img/icons/star.png';
-import shareIcon from '../../assets/img/icons/share.png';
+
 import happyFaceIcon from '../../assets/img/icons/happy-face.png';
 import swCoin from '../../assets/img/icons/coin.png';
 import cogIcon from '../../assets/img/icons/cog.png';

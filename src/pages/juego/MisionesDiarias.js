@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import leftArrow from './../../assets/img/leftarrow.png';
 import misionFacil from './../../assets/img/misionfacil.png';
 import misionLock from './../../assets/img/misionlock.png';
+import {Helmet} from "react-helmet";
 
 export const MisionesDiariasPage = () => {
   const history = useNavigate();
@@ -10,6 +11,9 @@ export const MisionesDiariasPage = () => {
   };
   return (
     <>
+        <Helmet>
+            <title>Misiones Diarias</title>
+        </Helmet>
       <main className="market">
         <header style={{ position: 'absolute', top: '3vh', zIndex: '2' }}>
           <div className={'flex-wrapper'}>

@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import leftArrow from './../../assets/img/leftarrow.png';
 import wakyFace from './../../assets/img/wakyface.png';
+import {Helmet} from "react-helmet";
 export const ProfilePage = () => {
   const history = useNavigate();
 
@@ -9,6 +10,9 @@ export const ProfilePage = () => {
   };
   return (
     <>
+        <Helmet>
+            <title>Perfil</title>
+        </Helmet>
       <main className="market">
         <header style={{ position: 'absolute', top: '3vh', zIndex: '2' }}>
           <div className={'flex-wrapper'}>

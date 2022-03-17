@@ -13,6 +13,7 @@ import MmHeader from 'components/organisms/login/MmHeader';
 import { toast } from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.css';
+import {Helmet} from "react-helmet";
 
 const MmLoginPage = () => {
   const [walletAddress, setWallet] = useState('');
@@ -119,6 +120,9 @@ const MmLoginPage = () => {
 
     return (
       <>
+        <Helmet>
+          <title>Login</title>
+        </Helmet>
         <div className="modal-wrapper">
           <div className="grid place-center">
             <div className="create-account-modal">

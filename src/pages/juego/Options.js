@@ -3,6 +3,7 @@ import leftArrow from './../../assets/img/leftarrow.png';
 import iconCheck from './../../assets/img/iconcheck.png';
 import { useState } from 'react';
 import styled from "styled-components";
+import {Helmet} from "react-helmet";
 
 const OptionsPageWrapper = styled.div`
   background: #171a1c93;
@@ -27,16 +28,19 @@ export const OptionsPage = () => {
   const history = useNavigate();
 
   const [isCheckInterfaz, setCheckInterfaz] = useState(false);
-  const [isCheckVibracion, setCheckVibracion] = useState(false);
   const [isCheckMusica, setCheckMusica] = useState(false);
   const [isCheckSFX, setCheckSFX] = useState(false);
-  const [isCheckSonido, setCheckSonido] = useState(false);
 
   const goBack = () => {
     history(-1);
   };
   return (
     <>
+        <Helmet>
+            <title>
+                Opciones
+            </title>
+        </Helmet>
       <main className="market">
         <header style={{ position: 'absolute', top: '3vh', zIndex: '2' }}>
           <div className={'flex-wrapper'}>

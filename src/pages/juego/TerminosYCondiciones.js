@@ -1,6 +1,7 @@
 import leftArrow from "../../assets/img/leftarrow.png";
 import {useNavigate} from "react-router-dom";
 import styled from "styled-components";
+import {Helmet} from "react-helmet";
 
 const TitleH1 = styled.div`
   font-size: .62rem;
@@ -75,6 +76,11 @@ export const TerminosYCondicionesPage = () => {
   };
   return (
     <>
+        <Helmet>
+            <title>
+                Terminos y Condiciones
+            </title>
+        </Helmet>
       <main className="market" style={{maxHeight: "100vh"}}>
         <header style={{ position: 'absolute', top: '3vh', zIndex: '2' }}>
           <div className={'flex-wrapper'}>

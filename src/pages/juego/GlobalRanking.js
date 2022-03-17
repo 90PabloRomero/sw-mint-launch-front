@@ -16,22 +16,19 @@ import g4 from './../../assets/img/gusanos/g4.png';
 import g5 from './../../assets/img/gusanos/g5.png';
 import g6 from './../../assets/img/gusanos/g6.png';
 
-import { useState } from 'react';
+import {Helmet} from "react-helmet";
 export const GlobalRankingPage = () => {
-  const [isIconCheck, setIconCheck] = useState(false);
   const history = useNavigate();
 
-  const [isCheckInterfaz, setCheckInterfaz] = useState(false);
-  const [isCheckVibracion, setCheckVibracion] = useState(false);
-  const [isCheckMusica, setCheckMusica] = useState(false);
-  const [isCheckSFX, setCheckSFX] = useState(false);
-  const [isCheckSonido, setCheckSonido] = useState(false);
 
   const goBack = () => {
     history(-1);
   };
   return (
     <>
+      <Helmet>
+        <title>Ranking</title>
+      </Helmet>
       <main className="market">
         <header style={{ position: 'absolute', top: '3vh', zIndex: '2' }}>
           <div className={'flex-wrapper'}>

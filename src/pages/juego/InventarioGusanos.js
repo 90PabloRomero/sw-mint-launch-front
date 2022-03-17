@@ -4,6 +4,7 @@ import leftArrow from './../../assets/img/leftarrow.png';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import styled from "styled-components";
+import {Helmet} from "react-helmet";
 
 const Wrapper = styled.div`
   text-align: center;
@@ -40,7 +41,12 @@ export const InventarioGusanosPage = () => {
   const goBack = () => {
     history(-1);
   };
-  return (
+  return (<>
+      <Helmet>
+          <title>
+              Inventario de Gusanos
+          </title>
+      </Helmet>
       <main className="market">
         <header style={{ position: 'absolute', top: '3vh', zIndex: '2' }}>
           <div className={'flex-wrapper'}>
@@ -239,6 +245,7 @@ export const InventarioGusanosPage = () => {
           </div>
         </div>
       </main>
+      </>
 
   );
 };

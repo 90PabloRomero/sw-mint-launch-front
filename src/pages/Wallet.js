@@ -7,6 +7,7 @@ import walletIcon from 'assets/img/icono_wallet.png';
 import { connectWallet, getCurrentWalletConnected } from '../util/interact.js';
 import '../assets/css/templates/wallet.scss';
 import Tooltip from 'rc-tooltip';
+import {Helmet} from "react-helmet";
 
 export default function WalletPage() {
   const history = useNavigate();
@@ -57,6 +58,9 @@ export default function WalletPage() {
   const ShowWallet = () => {
     return (
       <>
+        <Helmet>
+          <title>Wallet</title>
+        </Helmet>
         <div className="modal-wrapper" style={{ overflowY: 'scroll' }}>
           <div className="grid wallet-layout">
             {/*  */}

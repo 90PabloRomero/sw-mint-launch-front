@@ -10,6 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Header from '../components/organisms/marketplace/Header';
 import gusaMax from './../assets/img/gusano1.png';
 import gusanoRojo from './../assets/img/gusamax.png';
+import {Helmet} from "react-helmet";
 
 toast.configure();
 
@@ -537,6 +538,9 @@ function MarketplacePage() {
   ];
   return (
     <>
+      <Helmet>
+        <title>Marketplace</title>
+      </Helmet>
       {modalOpen ? <ShowBuyEgg /> : ''}
       <main className="market">
         <div className="black-label"></div>

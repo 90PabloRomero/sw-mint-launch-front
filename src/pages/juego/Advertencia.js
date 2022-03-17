@@ -1,10 +1,13 @@
 import Logo from 'components/atoms/Logo';
-import SocialMedia from 'components/molecules/SocialMedia.js';
-import MmHeader from 'components/organisms/login/MmHeader';
+import {Helmet} from "react-helmet";
+
 
 const AdvertenciaPage = () => {
   return (
     <>
+      <Helmet>
+        <title>Advertencia</title>
+      </Helmet>
       <main className="market">
         <div className="hero grid place-center" style={{ paddingBottom: '0' }}>
           <div className=" grid place-center p-1" style={{ maxWidth: '800px' }}>
