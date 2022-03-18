@@ -1,12 +1,12 @@
-import { useEffect, useState } from "react";
-import Logo from "components/atoms/Logo";
-import "assets/css/templates/header-market.scss";
-import userAvatar from "assets/img/avatar_2.png";
-import { Link } from "react-router-dom";
-import Tooltip from "rc-tooltip";
-import Button from "components/atoms/Button";
-import CrossIcon from "components/atoms/icons/cross";
-import HamburguerIcon from "components/atoms/icons/hamburguer";
+import { useEffect, useState } from 'react';
+import Logo from 'components/atoms/Logo';
+import 'assets/css/templates/header-market.scss';
+import userAvatar from 'assets/img/avatar_2.png';
+import { Link } from 'react-router-dom';
+import Tooltip from 'rc-tooltip';
+import Button from 'components/atoms/Button';
+import CrossIcon from 'components/atoms/icons/cross';
+import HamburguerIcon from 'components/atoms/icons/hamburguer';
 function Header() {
   const [navbarOpen, setNavbarOpen] = useState(false);
 
@@ -22,7 +22,7 @@ function Header() {
               <Logo
                 alt="Space Worms"
                 className="img-logo"
-                style={{ width: "50%", minWidth: "70px" }}
+                style={{ width: '50%', minWidth: '70px' }}
               />
             </Link>
             <nav>
@@ -35,7 +35,7 @@ function Header() {
                 <li className="desktop-only">
                   <Tooltip
                     placement="bottom"
-                    trigger={["click"]}
+                    trigger={['click']}
                     overlay={<span>Marketplace Próximamente!</span>}
                   >
                     <a href="/#0">Marketplace</a>
@@ -44,11 +44,7 @@ function Header() {
               </ul>
             </nav>
           </div>
-          <div
-            className={`mobile-only overlayDivMenuMobile ${
-              navbarOpen ? " showOverlay" : ""
-            } `}
-          >
+          <div className={`mobile-only overlayDivMenuMobile ${navbarOpen ? ' showOverlay' : ''} `}>
             <nav>
               <ul>
                 <li>
@@ -68,16 +64,13 @@ function Header() {
             <div className="user-area">
               <Link to="/wallet">
                 <button>
-                  <img src={userAvatar} alt="" style={{ minWidth: "40px" }} />
+                  <img src={userAvatar} alt="" style={{ minWidth: '40px' }} />
                 </button>
               </Link>
             </div>
           </div>
         </div>
-        <Button
-          onClick={handleToggle}
-          className="buttonHamburguerStyles ml-3 mobile-only"
-        >
+        <Button onClick={handleToggle} className="buttonHamburguerStyles ml-3 mobile-only">
           {navbarOpen ? <CrossIcon /> : <HamburguerIcon />}
         </Button>
       </header>

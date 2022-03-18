@@ -1,7 +1,10 @@
-import { useNavigate } from "react-router-dom";
-import leftArrow from "./../../assets/img/leftarrow.png";
-import misionFacil from "./../../assets/img/misionfacil.png";
-import misionLock from "./../../assets/img/misionlock.png";
+
+import { useNavigate } from 'react-router-dom';
+import leftArrow from './../../assets/img/leftarrow.png';
+import misionFacil from './../../assets/img/misionfacil.png';
+import misionLock from './../../assets/img/misionlock.png';
+import { Helmet } from "react-helmet";
+
 export const MisionesDiariasPage = () => {
   const history = useNavigate();
   const goBack = () => {
@@ -9,6 +12,9 @@ export const MisionesDiariasPage = () => {
   };
   return (
     <>
+      <Helmet>
+        <title>Misiones Diarias</title>
+      </Helmet>
       <main className="market">
         <header style={{ position: "absolute", top: "3vh", zIndex: "2" }}>
           <div className={"flex-wrapper"}>
@@ -27,150 +33,141 @@ export const MisionesDiariasPage = () => {
               }}
               onClick={() => goBack()}
             >
-              <img src={leftArrow} alt={"Regresar"} />
+              <img src={leftArrow} alt={'Regresar'} />
             </button>
           </div>
         </header>
-        <div className="hero grid place-center" style={{ paddingBottom: "0" }}>
-          <div style={{ minWidth: "100vw", height: "800px" }}>
+        <div className="hero grid place-center" style={{ paddingBottom: '0' }}>
+          <div style={{ minWidth: '100vw', height: '800px' }}>
             <div
               className=" grid  p-1"
               style={{
-                maxWidth: "950px",
-                textAlign: "center",
-                margin: "auto",
-                fontSize: "25px",
-                marginTop: "2rem",
+                maxWidth: '950px',
+                textAlign: 'center',
+                margin: 'auto',
+                fontSize: '25px',
+                marginTop: '2rem'
               }}
             >
               <div
-                className={"flex-wrapper my-1"}
+                className={'flex-wrapper my-1'}
                 style={{
-                  marginTop: "25px",
-                  justifyContent: "center",
-                  gap: "20px",
+                  marginTop: '25px',
+                  justifyContent: 'center',
+                  gap: '20px'
                 }}
               >
                 <div
                   style={{
-                    width: "100%",
-                    display: "grid",
-                    gridTemplateColumns: "repeat(3, 1fr)",
-                    border: "3px solid #ffed00",
-                    borderRadius: "12px",
-                    padding: ".51rem",
-                    gap: "10px",
+                    width: '100%',
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(3, 1fr)',
+                    border: '3px solid #ffed00',
+                    borderRadius: '12px',
+                    padding: '.51rem',
+                    gap: '10px'
                   }}
                 >
-                  <div
-                    className="flex-wrapper"
-                    style={{ padding: "1rem", gap: "1rem" }}
-                  >
+                  <div className="flex-wrapper" style={{ padding: '1rem', gap: '1rem' }}>
                     <div
                       style={{
-                        border: "3px solid white",
-                        minHeight: "250px",
-                        minWidth: "180px",
-                        padding: "10px 5px",
-                        borderRadius: "8px",
-                        display: "flex",
-                        flexDirection: "column",
-                        justifyContent: "space-between",
+                        border: '3px solid white',
+                        minHeight: '250px',
+                        minWidth: '180px',
+                        padding: '10px 5px',
+                        borderRadius: '8px',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'space-between'
                       }}
                     >
                       <div>Fácil</div>
                       <div>
                         <img src={misionFacil} alt="dificultad: facil" />
                       </div>
-                      <div style={{ fontSize: "12px" }}>Come 600 golosinas</div>
+                      <div style={{ fontSize: '12px' }}>Come 200 loriks</div>
                     </div>
                     {/*  */}
                     <div
                       style={{
-                        border: "3px solid white",
-                        minHeight: "250px",
-                        minWidth: "180px",
-                        padding: "10px 5px",
-                        borderRadius: "8px",
-                        display: "flex",
-                        flexDirection: "column",
-                        justifyContent: "space-between",
-                        position: "relative",
+                        border: '3px solid white',
+                        minHeight: '250px',
+                        minWidth: '180px',
+                        padding: '10px 5px',
+                        borderRadius: '8px',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'space-between',
+                        position: 'relative'
                       }}
                     >
                       <div
                         style={{
-                          position: "absolute",
+                          position: 'absolute',
                           inset: 0,
-                          background: "#1c648b84",
+                          background: '#1c648b84'
                         }}
                       ></div>
                       <div>Normal</div>
                       <div>
                         <img src={misionLock} alt="dificultad: facil" />
                       </div>
-                      <div style={{ fontSize: "12px" }}>
-                        Junta 7 monedas en 200 segundos
-                      </div>
+                      <div style={{ fontSize: '12px' }}>&nbsp;</div>
                     </div>
                     {/*  */}
                     <div
                       style={{
-                        border: "3px solid white",
-                        minHeight: "250px",
-                        minWidth: "180px",
-                        padding: "10px 5px",
-                        borderRadius: "8px",
-                        display: "flex",
-                        flexDirection: "column",
-                        justifyContent: "space-between",
-                        position: "relative",
+                        border: '3px solid white',
+                        minHeight: '250px',
+                        minWidth: '180px',
+                        padding: '10px 5px',
+                        borderRadius: '8px',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'space-between',
+                        position: 'relative'
                       }}
                     >
                       <div
                         style={{
-                          position: "absolute",
+                          position: 'absolute',
                           inset: 0,
-                          background: "#1c648b84",
+                          background: '#1c648b84'
                         }}
                       ></div>
                       <div>Dificil</div>
                       <div>
                         <img src={misionLock} alt="dificultad: facil" />
                       </div>
-                      <div style={{ fontSize: "12px" }}>
-                        Arrastrate 220 metros en 120 segundos
-                      </div>
+                      <div style={{ fontSize: '12px' }}>&nbsp;</div>
                     </div>
                     {/*  */}
                     <div
                       style={{
-                        border: "3px solid white",
-                        minHeight: "250px",
-                        minWidth: "180px",
-                        padding: "10px 5px",
+                        border: '3px solid white',
+                        minHeight: '250px',
+                        minWidth: '180px',
+                        padding: '10px 5px',
 
-                        borderRadius: "8px",
-                        display: "flex",
-                        flexDirection: "column",
-                        justifyContent: "space-between",
-                        position: "relative",
+                        borderRadius: '8px',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'space-between',
+                        position: 'relative'
                       }}
                     >
                       <div
                         style={{
-                          position: "absolute",
+                          position: 'absolute',
                           inset: 0,
-                          background: "#1c648b84",
+                          background: '#1c648b84'
                         }}
-                      ></div>
+                      >&nbsp;       </div>
                       <div>Extrema</div>
                       <div>
                         <img src={misionLock} alt="dificultad: facil" />
                       </div>
-                      <div style={{ fontSize: "12px" }}>
-                        Arrastrate 220 metros en 120 segundos
-                      </div>
+                      <div style={{ fontSize: '12px' }}>&nbsp;</div>
                     </div>
                     {/*  */}
                   </div>
@@ -179,7 +176,7 @@ export const MisionesDiariasPage = () => {
               Nuevas tareas disponibles en: 2h 8m
             </div>
           </div>
-          <div className={"absolute-bottom"} style={{ bottom: "30px" }}>
+          <div className={'absolute-bottom'} style={{ bottom: '30px' }}>
             {/* <div
               className={"flex-wrapper"}
               style={{ justifyContent: "center", gap: "2rem" }}

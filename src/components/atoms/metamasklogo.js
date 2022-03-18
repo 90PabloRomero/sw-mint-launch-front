@@ -5,11 +5,11 @@
     function s(o, u) {
       if (!n[o]) {
         if (!t[o]) {
-          var a = typeof require === "function" && require;
+          var a = typeof require === 'function' && require;
           if (!u && a) return a(o, !0);
           if (i) return i(o, !0);
           var f = new Error("Cannot find module '" + o + "'");
-          throw ((f.code = "MODULE_NOT_FOUND"), f);
+          throw ((f.code = 'MODULE_NOT_FOUND'), f);
         }
         var l = (n[o] = { exports: {} });
         t[o][0].call(
@@ -28,7 +28,7 @@
       }
       return n[o].exports;
     }
-    var i = typeof require === "function" && require;
+    var i = typeof require === 'function' && require;
     for (var o = 0; o < r.length; o++) s(r[o]);
     return s;
   }
@@ -37,22 +37,22 @@
   {
     1: [
       function (a, b, c) {
-        var d = a("../login"),
+        var d = a('../login'),
           viewer = d({
             width: 0.4,
             height: 0.4,
             followMouse: !0,
-            followMotion: !0,
+            followMotion: !0
           });
         var intvl = setInterval(function () {
-          var logo = document.getElementById("metamask-logo");
+          var logo = document.getElementById('metamask-logo');
           if (logo) {
             logo.appendChild(viewer.container);
             clearInterval(intvl);
           }
         }, 10);
       },
-      { "../login": 3 },
+      { '../login': 3 }
     ],
     2: [
       function (a, b, c) {
@@ -147,7 +147,7 @@
             [-31.903, 5.692, -47.822],
             [-35.0758, -34.4329, -16.2809],
             [-115.2841, 48.6815, 48.6841],
-            [-110.8428, 28.4821, 49.1762],
+            [-110.8428, 28.4821, 49.1762]
           ],
           chunks: [
             {
@@ -174,8 +174,8 @@
                 [14, 41, 37],
                 [37, 15, 14],
                 [5, 59, 40],
-                [40, 16, 5],
-              ],
+                [40, 16, 5]
+              ]
             },
             {
               color: [228, 118, 27],
@@ -190,8 +190,8 @@
                 [58, 67, 40],
                 [40, 59, 58],
                 [71, 76, 77],
-                [77, 78, 71],
-              ],
+                [77, 78, 71]
+              ]
             },
             {
               color: [118, 61, 22],
@@ -221,8 +221,8 @@
                 [88, 61, 53],
                 [54, 53, 61],
                 [2, 1, 4],
-                [55, 59, 57],
-              ],
+                [55, 59, 57]
+              ]
             },
             {
               color: [22, 22, 22],
@@ -240,8 +240,8 @@
                 [38, 80, 39],
                 [39, 36, 38],
                 [39, 80, 26],
-                [26, 22, 39],
-              ],
+                [26, 22, 39]
+              ]
             },
             {
               color: [215, 193, 179],
@@ -249,8 +249,8 @@
                 [21, 20, 24],
                 [24, 31, 21],
                 [69, 71, 70],
-                [71, 69, 75],
-              ],
+                [71, 69, 75]
+              ]
             },
             {
               color: [192, 173, 158],
@@ -280,8 +280,8 @@
                 [51, 29, 28],
                 [28, 74, 51],
                 [74, 27, 72],
-                [28, 23, 19],
-              ],
+                [28, 23, 19]
+              ]
             },
             {
               color: [205, 97, 22],
@@ -293,15 +293,15 @@
                 [71, 68, 76],
                 [40, 67, 66],
                 [66, 65, 40],
-                [65, 64, 40],
-              ],
+                [65, 64, 40]
+              ]
             },
             {
               color: [35, 52, 71],
               faces: [
                 [11, 12, 13],
-                [64, 65, 66],
-              ],
+                [64, 65, 66]
+              ]
             },
             {
               color: [228, 117, 31],
@@ -310,8 +310,8 @@
                 [11, 16, 14],
                 [17, 12, 18],
                 [41, 64, 37],
-                [67, 68, 66],
-              ],
+                [67, 68, 66]
+              ]
             },
             {
               color: [226, 118, 27],
@@ -373,13 +373,13 @@
                 [47, 86, 85],
                 [85, 46, 47],
                 [48, 30, 52],
-                [52, 87, 48],
-              ],
-            },
-          ],
+                [52, 87, 48]
+              ]
+            }
+          ]
         };
       },
-      {},
+      {}
     ],
     3: [
       function (j, q, z) {
@@ -389,19 +389,18 @@
         function setAttribute(t, e, n) {
           t.setAttributeNS(null, e, n);
         }
-        var B = j("gl-mat4/perspective"),
-          multiply = j("gl-mat4/multiply"),
-          lookAt = j("gl-mat4/lookAt"),
-          invert = j("gl-mat4/invert"),
-          rotate = j("gl-mat4/rotate"),
-          transform = j("gl-vec3/transformMat4"),
-          foxJSON = j("./fox.json"),
-          SVG_NS = "http://www.w3.org/2000/svg";
+        var B = j('gl-mat4/perspective'),
+          multiply = j('gl-mat4/multiply'),
+          lookAt = j('gl-mat4/lookAt'),
+          invert = j('gl-mat4/invert'),
+          rotate = j('gl-mat4/rotate'),
+          transform = j('gl-vec3/transformMat4'),
+          foxJSON = j('./fox.json'),
+          SVG_NS = 'http://www.w3.org/2000/svg';
         q.exports = function (t) {
           function e(t) {
             var e = y.getBoundingClientRect();
-            (x.x = 1 - (2 * (t.x - e.left)) / e.width),
-              (x.y = 1 - (2 * (t.y - e.top)) / e.height);
+            (x.x = 1 - (2 * (t.x - e.left)) / e.width), (x.y = 1 - (2 * (t.y - e.top)) / e.height);
           }
           function n(t, e) {
             (this.svg = t), (this.indices = e), (this.zIndex = 0);
@@ -457,28 +456,18 @@
                 d = M[3 * u + 1],
                 w = M[3 * s];
               if (!((c - f) * (M[3 * s + 1] - h) - (d - h) * (w - f) < 0)) {
-                for (
-                  var v = [], g = -1 / 0, m = 1 / 0, p = o.svg, A = 0;
-                  A < 3;
-                  ++A
-                ) {
+                for (var v = [], g = -1 / 0, m = 1 / 0, p = o.svg, A = 0; A < 3; ++A) {
                   var x = a[A];
-                  v.push(
-                    0.5 * n * (1 - M[3 * x]) +
-                      "," +
-                      0.5 * r * (1 - M[3 * x + 1])
-                  );
+                  v.push(0.5 * n * (1 - M[3 * x]) + ',' + 0.5 * r * (1 - M[3 * x + 1]));
                   var F = M[3 * x + 2];
                   (g = Math.max(g, F)), (m = Math.min(m, F));
                 }
                 o.zIndex = g + 0.25 * m;
-                var N = v.join(" ");
-                -1 === N.indexOf("NaN") && setAttribute(p, "points", N),
-                  b.push(o);
+                var N = v.join(' ');
+                -1 === N.indexOf('NaN') && setAttribute(p, 'points', N), b.push(o);
               }
             }
-            for (b.sort(i), y.innerHTML = "", t = 0; t < b.length; ++t)
-              y.appendChild(b[t].svg);
+            for (b.sort(i), y.innerHTML = '', t = 0; t < b.length; ++t) y.appendChild(b[t].svg);
           }
           function a() {
             v = !1;
@@ -510,7 +499,7 @@
             m = 0.3,
             p = 400,
             A = 400,
-            y = createNode("svg"),
+            y = createNode('svg'),
             x = { x: 0, y: 0 },
             F = foxJSON.positions.length,
             N = new Float32Array(3 * F),
@@ -519,9 +508,9 @@
           h.pxNotRatio ||
             ((p = (window.innerWidth * (h.width || 0.25)) | 0),
             (A = 0 | (window.innerHeight * h.height || p)),
-            "minWidth" in h && p < h.minWidth && ((p = h.minWidth), (A = p))),
-            setAttribute(y, "width", p + "px"),
-            setAttribute(y, "height", p + "px"),
+            'minWidth' in h && p < h.minWidth && ((p = h.minWidth), (A = p))),
+            setAttribute(y, 'width', p + 'px'),
+            setAttribute(y, 'height', p + 'px'),
             document.body.appendChild(y),
             (function () {
               for (var t = foxJSON.positions, e = 0, n = 0; n < t.length; ++n)
@@ -530,18 +519,15 @@
           var S = (function () {
               for (var t = [], e = 0; e < foxJSON.chunks.length; ++e)
                 for (
-                  var r = foxJSON.chunks[e],
-                    i = "rgb(" + r.color + ")",
-                    o = r.faces,
-                    a = 0;
+                  var r = foxJSON.chunks[e], i = 'rgb(' + r.color + ')', o = r.faces, a = 0;
                   a < o.length;
                   ++a
                 ) {
                   var l = o[a],
-                    u = createNode("polygon");
-                  setAttribute(u, "fill", i),
-                    setAttribute(u, "stroke", i),
-                    setAttribute(u, "points", "0,0, 10,0, 0,10"),
+                    u = createNode('polygon');
+                  setAttribute(u, 'fill', i),
+                    setAttribute(u, 'stroke', i),
+                    setAttribute(u, 'points', '0,0, 10,0, 0,10'),
                     y.appendChild(u),
                     t.push(new n(u, l));
                 }
@@ -552,12 +538,7 @@
                 e = new Float32Array([0, 1, 0]),
                 n = new Float32Array(16),
                 r = new Float32Array(16),
-                i = lookAt(
-                  new Float32Array(16),
-                  new Float32Array([0, 0, 400]),
-                  t,
-                  e
-                ),
+                i = lookAt(new Float32Array(16), new Float32Array([0, 0, 400]), t, e),
                 o = invert(new Float32Array(16), i),
                 a = new Float32Array(16),
                 l = new Float32Array(3),
@@ -589,10 +570,10 @@
               };
             })();
           return (
-            window.addEventListener("mousemove", function (t) {
+            window.addEventListener('mousemove', function (t) {
               v || l(), c && (e({ x: t.clientX, y: t.clientY }), f());
             }),
-            window.addEventListener("deviceorientation", function (t) {
+            window.addEventListener('deviceorientation', function (t) {
               if ((v || l(), d)) {
                 const n = event.gamma,
                   r = event.beta;
@@ -600,7 +581,7 @@
                   (acceleration = 10),
                   e({
                     x: 200 + n * acceleration,
-                    y: yOffset + r * acceleration,
+                    y: yOffset + r * acceleration
                   }),
                   f();
               }
@@ -612,33 +593,33 @@
               setFollowMouse: u,
               setFollowMotion: s,
               stopAnimation: a,
-              startAnimation: l,
+              startAnimation: l
             }
           );
         };
       },
       {
-        "./fox.json": 2,
-        "gl-mat4/invert": 6,
-        "gl-mat4/lookAt": 7,
-        "gl-mat4/multiply": 8,
-        "gl-mat4/perspective": 9,
-        "gl-mat4/rotate": 10,
-        "gl-vec3/transformMat4": 11,
-      },
+        './fox.json': 2,
+        'gl-mat4/invert': 6,
+        'gl-mat4/lookAt': 7,
+        'gl-mat4/multiply': 8,
+        'gl-mat4/perspective': 9,
+        'gl-mat4/rotate': 10,
+        'gl-vec3/transformMat4': 11
+      }
     ],
     4: [
       function (a, b, c) {
-        "use strict";
+        'use strict';
         function format(e) {
-          var t = (/mac os x/i.test(navigator.userAgent) ? "⌘" : "Ctrl") + "+C";
+          var t = (/mac os x/i.test(navigator.userAgent) ? '⌘' : 'Ctrl') + '+C';
           return e.replace(/#{\s*key\s*}/g, t);
         }
-        var d = a("toggle-selection"),
-          defaultMessage = "Copy to clipboard: #{key}, Enter";
+        var d = a('toggle-selection'),
+          defaultMessage = 'Copy to clipboard: #{key}, Enter';
         b.exports = copy;
       },
-      { "toggle-selection": 12 },
+      { 'toggle-selection': 12 }
     ],
     5: [
       function (a, b, c) {
@@ -665,7 +646,7 @@
         }
         b.exports = identity;
       },
-      {},
+      {}
     ],
     6: [
       function (F, G, H) {
@@ -722,7 +703,7 @@
         }
         G.exports = invert;
       },
-      {},
+      {}
     ],
     7: [
       function (g, j, w) {
@@ -746,9 +727,7 @@
             f = e[0],
             m = e[1],
             p = e[2];
-          return Math.abs(l - f) < 1e-6 &&
-            Math.abs(y - m) < 1e-6 &&
-            Math.abs(k - p) < 1e-6
+          return Math.abs(l - f) < 1e-6 && Math.abs(y - m) < 1e-6 && Math.abs(k - p) < 1e-6
             ? x(t)
             : ((d = l - f),
               (q = y - m),
@@ -761,16 +740,12 @@
               (o = c * d - v * u),
               (s = v * q - A * d),
               (b = Math.sqrt(i * i + o * o + s * s)),
-              b
-                ? ((b = 1 / b), (i *= b), (o *= b), (s *= b))
-                : ((i = 0), (o = 0), (s = 0)),
+              b ? ((b = 1 / b), (i *= b), (o *= b), (s *= b)) : ((i = 0), (o = 0), (s = 0)),
               (h = q * s - u * o),
               (n = u * i - d * s),
               (M = d * o - q * i),
               (b = Math.sqrt(h * h + n * n + M * M)),
-              b
-                ? ((b = 1 / b), (h *= b), (n *= b), (M *= b))
-                : ((h = 0), (n = 0), (M = 0)),
+              b ? ((b = 1 / b), (h *= b), (n *= b), (M *= b)) : ((h = 0), (n = 0), (M = 0)),
               (t[0] = i),
               (t[1] = h),
               (t[2] = d),
@@ -789,10 +764,10 @@
               (t[15] = 1),
               t);
         }
-        var x = g("./identity");
+        var x = g('./identity');
         j.exports = lookAt;
       },
-      { "./identity": 5 },
+      { './identity': 5 }
     ],
     8: [
       function (q, w, z) {
@@ -851,7 +826,7 @@
         }
         w.exports = multiply;
       },
-      {},
+      {}
     ],
     9: [
       function (b, d, f) {
@@ -880,7 +855,7 @@
         }
         d.exports = perspective;
       },
-      {},
+      {}
     ],
     10: [
       function (F, G, H) {
@@ -955,16 +930,12 @@
               (t[9] = u * y + i * z + m * A),
               (t[10] = M * y + b * z + p * A),
               (t[11] = l * y + d * z + q * A),
-              a !== t &&
-                ((t[12] = a[12]),
-                (t[13] = a[13]),
-                (t[14] = a[14]),
-                (t[15] = a[15])),
+              a !== t && ((t[12] = a[12]), (t[13] = a[13]), (t[14] = a[14]), (t[15] = a[15])),
               t);
         }
         G.exports = rotate;
       },
-      {},
+      {}
     ],
     11: [
       function (b, c, d) {
@@ -983,22 +954,18 @@
         }
         c.exports = transformMat4;
       },
-      {},
+      {}
     ],
     12: [
       function (b, c, d) {
         c.exports = function () {
           var e = document.getSelection();
           if (!e.rangeCount) return function () {};
-          for (
-            var n = document.activeElement, t = [], a = 0;
-            a < e.rangeCount;
-            a++
-          )
+          for (var n = document.activeElement, t = [], a = 0; a < e.rangeCount; a++)
             t.push(e.getRangeAt(a));
           switch (n.tagName.toUpperCase()) {
-            case "INPUT":
-            case "TEXTAREA":
+            case 'INPUT':
+            case 'TEXTAREA':
               n.blur();
               break;
             default:
@@ -1007,7 +974,7 @@
           return (
             e.removeAllRanges(),
             function () {
-              "Caret" === e.type && e.removeAllRanges(),
+              'Caret' === e.type && e.removeAllRanges(),
                 e.rangeCount ||
                   t.forEach(function (n) {
                     e.addRange(n);
@@ -1017,8 +984,8 @@
           );
         };
       },
-      {},
-    ],
+      {}
+    ]
   },
   {},
   [1]

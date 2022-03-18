@@ -1,4 +1,4 @@
-import "assets/css/templates/components/loadingworm.scss";
+import 'assets/css/templates/components/loadingworm.scss';
 const LoadingWorm = ({ className }) => {
   return (
     <div className={`worm-container ${className}`}>

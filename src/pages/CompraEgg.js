@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react";
 import "assets/css/templates/components/modal.scss";
-import { useNavigate } from "react-router-dom";
 import SocialMedia from "components/molecules/SocialMedia";
 import { getCurrentWalletConnected } from "../util/interact.js";
 import { BusdAbiService } from "util/services/busd.js";
-import huevoIMG from "./../assets/img/huevo-gusano.png";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Header from "../components/organisms/marketplace/Header";
 import { mainNetAbiService } from "util/services/mainnet.js";
+
+import { useNavigate } from 'react-router-dom';
+import huevoIMG from './../assets/img/huevo-gusano.png';
+import 'react-toastify/dist/ReactToastify.css';
+import { Helmet } from "react-helmet";
 // import { mainNetAbiService } from "util/services/mainnet.js";
 
 toast.configure();
@@ -67,14 +70,9 @@ function CompraEggPage() {
           "0xe9e7cea3dedca5984780bafc599bd69add087d56";
         const BUSDABI = BusdAbiService;
 
-        const BUSDContract = await new web3.eth.Contract(
-          BUSDABI,
-          BUSDContractAddress
-        );
+        const BUSDContract = await new web3.eth.Contract(BUSDABI, BUSDContractAddress);
         // const myContract = await new web3.eth.Contract(mainnetAbi, mainnetContract);
-        const allowance = await BUSDContract.methods
-          .allowance(account1, mainnetContract)
-          .call();
+        const allowance = await BUSDContract.methods.allowance(account1, mainnetContract).call();
         setAllowance(allowance);
       }
     })();
@@ -561,6 +559,9 @@ function CompraEggPage() {
   // };
   return (
     <>
+      <Helmet>
+        <title>Dapp</title>
+      </Helmet>
       {/* {modalOpen ? <ShowBuyEgg /> : ""} */}
       <main className="market">
         <div className="hero" style={{ paddingBottom: "0" }}>

@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 
 var token = localStorage.getItem("token");
 export default axios.create({
