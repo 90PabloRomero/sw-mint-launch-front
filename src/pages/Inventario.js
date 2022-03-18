@@ -8,7 +8,7 @@ import '../assets/css/templates/wallet.scss';
 import gusanoRojo from './../assets/img/gusamax.png';
 import api from '../util/api.js';
 import axios from 'axios';
-import {Helmet} from "react-helmet";
+import { Helmet } from "react-helmet";
 
 export default function InventarioPage() {
   const [currentModal, setCurrentModal] = useState('init');
@@ -110,9 +110,12 @@ export default function InventarioPage() {
       nftdatas.push(data);
     }
     setListadatagusanos(nftdatas);
-  };
+  }
   const getNFTData = async (nfto) => {
-    const res = await axios.get('https://spaceworms.app/nftdata/' + nfto.tokenId);
+    console.log("----------------------", "https://spaceworms.app/nftdata/" + nfto.tokenId)
+    const res = await axios.get(
+      "https://spaceworms.app/nftdata/" + nfto.tokenId
+    );
     return res.data;
   };
 
