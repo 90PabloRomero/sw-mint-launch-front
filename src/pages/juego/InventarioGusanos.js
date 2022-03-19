@@ -1,8 +1,10 @@
 import { useNavigate } from 'react-router-dom';
 import leftArrow from './../../assets/img/leftarrow.png';
-
+import { connectWallet, getCurrentWalletConnected } from '../../util/interact.js';
+import api from '../../util/api.js';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from "styled-components";
 import { Helmet } from "react-helmet";
 
@@ -36,11 +38,72 @@ const FlexWrapper = styled.div`
 
 export const InventarioGusanosPage = () => {
   const history = useNavigate();
-
+  const [listadatagusanos, setListadatagusanos] = useState([]);
   const [isOnView, setOnView] = useState('iman');
+  const [walletAddress, setWallet] = useState('');
+  const [status, setStatus] = useState('');
   const goBack = () => {
     history(-1);
   };
+  useEffect(async () => {
+    const { address, status } = await getCurrentWalletConnected();
+    setWallet(address);
+    setStatus(status);
+  }, []);
+  useEffect(async () => {
+    console.log(walletAddress)
+    if (walletAddress !== '') {
+      checkMintedNfts();
+    }
+  }, []);
+  const checkMintedNfts = async () => {
+    await api
+      .post('/getNFTTokens', { params: { walletaddress: walletAddress } })
+      .then(function (res) {
+        if (res.data.success === 'existed') {
+          var nftorigin = res.data.data;
+          console.log("###########", nftorigin)
+          asyncForLoop(nftorigin);
+
+          localStorage.setItem('token', res.data.token);
+        } else if (res.data.success === 'No NFT Tokens') {
+          console.log('no tiene nfts');
+        }
+      });
+  };
+  const asyncForLoop = async (nftorigin) => {
+    var nftdatas = new Array();
+    for (const nfto of nftorigin) {
+      var data = await getNFTData(nfto);
+      if (data.rarity === 1) {
+        data.rarity = 'Común (P)';
+      } else if (data.rarity === 2) {
+        data.rarity = 'Poco Común (P)';
+      } else if (data.rarity === 3) {
+        data.rarity = 'Raro (P)';
+      } else if (data.rarity === 4) {
+        data.rarity = 'Legendario (P)';
+      } else if (data.rarity === 5) {
+        data.rarity = 'Común';
+      } else if (data.rarity === 6) {
+        data.rarity = 'Poco Común';
+      } else if (data.rarity === 7) {
+        data.rarity = 'Raro';
+      } else if (data.rarity === 8) {
+        data.rarity = 'Legendario';
+      }
+      nftdatas.push(data);
+    }
+    setListadatagusanos(nftdatas);
+  }
+  const getNFTData = async (nfto) => {
+    console.log("----------------------", "https://spaceworms.app/nftdata/" + nfto.tokenId)
+    const res = await axios.get(
+      "https://spaceworms.app/nftdata/" + nfto.tokenId
+    );
+    return res.data;
+  };
+
   return (<>
     <Helmet>
       <title>
@@ -143,85 +206,30 @@ export const InventarioGusanosPage = () => {
                 gap: '10px'
               }}
             >
-              <div
-                className="bonif-card"
-                style={{ background: 'none', maxHeight: '180px' }}
-                onClick={() => setOnView('iman')}
-              >
+
+              {listadatagusanos.map((gusanos) => (
                 <div
-                  style={{
-                    display: 'grid',
-                    placeContent: 'center',
-                    height: '100%'
-                  }}
+                  className="bonif-card"
+                  style={{ background: 'none', maxHeight: '180px' }}
+                  onClick={() => setOnView('iman')}
                 >
-                  <img
-                    src="https://spaceworms.app/nftimages/1.png"
-                    alt="iman"
-                    style={{ maxWidth: '100px' }}
-                  />
+                  <div
+                    style={{
+                      display: 'grid',
+                      placeContent: 'center',
+                      height: '100%'
+                    }}
+                  >
+                    <img
+                      src="https://spaceworms.app/nftimages/4.png"
+                      alt="iman"
+                      style={{ maxWidth: '100px' }}
+                    />
+                  </div>
                 </div>
-              </div>
+              ))}
               {/*  */}
-              <div
-                className="bonif-card"
-                style={{ background: 'none', maxHeight: '180px' }}
-                onClick={() => setOnView('iman')}
-              >
-                <div
-                  style={{
-                    display: 'grid',
-                    placeContent: 'center',
-                    height: '100%'
-                  }}
-                >
-                  <img
-                    src="https://spaceworms.app/nftimages/2.png"
-                    alt="iman"
-                    style={{ maxWidth: '100px' }}
-                  />
-                </div>
-              </div>
-              {/*  */}
-              <div
-                className="bonif-card"
-                style={{ background: 'none', maxHeight: '180px' }}
-                onClick={() => setOnView('iman')}
-              >
-                <div
-                  style={{
-                    display: 'grid',
-                    placeContent: 'center',
-                    height: '100%'
-                  }}
-                >
-                  <img
-                    src="https://spaceworms.app/nftimages/3.png"
-                    alt="iman"
-                    style={{ maxWidth: '100px' }}
-                  />
-                </div>
-              </div>
-              {/*  */}
-              <div
-                className="bonif-card"
-                style={{ background: 'none', maxHeight: '180px' }}
-                onClick={() => setOnView('iman')}
-              >
-                <div
-                  style={{
-                    display: 'grid',
-                    placeContent: 'center',
-                    height: '100%'
-                  }}
-                >
-                  <img
-                    src="https://spaceworms.app/nftimages/4.png"
-                    alt="iman"
-                    style={{ maxWidth: '100px' }}
-                  />
-                </div>
-              </div>
+
             </div>
           </FlexWrapper>
         </Wrapper>

@@ -17,6 +17,7 @@ export const GameHomePage = () => {
   const [walletAddress, setWallet] = useState("");
   const navigate = useNavigate();
   const [username, setUsername] = useState("Not login yet");
+  const [amount, setAmount] = useState(0);
   var uuid = localStorage.getItem("uuid");
   useEffect(async () => {
     setUsername(uuid);
@@ -33,7 +34,7 @@ export const GameHomePage = () => {
       .then(function (res) {
         if (res.data.success === "existed") {
           var nftorigin = res.data.data;
-          console.log(nftorigin, "#####################");
+          setAmount(nftorigin[0].amount);
         } else if (res.data.success === "No NFT Tokens") {
           console.log("no tiene nfts");
         }
@@ -108,7 +109,7 @@ export const GameHomePage = () => {
                     width: "60px",
                   }}
                 >
-                  0
+                  {amount}
                 </div>
               </div >
             </div >

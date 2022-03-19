@@ -6,7 +6,8 @@ import brFlag from "./../../assets/img/flags/br.png";
 import inFlag from "./../../assets/img/flags/in.png";
 import crFlag from "./../../assets/img/flags/cr.png";
 import esFlag from "./../../assets/img/flags/es.png";
-
+import api from "../../util/api.js";
+import { getCurrentWalletConnected } from "../../util/interact.js";
 import balanIcon from "./../../assets/img/kg.png";
 
 import g1 from "./../../assets/img/gusanos/g1.png";
@@ -16,11 +17,31 @@ import g4 from "./../../assets/img/gusanos/g4.png";
 import g5 from "./../../assets/img/gusanos/g5.png";
 import g6 from "./../../assets/img/gusanos/g6.png";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 export const GlobalRankingPage = () => {
   const history = useNavigate();
+  const [allusers, setAllusers] = useState([]);
+  useEffect(async () => {
+    var address = await getCurrentWalletConnected();
 
+    if (address !== "") {
+      getUsers();
+    }
+  }, [])
+
+  const getUsers = async () => {
+    await api
+      .post("/getusers", {})
+      .then(function (res) {
+        if (res.data.success === "existed") {
+          var users = res.data.data;
+          setAllusers(users);
+        } else if (res.data.success === "No NFT Tokens") {
+          console.log("no tiene nfts");
+        }
+      });
+  };
 
   const goBack = () => {
     history(-1);
@@ -84,7 +105,8 @@ export const GlobalRankingPage = () => {
             <div
               className=" grid  p-1"
               style={{
-                maxWidth: "950px",
+                minWidth: "950px",
+                maxWidth: "1250px",
                 textAlign: "center",
                 margin: "auto",
                 fontSize: "25px",
@@ -96,107 +118,24 @@ export const GlobalRankingPage = () => {
                 className={"flex-wrapper my-1"}
                 style={{ flexDirection: "column", gap: "10px" }}
               >
-                <div className={"ranking-column"}>
-                  <div>1</div>
-                  <div className={"flex-wrapper"}>
-                    <div>
-                      <img src={arFlag} alt="argentina" />
+                {allusers.map((user, index) => (
+                  <div className={"ranking-column"}>
+                    <div>{index + 1}</div>
+                    <div className={"flex-wrapper"}>
+                      <div>
+                        <img src={index % 4 == 0 ? arFlag : index % 4 == 1 ? chFlag : index % 4 == 2 ? brFlag : esFlag} alt="argentina" />
+                      </div>
+                      <div>{user.walletaddress}</div>
                     </div>
-                    <div>Tony Portugal</div>
-                  </div>
-                  <div>
-                    <img src={g1} alt="" />
-                  </div>
-                  <div>15,548,522</div>
-                  <div>
-                    <img src={balanIcon} alt="peso total" />
-                  </div>
-                </div>
-                {/*  */}
-                <div className={"ranking-column"}>
-                  <div>2</div>
-                  <div className={"flex-wrapper"}>
                     <div>
-                      <img src={chFlag} alt="argentina" />
+                      <img src={index % 4 == 0 ? g1 : index % 4 == 1 ? g2 : index % 4 == 2 ? g3 : g4} alt="" />
                     </div>
-                    <div>Martin Hidalgo</div>
-                  </div>
-                  <div>
-                    <img src={g2} alt="" />
-                  </div>
-                  <div>14,582,569</div>
-                  <div>
-                    <img src={balanIcon} alt="peso total" />
-                  </div>
-                </div>
-                {/*  */}
-                <div className={"ranking-column"}>
-                  <div>3</div>
-                  <div className={"flex-wrapper"}>
+                    <div>{user.highscore}</div>
                     <div>
-                      <img src={brFlag} alt="argentina" />
+                      <img src={balanIcon} alt="peso total" />
                     </div>
-                    <div>Tom Cruise</div>
                   </div>
-                  <div>
-                    <img src={g3} alt="" />
-                  </div>
-                  <div>13,548,895</div>
-                  <div>
-                    <img src={balanIcon} alt="peso total" />
-                  </div>
-                </div>
-                {/*  */}
-                <div className={"ranking-column"}>
-                  <div>4</div>
-                  <div className={"flex-wrapper"}>
-                    <div>
-                      <img src={inFlag} alt="argentina" />
-                    </div>
-                    <div>Alicia Maravilla</div>
-                  </div>
-                  <div>
-                    <img src={g4} alt="" />
-                  </div>
-                  <div>10,869,125</div>
-                  <div>
-                    <img src={balanIcon} alt="peso total" />
-                  </div>
-                </div>
-                {/*  */}
-                <div className={"ranking-column"}>
-                  <div>5</div>
-                  <div className={"flex-wrapper"}>
-                    <div>
-                      <img src={crFlag} alt="argentina" />
-                    </div>
-                    <div>Botigusano</div>
-                  </div>
-                  <div>
-                    <img src={g5} alt="" />
-                  </div>
-                  <div>9,258,266</div>
-                  <div>
-                    <img src={balanIcon} alt="peso total" />
-                  </div>
-                </div>
-                {/*  */}
-                <div className={"ranking-column"}>
-                  <div>6</div>
-                  <div className={"flex-wrapper"}>
-                    <div>
-                      <img src={esFlag} alt="argentina" />
-                    </div>
-                    <div>Piton</div>
-                  </div>
-                  <div>
-                    <img src={g6} alt="" />
-                  </div>
-                  <div>7,258,565</div>
-                  <div>
-                    <img src={balanIcon} alt="peso total" />
-                  </div>
-                </div>
+                ))}
               </div>
               {/*                             */}
               <div
@@ -204,107 +143,26 @@ export const GlobalRankingPage = () => {
                 className={"flex-wrapper my-1"}
                 style={{ flexDirection: "column", gap: "10px", display: "none" }}
               >
-                <div className={"ranking-column"}>
-                  <div>1</div>
-                  <div className={"flex-wrapper"}>
-                    <div>
-                      <img src={arFlag} alt="argentina" />
+
+                {allusers.map((user, index) => (
+
+                  index % 4 == 0 ? (<div className={"ranking-column"}>
+                    <div>{index / 4 + 1}</div>
+                    <div className={"flex-wrapper"}>
+                      <div>
+                        <img src={index % 4 == 0 ? arFlag : index % 4 == 1 ? chFlag : index % 4 == 2 ? brFlag : esFlag} alt="argentina" />
+                      </div>
+                      <div>{user.walletaddress}</div>
                     </div>
-                    <div>Tony Portugal</div>
-                  </div>
-                  <div>
-                    <img src={g1} alt="" />
-                  </div>
-                  <div>15,548,522</div>
-                  <div>
-                    <img src={balanIcon} alt="peso total" />
-                  </div>
-                </div>
-                {/*  */}
-                <div className={"ranking-column"}>
-                  <div>2</div>
-                  <div className={"flex-wrapper"}>
                     <div>
-                      <img src={arFlag} alt="argentina" />
+                      <img src={index % 4 == 0 ? g1 : index % 4 == 1 ? g2 : index % 4 == 2 ? g3 : g4} alt="" />
                     </div>
-                    <div>Denis Portugal</div>
-                  </div>
-                  <div>
-                    <img src={g1} alt="" />
-                  </div>
-                  <div>15,148,522</div>
-                  <div>
-                    <img src={balanIcon} alt="peso total" />
-                  </div>
-                </div>
-                {/*  */}
-                <div className={"ranking-column"}>
-                  <div>3</div>
-                  <div className={"flex-wrapper"}>
+                    <div>{user.highscore}</div>
                     <div>
-                      <img src={arFlag} alt="argentina" />
+                      <img src={balanIcon} alt="peso total" />
                     </div>
-                    <div>Artur Portugal</div>
                   </div>
-                  <div>
-                    <img src={g1} alt="" />
-                  </div>
-                  <div>15,852,2</div>
-                  <div>
-                    <img src={balanIcon} alt="peso total" />
-                  </div>
-                </div>
-                {/*  */}
-                <div className={"ranking-column"}>
-                  <div>4</div>
-                  <div className={"flex-wrapper"}>
-                    <div>
-                      <img src={arFlag} alt="argentina" />
-                    </div>
-                    <div>Yoris Portugal</div>
-                  </div>
-                  <div>
-                    <img src={g1} alt="" />
-                  </div>
-                  <div>15,152,2</div>
-                  <div>
-                    <img src={balanIcon} alt="peso total" />
-                  </div>
-                </div>
-                {/*  */}
-                <div className={"ranking-column"}>
-                  <div>5</div>
-                  <div className={"flex-wrapper"}>
-                    <div>
-                      <img src={arFlag} alt="argentina" />
-                    </div>
-                    <div>John Portugal</div>
-                  </div>
-                  <div>
-                    <img src={g1} alt="" />
-                  </div>
-                  <div>15,522</div>
-                  <div>
-                    <img src={balanIcon} alt="peso total" />
-                  </div>
-                </div>
-                {/*  */}
-                <div className={"ranking-column"}>
-                  <div>6</div>
-                  <div className={"flex-wrapper"}>
-                    <div>
-                      <img src={arFlag} alt="argentina" />
-                    </div>
-                    <div>Tanya Portugal</div>
-                  </div>
-                  <div>
-                    <img src={g1} alt="" />
-                  </div>
-                  <div>152</div>
-                  <div>
-                    <img src={balanIcon} alt="peso total" />
-                  </div>
-                </div>
+                  ) : ""))}
               </div>
             </div>
           </div>
