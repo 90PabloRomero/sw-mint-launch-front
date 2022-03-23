@@ -14,6 +14,7 @@ import AdvertenciaPage from './Advertencia';
 
 export const GameHomePage = () => {
   const [advertenciaContent, setAdvertenciaContent] = useState(false);
+<<<<<<< Updated upstream
   const [walletAddress, setWallet] = useState("");
   const navigate = useNavigate();
   const [username, setUsername] = useState("Not login yet");
@@ -49,6 +50,13 @@ export const GameHomePage = () => {
   const goToMisionesDiarias = () => {
     navigate("/jugar/misiones-diarias");
   }
+=======
+  var token = localStorage.getItem("token");
+  const navigate = useNavigate();
+  if(!token){
+    navigate("/jugar/login");
+  } 
+>>>>>>> Stashed changes
   return (
     <>
       {advertenciaContent ? (

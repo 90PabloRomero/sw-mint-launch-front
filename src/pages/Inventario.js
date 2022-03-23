@@ -73,10 +73,19 @@ export default function InventarioPage() {
   }
 
   const checkMintedNfts = async () => {
+<<<<<<< Updated upstream
     await api
       .post('/getNFTTokens', { params: { walletaddress: walletAddress } })
       .then(function (res) {
         if (res.data.success === 'existed') {
+=======
+    try {
+      await api
+      .post("/getNFTTokens", { params: { walletaddress: walletAddress } })
+      .then(function (res) {
+        
+        if (res.data.success === "existed") {
+>>>>>>> Stashed changes
           var nftorigin = res.data.data;
           asyncForLoop(nftorigin);
 
@@ -85,6 +94,13 @@ export default function InventarioPage() {
           console.log('no tiene nfts');
         }
       });
+    } catch (error) {
+      if (error.response.status === 401) {
+        localStorage.clear();
+        history("/");
+      }
+    }
+    
   };
   const asyncForLoop = async (nftorigin) => {
     var nftdatas = new Array();

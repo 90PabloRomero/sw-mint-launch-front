@@ -80,7 +80,12 @@ const NewFeatureElement = styled.button`
   }
 `
 export const HomePage = () => {
+<<<<<<< Updated upstream
   const { height } = useWindowDimensions();
+=======
+  var token = localStorage.getItem("token");
+  const { height, width } = useWindowDimensions();
+>>>>>>> Stashed changes
   const [navbarOpen, setNavbarOpen] = useState(false);
   const handleToggle = () => {
     setNavbarOpen(!navbarOpen);
@@ -149,6 +154,13 @@ export const HomePage = () => {
   //
   function onChange(isVisible) {
     isVisible ? setSocialMediaVisible(false) : setSocialMediaVisible(true);
+  }
+  const playNow = () => {
+    if(!token) {
+      navigate("/jugar/login");
+    } else {
+      navigate("/jugar");
+    }
   }
   return (
     <>
@@ -227,7 +239,11 @@ export const HomePage = () => {
                         </a>
                       </li>
                       <li>
+<<<<<<< Updated upstream
                         <NewFeatureElement onClick={() => navigate('/jugar')}>
+=======
+                        <Button onClick={() => playNow()}>
+>>>>>>> Stashed changes
                           JUGAR AHORA <BsFillArrowRightCircleFill />
                         </NewFeatureElement>
                       </li>

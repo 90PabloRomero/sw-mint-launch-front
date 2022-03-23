@@ -96,3 +96,22 @@ div.mm-login {
     font-size: 14px;
   }
 }
+.play-login {
+  background: #081d3edf;
+  padding: 1rem 1rem;
+  text-align: center;
+  display: grid;
+  place-items: center;
+  position: absolute;
+  border: 3px solid var(--yellowborder);
+  border-radius: 0.5rem;
+  -webkit-box-pack: center!important;
+  -ms-flex-pack: center!important;
+  max-width: 470px;
+  min-height: 300px;
+  top: 20%;
+  left:0;
+  right:0;
+  margin-left: auto;
+  margin-right: auto;
+}
