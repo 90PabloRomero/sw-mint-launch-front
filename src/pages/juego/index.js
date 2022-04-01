@@ -8,7 +8,7 @@ import bagIcon from '../../assets/img/icons/bag.png';
 import chartIcon from '../../assets/img/icons/chart.png';
 import { Link, useNavigate } from 'react-router-dom';
 import { connectWallet, getCurrentWalletConnected } from "../../util/interact.js";
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import api from "../../util/api.js";
 import AdvertenciaPage from './Advertencia';
 
@@ -18,30 +18,10 @@ export const GameHomePage = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useState("Not login yet");
   const [amount, setAmount] = useState(0);
-  var uuid = localStorage.getItem("uuid");
-  useEffect(async () => {
-    setUsername(uuid);
-    const { address, status } = await getCurrentWalletConnected();
-    setWallet(address);
+  const uuid = localStorage.getItem('uuid');
 
-    if (walletAddress !== "") {
-      checkMintedNfts();
-    }
-  }, [walletAddress])
-  const checkMintedNfts = async () => {
-    await api
-      .post("/getNFTTokens", { params: { walletaddress: walletAddress } })
-      .then(function (res) {
-        if (res.data.success === "existed") {
-          var nftorigin = res.data.data;
-          setAmount(nftorigin[0].amount);
-        } else if (res.data.success === "No NFT Tokens") {
-          console.log("no tiene nfts");
-        }
-      });
-  };
   const goToWaitingRoom = () => {
-    navigate("/jugar/sala");
+    window.location.href = 'http://localhost:8000/game?username=' + uuid;
   }
   const goToInventario = () => {
     navigate("/jugar/inventario");
@@ -73,16 +53,15 @@ export const GameHomePage = () => {
                     border: "2px solid #af2322",
                     borderRadius: "5px",
                     background: "black",
-                    height: "30px",
-                    textAlign: "center",
-                    lineHeight: 0.5,
-                    marginTop: "8px",
+                    padding: "0 2px",
+                    textAlign: "start",
+
+                    margin: "8px",
                     fontSize: "18px",
-                    marginLeft: "5px",
                     width: "100%",
                   }}
                 >
-
+                  ID: {uuid}
                 </div>
 
               </div >

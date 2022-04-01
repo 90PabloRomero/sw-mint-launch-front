@@ -28,8 +28,10 @@ import { JuegoTerminadoPage } from 'pages/juego/JuegoTerminado';
 import { InventarioGusanosPage } from 'pages/juego/InventarioGusanos';
 import { MejorasGusanoPage } from 'pages/juego/MejoraDelGusano';
 import { SkinsPage } from 'pages/juego/Skins';
+import { GameLoginPage } from './pages/juego/GameLogin';
 
 export default function App() {
+  <ToastContainer/>
   const [walletAddress, setWallet] = useState('');
   const [status, setStatus] = useState('');
 
@@ -106,7 +108,6 @@ export default function App() {
               }
           />
           <Route path={'/jugar/perfil'} element={<ProfilePage />}/>
-          <Route path={'/jugar/terminos'} element={<TerminosYCondicionesPage />}/>
           <Route path={'/jugar/opciones'} element={<OptionsPage />}/>
           <Route path={'/jugar/global-ranking'} element={<GlobalRankingPage />}/>
           <Route path={'/jugar/bonos-arena'} element={<BonificacionesDeArenaPage />}/>
@@ -117,6 +118,7 @@ export default function App() {
           <Route path={'/jugar/resultado'} element={<EndGamePage />}/>
           <Route path={'/jugar/skins'} element={<SkinsPage />}/>
           <Route path="/jugar" element={<GameHomePage />} />
+          <Route path={'/jugar/login'} element={<GameLoginPage/>}/>
         </Routes>
       </Router>
     </>

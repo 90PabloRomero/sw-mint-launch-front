@@ -50,6 +50,7 @@ import sdLogo from 'assets/img/sd.png';
 import useWindowDimensions from './../components/atoms/useWindowsDimensions';
 import YouTube from 'react-youtube';
 import styled from "styled-components";
+import { Helmet } from 'react-helmet';
 
 const NewFeatureElement = styled.button`
   animation: glow .5s infinite alternate;
@@ -174,6 +175,9 @@ export const HomePage = () => {
       )}
       <main>
         {/* inicio */}
+        <Helmet>
+          <title>🐛</title>
+        </Helmet>
         <div className="hero">
           <header>
             <div className={`header-container ${navbarOpen ? 'fixed' : 'relative'}`}>
@@ -227,7 +231,7 @@ export const HomePage = () => {
                         </a>
                       </li>
                       <li>
-                        <NewFeatureElement onClick={() => navigate('/jugar')}>
+                        <NewFeatureElement onClick={() => navigate('/jugar/login')}>
                           JUGAR AHORA <BsFillArrowRightCircleFill />
                         </NewFeatureElement>
                       </li>
