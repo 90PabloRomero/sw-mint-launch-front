@@ -25,7 +25,7 @@ const AdvertenciaPage = () => {
               SI TU EXPERIENCIA DE JUEGO NO ES SATISFACTORIA TE PEDIMOS
               DISCULPAS Y TE INVITAMOS A PROBAR DE NUEVO EN LOS PRÓXIMOS DIAS.
             </p>
-            <a href="/demo/game.html" className="disable-styles">
+            <a href="http://52.15.191.202:4200/wormsdemo/game.html" className="disable-styles">
               <button
                 className="game-btn mx-1"
                 style={{
